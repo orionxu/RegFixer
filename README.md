@@ -8,7 +8,7 @@ Run `mvn install` to compile & bundle the project. The finished JAR will be avai
 
 ## Running on terminal
 
-Running `java -jar target/regfixer.jar fix --limit 4000 tests/test_words.txt` should produce the following report:
+Running `java -jar target/regfixer.jar fix --limit 4000 --file tests/test_words.txt` should produce the following report:
 
 ```
 Given the regular expression:

@@ -140,6 +140,7 @@
   </dependencies>
 
   <build>
+  <pluginManagement>
     <plugins>
       <!-- PLUGIN TO SUPPORT HEROKU DEPLOYMENT -->
       <plugin>
@@ -198,6 +199,9 @@
           </execution>
         </executions>
         <configuration>
+        <sources>
+                    <source>${project.build.directory}/generated-sources/java/</source>
+                </sources>
           <mainClass>edu.wisc.regfixer.CLI</mainClass>
         </configuration>
       </plugin>
@@ -241,5 +245,6 @@
         </executions>
       </plugin>
     </plugins>
+    </pluginManagement>
   </build>
 </project>

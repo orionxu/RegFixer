@@ -7,3 +7,9 @@ src/main/resources/dist/*.map
 classes
 .idea
 .DS_Store
+
+\.classpath
+
+\.project
+
+\.settings/

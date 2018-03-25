@@ -62,7 +62,7 @@ public class Benchmark {
       lineNum++;
     }
 
-    return new JobImplicit(filename, regex, corpus, selectedRanges);
+    return new Job(filename, regex, corpus, selectedRanges);
   }
 
   public static void saveToFile (Job job, String filename) throws IOException {
