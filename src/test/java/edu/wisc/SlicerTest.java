@@ -1,20 +1,13 @@
 package edu.wisc;
 
 import java.io.FileNotFoundException;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.sat4j.specs.TimeoutException;
 import edu.wisc.regfixer.enumerate.*;
 import edu.wisc.regfixer.parser.*;
 
@@ -48,11 +41,11 @@ public class SlicerTest {
 		List<Enumerant> sliceResult = Slicer.slice(n);
 		List<String> h = sliceResult.stream().map(Enumerant::toString)
 				.collect(Collectors.toList());
-		assertTrue(h.contains("(■\\d|,){■}(\\d)+"));
-		assertTrue(h.contains("(\\d|,){■}(\\d)+"));
-		assertTrue(h.contains("(\\d|,)*■"));
-		assertTrue(h.contains("(\\d|,)*(■){■}"));
-		assertTrue(h.contains("(\\d|,)*■(\\d)+"));
+		assertTrue(h.contains("((■\\d|,)){■}(\\d)+"));
+		assertTrue(h.contains("((\\d|,)){■}(\\d)+"));
+		assertTrue(h.contains("((\\d|,))*■"));
+		assertTrue(h.contains("((\\d|,))*(■){■}"));
+		assertTrue(h.contains("((\\d|,))*■(\\d)+"));
 		assertTrue(h.contains("■"));
 	}
 
@@ -92,8 +85,8 @@ public class SlicerTest {
 		List<String> h = sliceResult.stream().map(Enumerant::toString)
 				.collect(Collectors.toList());
 		assertEquals(h.size(), 3);
-		assertTrue(h.contains("■|b"));
-		assertTrue(h.contains("a|■"));
+		assertTrue(h.contains("(■|b)"));
+		assertTrue(h.contains("(a|■)"));
 		assertTrue(h.contains("■"));
 	}
 	

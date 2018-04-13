@@ -34,6 +34,6 @@ public class UnionNode implements RegexNode {
   }
 
   public String toString () {
-    return String.format("%s|%s", this.left.toString(), this.right.toString());
+    return String.format("(%s|%s)", this.left.toString(), this.right.toString());
   }
 }
