@@ -41,6 +41,8 @@ public class UnknownChar implements Unknown, RegexNode, Comparable<UnknownChar> 
 
   public UnknownChar (Expansion latest) {
     this.id = new UnknownId(this);
+    if (this.history == null)
+    	this.history = new LinkedList<>();
     this.history.add(latest);
   }
 
