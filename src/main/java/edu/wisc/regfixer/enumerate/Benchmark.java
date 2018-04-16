@@ -8,9 +8,34 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Benchmark {
-  public final static String boundary = "---";
 
-  public static Job readFromFile (String filename) throws IOException {
+  public final static String boundary = "---";
+  
+  
+  public static Job readFromFile(String filename) throws IOException{
+		File fp = new File(filename);
+		Scanner scnr = new Scanner(fp);
+		String regExp = scnr.nextLine();
+		scnr.nextLine();
+		String example = scnr.nextLine();
+		String corpus = "";
+		Set<Range> pRange = new HashSet<>();
+		Set<Range> nRange = new HashSet<>();
+		while (!example.equals(boundary)) {
+			pRange.add(new Range(corpus.length(), corpus.length() + example.length()));
+			corpus = corpus.concat(example);
+			example = scnr.nextLine();
+		}
+		while (scnr.hasNextLine()) {
+			example = scnr.nextLine();
+			nRange.add(new Range(corpus.length(), corpus.length() + example.length()));
+			corpus = corpus.concat(example);
+		}
+		scnr.close();
+		return new Job(filename, regExp, corpus, pRange, nRange);
+	}
+  
+  /*public static Job readFromFile (String filename) throws IOException {
     String regex = "";
     Set<Range> selectedRanges = new HashSet<Range>();
     Set<Range> negativeRanges = new HashSet<Range>();
@@ -63,7 +88,7 @@ public class Benchmark {
     }
 
     return new Job(filename, regex, corpus, selectedRanges);
-  }
+  }*/
 
   public static void saveToFile (Job job, String filename) throws IOException {
     PrintWriter pw = new PrintWriter(filename, "UTF-8");
