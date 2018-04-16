@@ -4,17 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import org.sat4j.specs.TimeoutException;
 import edu.wisc.regfixer.enumerate.*;
 
 public class CorpusTest {
 	
 	@Test
-	public void simpleTest() throws BadRangeException {
+	public void testCreation() throws BadRangeException {
 		String tempCorpus = "(123) 456-7890\n" + 
 				"(987) 653-2109\n" + 
 				"1-800-678-0693\n" + 

@@ -3,14 +3,13 @@ package edu.wisc;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import org.sat4j.specs.TimeoutException;
 
 import edu.wisc.regfixer.enumerate.BadRangeException;
 import edu.wisc.regfixer.enumerate.Range;
 
 public class RangeTest {
 	@Test
-	public void SimpleTest() throws BadRangeException {
+	public void testBasic() throws BadRangeException {
 		Range A = new Range(4,6);
 		Range B = new Range("(4:6)");
 		Range C = new Range(7,20);
