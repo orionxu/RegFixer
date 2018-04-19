@@ -45,13 +45,6 @@ public class TestAll {
 			boolean extractRegex = false;
 			while ((s = stdInput.readLine()) != null) {
 				pw.println(s);
-				if (!extractRegex && s.contains("Given the regular expression:")) {
-					extractRegex = true;
-				} else if (extractRegex && s.length() > 0) {
-					System.out.println("Result Regex:  " + s.trim());
-					System.out.println();
-					extractRegex = false;
-				}
 			}
 			while ((s = stdError.readLine()) != null) {
 				System.err.println(s);
