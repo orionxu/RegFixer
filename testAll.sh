@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf testAllResult.log
+rm -f testAllResult.log
 javac TestAll.java
 java TestAll
-rm -rf TestAll.class
+rm -f TestAll.class
