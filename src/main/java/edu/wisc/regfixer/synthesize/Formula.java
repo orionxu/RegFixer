@@ -206,12 +206,19 @@ public class Formula {
     BoolExpr whole = null;
 
     for (Map.Entry<UnknownId, Set<Integer>> entry : route.getExits().entrySet()) {
-      if (entry.getValue().size() == 0) {
+      /*if (entry.getValue().size() == 0) {
         continue;
-      }
+      }*/
 
-      IntNum minCountVal = this.ctx.mkInt(Collections.min(entry.getValue()));
-      IntNum maxCountVal = this.ctx.mkInt(Collections.max(entry.getValue()));
+      IntNum minCountVal;
+      IntNum maxCountVal;
+      if (entry.getValue().size() == 0) {
+    	  minCountVal = this.ctx.mkInt(0);
+    	  maxCountVal = this.ctx.mkInt(0);
+      } else {
+    	  minCountVal = this.ctx.mkInt(Collections.min(entry.getValue()));
+          maxCountVal = this.ctx.mkInt(Collections.max(entry.getValue()));
+      }
       IntExpr minVar = unknownToMinVar.get(entry.getKey());
       IntExpr maxVar = unknownToMaxVar.get(entry.getKey());
       BoolExpr part = this.ctx.mkAnd(
@@ -221,7 +228,7 @@ public class Formula {
       if (whole == null) {
         whole = part;
       } else {
-        whole = this.ctx.mkOr(whole, part);
+        whole = this.ctx.mkAnd(whole, part);// rp changed
       }
     }
 
@@ -274,12 +281,19 @@ public class Formula {
     BoolExpr whole = null;
 
     for (Map.Entry<UnknownId, Set<Integer>> entry : route.getExits().entrySet()) {
-      if (entry.getValue().size() == 0) {
+      /*if (entry.getValue().size() == 0) {
         continue;
-      }
+      }*/
 
-      IntNum minCountVal = this.ctx.mkInt(Collections.min(entry.getValue()));
-      IntNum maxCountVal = this.ctx.mkInt(Collections.max(entry.getValue()));
+      IntNum minCountVal;
+      IntNum maxCountVal;
+      if (entry.getValue().size() == 0) {
+    	  minCountVal = this.ctx.mkInt(0);
+    	  maxCountVal = this.ctx.mkInt(0);
+      } else {
+    	  minCountVal = this.ctx.mkInt(Collections.min(entry.getValue()));
+          maxCountVal = this.ctx.mkInt(Collections.max(entry.getValue()));
+      }
       IntExpr minVar = unknownToMinVar.get(entry.getKey());
       IntExpr maxVar = unknownToMaxVar.get(entry.getKey());
       BoolExpr part = this.ctx.mkOr(
@@ -289,7 +303,7 @@ public class Formula {
       if (whole == null) {
         whole = part;
       } else {
-        whole = this.ctx.mkAnd(whole, part);
+        whole = this.ctx.mkOr(whole, part); // rp changed
       }
     }
 
