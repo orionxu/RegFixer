@@ -102,6 +102,7 @@ public class TestAll {
 					System.out.println("\tResult Regex:  " + regexFound);
 					System.out.println("\tFitness: " + fit + "\t" + "Valid? " + regexValid);
 					System.out.println();
+					lineScanner.close();
 				} 
 			}
 			while ((s = stdError.readLine()) != null) {

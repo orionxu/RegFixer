@@ -99,43 +99,40 @@ public class RegFixer {
         }
       }
 
-      // Print some information about the current template.
-      diag.output().printPartialRow(enumerant.getCost(), enumerant.toString());
 
       Synthesis synthesis = null;
       Expansion expansion = enumerant.getLatestExpansion();
 
       boolean passesTests = true;
+      
+      diag.timing().startTiming("timeEmptySetTest");
+      passesTests = job.getCorpus().passesEmptySetTest(enumerant);
+      diag.timing().stopTimingAndAdd("timeEmptySetTest");
 
       switch (expansion) {
       case Concat:
-        if (diag.getBool("test-all") || diag.getBool("test-dot")) {
-          diag.timing().startTiming("timeDotTest");
-          passesTests = job.getCorpus().passesDotTest(enumerant);
-          diag.timing().stopTimingAndAdd("timeDotTest");
-
+    	  if(passesTests) {
+    		  diag.timing().startTiming("timeDotTest");
+              passesTests = job.getCorpus().passesDotTest(enumerant);
+              diag.timing().stopTimingAndAdd("timeDotTest");
+    	  }
           // Increment appropriate counters.
           diag.registry().bumpInt("totalDotTests");
           if (passesTests == false) {
             diag.registry().bumpInt("totalDotTestsRejects");
           }
-        }
         break;
       case Star:
       case Optional:
-        if (diag.getBool("test-all") || diag.getBool("test-emptyset")) {
-          diag.timing().startTiming("timeEmptySetTest");
-          passesTests = job.getCorpus().passesEmptySetTest(enumerant);
-          diag.timing().stopTimingAndAdd("timeEmptySetTest");
 
           // Increment appropriate counters.
           diag.registry().bumpInt("testEmptySetTotal");
           if (passesTests == false) {
             diag.registry().bumpInt("testEmptySetRejections");
           }
-        }
         break;
       }
+      diag.output().printPartialRow(enumerant.getCost(), enumerant.toString());
 
       if (passesTests) {
         try {
@@ -159,6 +156,8 @@ public class RegFixer {
 
         diag.output().finishRow(sol);
         costCutoff = enumerant.getCost();
+      } else {
+    	  diag.output().finishRow("Failed dot test or empty set test. ");
       }
     }
 

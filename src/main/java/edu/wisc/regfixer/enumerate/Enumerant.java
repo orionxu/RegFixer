@@ -279,6 +279,8 @@ public class Enumerant implements Comparable<Enumerant> {
 
     try {
       for (String source : p) {
+    	  if(emptySetMatching(source))
+    		  continue;
         positiveRuns.add(automaton.trace(source));
       }
 
@@ -306,5 +308,10 @@ public class Enumerant implements Comparable<Enumerant> {
   @Override
   public String toString () {
     return this.tree.toString();
+  }
+  
+  private boolean emptySetMatching(String s) {
+	  Pattern p = toPattern(UnknownChar.FillType.EmptySet);
+	  return p.matcher(s).matches();
   }
 }
