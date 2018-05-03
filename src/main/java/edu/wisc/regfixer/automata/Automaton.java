@@ -72,7 +72,7 @@ public class Automaton extends automata.Automaton {
     return getEpsClosure(Arrays.asList(frontier));
   }
 
-  private List<State> getEpsClosure (List<State> frontier) {
+  /*private List<State> getEpsClosure (List<State> frontier) {
     List<State> reached = new LinkedList<>(frontier);
     Set<Integer> seenStateIds = frontier.stream()
       .map(s -> s.getStateId())
@@ -95,8 +95,42 @@ public class Automaton extends automata.Automaton {
     }
 
     return reached;
-  }
+  }*/
 
+  private List<State> getEpsClosure (List<State> frontier) {
+    List<State> res = new LinkedList<>();
+    for (State s : frontier) {
+    	res.addAll(getEpsClosureForOneState(s));
+    }
+    return res;
+  }
+  
+  private List<State> getEpsClosureForOneState (State frontier) {
+    List<State> reached = new LinkedList<>();
+    reached.add(frontier);
+    Set<Integer> seenStateIds = new HashSet<>();
+    seenStateIds.add(frontier.getStateId());
+    LinkedList<State> toVisit = new LinkedList<>();
+    toVisit.add(frontier);
+    
+    while (toVisit.size() > 0) {
+      State currState = toVisit.removeFirst();
+      for (Move<CharPred, Character> move : getMovesFrom(currState.getStateId())) {
+        if (move.isEpsilonTransition()) {
+          State newState = new State(move.to, currState);
+          reached.add(newState);
+
+          if (false == seenStateIds.contains(newState.getStateId())) {
+            toVisit.add(newState);
+            seenStateIds.add(newState.getStateId());
+          }
+        }
+      }
+    }
+
+    return reached;
+  }
+  
   public List<State> getNextState (List<State> frontier, Character ch) throws TimeoutException {
     return getNextState(null, frontier, ch);
   }
@@ -153,6 +187,7 @@ public class Automaton extends automata.Automaton {
   private Route traceFromState (State endState) {
     Map<UnknownId, Set<Character>> crosses = new HashMap<>();
     Map<UnknownId, Stack<Integer>> quantTally = new HashMap<>();
+    Map<UnknownId, Boolean> outGuard = new HashMap<>();
 
     for (UnknownId id : this.unknownToEntryState.keySet()) {
       quantTally.put(id, new Stack<>());
@@ -176,6 +211,8 @@ public class Automaton extends automata.Automaton {
 
       for (UnknownId id : this.unknownToEntryState.keySet()) {
         Integer entryStateId = this.unknownToEntryState.get(id);
+        if (!outGuard.containsKey(id) || outGuard.get(id) == false)
+          continue;
         if (entryStateId == currState.getStateId()) {
           Integer old = quantTally.get(id).pop();
 
@@ -184,12 +221,14 @@ public class Automaton extends automata.Automaton {
           }
 
           quantTally.get(id).push(old + 1);
+          outGuard.put(id, false);
         }
       }
 
       for (UnknownId id : this.unknownToExitStates.keySet()) {
         Set<Integer> exitStateIds = this.unknownToExitStates.get(id);
         if (exitStateIds.contains(currState.getStateId())) {
+          outGuard.put(id, true);
           if (prevState != null && this.unknownToEntryState.get(id) != null) {
              if (this.unknownToEntryState.get(id) != prevState.getStateId()) {
                // This exit does NOT loop back to the start of this quantifier
@@ -317,16 +356,17 @@ public class Automaton extends automata.Automaton {
   }
 
   public Set<Route> trace (String source) throws TimeoutException {
-    List<Set<Integer>> layers = getStateFilter(source);
+    //List<Set<Integer>> layers = getStateFilter(source);
     List<State> frontier = getEpsClosure(new State(getInitialState()));
 
     for (int i = 0; i < source.length(); i++) {
-      if (layers.size() <= i) {
+      /*if (layers.size() <= i) {
         return new HashSet<>();
       }
 
       Set<Integer> filter = layers.get(i);
-      frontier = getNextState(filter, frontier, source.charAt(i));
+      frontier = getNextState(filter, frontier, source.charAt(i));*/
+      frontier = getNextState(frontier, source.charAt(i));
       frontier = getEpsClosure(frontier);
 
       if (frontier.isEmpty()) {
