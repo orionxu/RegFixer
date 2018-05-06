@@ -34,7 +34,7 @@ public class Enumerant implements Comparable<Enumerant> {
   public final static int PLUS_COST     = 2;
   public final static int CONCAT_COST   = 1;
   public final static int REPEAT_COST   = 1;
-  public final static int FREEZE_COST   = 0;
+  public final static int FREEZE_COST   = 1;
 
   private final RegexNode tree;
   private final Set<UnknownId> ids;
@@ -119,7 +119,7 @@ public class Enumerant implements Comparable<Enumerant> {
     for (UnknownChar unknown : unknowns) {
       if (oldest == null) {
         oldest = unknown;
-      } else if (unknown.isFrozen() == false && unknown.getAge() > oldest.getAge()) {
+      } else if (unknown.isFrozen() == false && unknown.getAge() < oldest.getAge()) {
         oldest = unknown;
       }
     }

@@ -89,7 +89,7 @@ public class Grafter {
         childrenNoChange = false;
         newChildren.set(i, graftee);
 
-        if (scion instanceof ConcatNode && i > 0) {
+        if (scion instanceof ConcatNode && i > 0 && children.get(i - 1) instanceof UnknownChar) {
           if (checkForbiddenExpansions) {
             throw new ForbiddenExpansionException("non-first child of concat cannot be expanded with concat");
           }
@@ -125,9 +125,9 @@ public class Grafter {
     } else {
       UnionNode union = new UnionNode(leftGraftee, rightGraftee, node.isSynthetic());
 
-      if (leftGraftee.descendants() <= rightGraftee.descendants() && node.isSynthetic()) {
+      if (leftGraftee.descendants() < rightGraftee.descendants() && node.isSynthetic()) {
         if (checkForbiddenExpansions) {
-          throw new ForbiddenExpansionException("right side of union cannot have >= nodes than left side");
+          throw new ForbiddenExpansionException("right side of union cannot have > nodes than left side");
         }
       }
 
