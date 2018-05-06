@@ -87,7 +87,7 @@ public class Enumerant implements Comparable<Enumerant> {
     UnknownChar.setFill(type);
 
     if (type == UnknownChar.FillType.EmptySet) {
-      UnknownBounds.setFill(Bounds.exactly(0));
+      UnknownBounds.setFill(Bounds.exactly(Bounds.MAX_BOUND));
     } else {
       UnknownBounds.setFill();
     }
