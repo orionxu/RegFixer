@@ -131,6 +131,18 @@ public class RegFixer {
             diag.registry().bumpInt("testEmptySetRejections");
           }
         break;
+      case Repeat:
+    	  if(passesTests) {
+    		  diag.timing().startTiming("timeDotTest");
+              passesTests = job.getCorpus().passesDotTest(enumerant);
+              diag.timing().stopTimingAndAdd("timeDotTest");
+    	  }
+          // Increment appropriate counters.
+          diag.registry().bumpInt("totalDotTests");
+          if (passesTests == false) {
+            diag.registry().bumpInt("totalDotTestsRejects");
+          }
+        break;
       }
       diag.output().printPartialRow(enumerant.getCost(), enumerant.toString());
 
