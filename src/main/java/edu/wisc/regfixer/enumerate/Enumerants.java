@@ -33,6 +33,7 @@ public class Enumerants {
       if (false == this.history.contains(expansion.toString())) {
         this.history.add(expansion.toString());
         this.queue.add(expansion);
+        expansion.setParent(enumerant);
       }
     }
 

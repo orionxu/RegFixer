@@ -35,11 +35,14 @@ public class Enumerant implements Comparable<Enumerant> {
   public final static int CONCAT_COST   = 1;
   public final static int REPEAT_COST   = 1;
   public final static int FREEZE_COST   = 1;
+  
+  public boolean passDot;
 
   private final RegexNode tree;
   private final Set<UnknownId> ids;
   private final int cost;
   private final Expansion latest;
+  private Enumerant parent;
 
   @FunctionalInterface
   public static interface ExpansionFunction {
@@ -60,10 +63,20 @@ public class Enumerant implements Comparable<Enumerant> {
     this.ids = new HashSet<>(ids);
     this.cost = cost;
     this.latest = latest;
+    this.parent = null;
+    this.passDot = false;
   }
 
   public RegexNode getTree () {
     return this.tree;
+  }
+  
+  public Enumerant getParent() {
+	  return this.parent;
+  }
+  
+  public void setParent(Enumerant p) {
+	  this.parent = p;
   }
 
   public Set<UnknownId> getIds () {

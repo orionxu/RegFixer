@@ -108,45 +108,35 @@ public class RegFixer {
       diag.timing().startTiming("timeEmptySetTest");
       passesTests = job.getCorpus().passesEmptySetTest(enumerant);
       diag.timing().stopTimingAndAdd("timeEmptySetTest");
-
-      switch (expansion) {
-      case Concat:
-    	  if(passesTests) {
-    		  diag.timing().startTiming("timeDotTest");
+      
+      if(passesTests) {
+    	  if(expansion == Expansion.Repeat) {
+        	  if (enumerant.getParent()==null || !enumerant.getParent().passDot) {
+        		  diag.timing().startTiming("timeDotTest");
+                  passesTests = job.getCorpus().passesDotTest(enumerant);
+                  diag.timing().stopTimingAndAdd("timeDotTest");
+        	  }
+              // Increment appropriate counters.
+              diag.registry().bumpInt("totalDotTests");
+              if (passesTests == false) {
+                diag.registry().bumpInt("totalDotTestsRejects");
+              }
+          } else {
+        	  diag.timing().startTiming("timeDotTest");
               passesTests = job.getCorpus().passesDotTest(enumerant);
               diag.timing().stopTimingAndAdd("timeDotTest");
-    	  }
-          // Increment appropriate counters.
-          diag.registry().bumpInt("totalDotTests");
-          if (passesTests == false) {
-            diag.registry().bumpInt("totalDotTestsRejects");
+              diag.registry().bumpInt("totalDotTests");
+              if (passesTests == false) {
+                diag.registry().bumpInt("totalDotTestsRejects");
+              }
           }
-        break;
-      case Star:
-      case Optional:
-
-          // Increment appropriate counters.
-          diag.registry().bumpInt("testEmptySetTotal");
-          if (passesTests == false) {
-            diag.registry().bumpInt("testEmptySetRejections");
-          }
-        break;
-      case Repeat:
-    	  if(passesTests) {
-    		  diag.timing().startTiming("timeDotTest");
-              passesTests = job.getCorpus().passesDotTest(enumerant);
-              diag.timing().stopTimingAndAdd("timeDotTest");
-    	  }
-          // Increment appropriate counters.
-          diag.registry().bumpInt("totalDotTests");
-          if (passesTests == false) {
-            diag.registry().bumpInt("totalDotTestsRejects");
-          }
-        break;
       }
+
+    
       diag.output().printPartialRow(enumerant.getCost(), enumerant.toString());
 
       if (passesTests) {
+    	  enumerant.passDot = true;
         try {
           synthesis = RegFixer.synthesisLoop(job, enumerant, diag);
         } catch (SynthesisFailure ex) {
