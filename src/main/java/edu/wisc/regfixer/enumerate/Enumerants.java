@@ -31,9 +31,14 @@ public class Enumerants {
 
     for (Enumerant expansion : enumerant.expand()) {
       if (false == this.history.contains(expansion.toString())) {
-        this.history.add(expansion.toString());
-        this.queue.add(expansion);
-        expansion.setParent(enumerant);
+    	  diag.timing().startTiming("timeEmptySetTest");
+          boolean passesTests = corpus.passesEmptySetTest(enumerant);
+          diag.timing().stopTimingAndAdd("timeEmptySetTest");
+          if(passesTests) {
+        	  this.history.add(expansion.toString());
+              this.queue.add(expansion);
+              expansion.setParent(enumerant);
+          }
       }
     }
 

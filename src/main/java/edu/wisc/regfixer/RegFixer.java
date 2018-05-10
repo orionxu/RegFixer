@@ -105,30 +105,26 @@ public class RegFixer {
 
       boolean passesTests = true;
       
-      diag.timing().startTiming("timeEmptySetTest");
-      passesTests = job.getCorpus().passesEmptySetTest(enumerant);
-      diag.timing().stopTimingAndAdd("timeEmptySetTest");
       
-      if(passesTests) {
-    	  if(expansion == Expansion.Repeat) {
-        	  if (enumerant.getParent()==null || !enumerant.getParent().passDot) {
-        		  diag.timing().startTiming("timeDotTest");
-                  passesTests = job.getCorpus().passesDotTest(enumerant);
-                  diag.timing().stopTimingAndAdd("timeDotTest");
-        	  }
-              // Increment appropriate counters.
-              diag.registry().bumpInt("totalDotTests");
-              if (passesTests == false) {
-                diag.registry().bumpInt("totalDotTestsRejects");
-              }
-          } else {
-        	  diag.timing().startTiming("timeDotTest");
+      
+	  if(expansion == Expansion.Repeat) {
+    	  if (enumerant.getParent()==null || !enumerant.getParent().passDot) {
+    		  diag.timing().startTiming("timeDotTest");
               passesTests = job.getCorpus().passesDotTest(enumerant);
               diag.timing().stopTimingAndAdd("timeDotTest");
-              diag.registry().bumpInt("totalDotTests");
-              if (passesTests == false) {
-                diag.registry().bumpInt("totalDotTestsRejects");
-              }
+    	  }
+          // Increment appropriate counters.
+          diag.registry().bumpInt("totalDotTests");
+          if (passesTests == false) {
+            diag.registry().bumpInt("totalDotTestsRejects");
+          }
+      } else {
+    	  diag.timing().startTiming("timeDotTest");
+          passesTests = job.getCorpus().passesDotTest(enumerant);
+          diag.timing().stopTimingAndAdd("timeDotTest");
+          diag.registry().bumpInt("totalDotTests");
+          if (passesTests == false) {
+            diag.registry().bumpInt("totalDotTestsRejects");
           }
       }
 
