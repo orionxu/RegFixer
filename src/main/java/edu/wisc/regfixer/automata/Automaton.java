@@ -478,8 +478,12 @@ public class Automaton extends automata.Automaton {
     }
 
     // Update entry state ID.
+    for (Map.Entry<UnknownId, Integer> entry : first.unknownToEntryState.entrySet()) {
+        aut.unknownToEntryState.put(entry.getKey(), entry.getValue());
+      }
     for (Map.Entry<UnknownId, Integer> entry : second.unknownToEntryState.entrySet()) {
-      aut.unknownToEntryState.put(entry.getKey(), first.sfa.getMaxStateId() + offset + 1);
+      //aut.unknownToEntryState.put(entry.getKey(), first.sfa.getMaxStateId() + offset + 1);
+      aut.unknownToEntryState.put(entry.getKey(), entry.getValue() + offset);
     }
 
     return aut;

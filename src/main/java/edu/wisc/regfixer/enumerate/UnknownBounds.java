@@ -8,7 +8,6 @@ public class UnknownBounds extends Bounds implements Unknown {
   public static void setFill () { UnknownBounds.setFill(Bounds.atLeast(0)); }
   public static void setFill (Bounds bounds) { UnknownBounds.fill = bounds; }
   public static void clearFill () { UnknownBounds.fill = null; }
-  public static boolean emptyTest = false;
 
   private UnknownId id;
 

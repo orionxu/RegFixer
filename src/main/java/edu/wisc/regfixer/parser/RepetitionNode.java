@@ -1,4 +1,5 @@
 package edu.wisc.regfixer.parser;
+import edu.wisc.regfixer.enumerate.Enumerant;
 import edu.wisc.regfixer.enumerate.UnknownBounds;
 
 public class RepetitionNode implements RegexNode {
@@ -33,9 +34,10 @@ public class RepetitionNode implements RegexNode {
   }
 
   public String toString () {
+	  
 	// handle emptySet test
-	if (UnknownBounds.emptyTest) {
-		return String.format("(%s%s)%s", this.child, (char) 0x2202, 1);
+	if (Enumerant.emptyTest && this.bounds instanceof UnknownBounds) {
+		return String.format("(%s%s)%s", this.child, (char) 0x2202, this.bounds);
 	}
     return String.format("(%s)%s", this.child, this.bounds);
   }

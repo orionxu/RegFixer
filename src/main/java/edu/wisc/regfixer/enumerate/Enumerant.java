@@ -36,6 +36,7 @@ public class Enumerant implements Comparable<Enumerant> {
   public final static int REPEAT_COST   = 1;
   public final static int FREEZE_COST   = 1;
   
+  public static boolean emptyTest;
   public boolean passDot;
 
   private final RegexNode tree;
@@ -100,8 +101,8 @@ public class Enumerant implements Comparable<Enumerant> {
     UnknownChar.setFill(type);
 
     if (type == UnknownChar.FillType.EmptySet) {
-      UnknownBounds.setFill(Bounds.exactly(0));
-      UnknownBounds.emptyTest = true;
+      UnknownBounds.setFill(Bounds.exactly(1));
+      Enumerant.emptyTest = true;
     } else {
       UnknownBounds.setFill();
     }
@@ -112,7 +113,7 @@ public class Enumerant implements Comparable<Enumerant> {
     // Clear the temporary values.
     UnknownChar.clearFill();
     UnknownBounds.clearFill();
-    UnknownBounds.emptyTest = false;
+    Enumerant.emptyTest = false;
 
     return pattern;
   }

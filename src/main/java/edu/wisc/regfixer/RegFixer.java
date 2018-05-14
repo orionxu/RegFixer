@@ -122,6 +122,7 @@ public class RegFixer {
     	  diag.timing().startTiming("timeDotTest");
           passesTests = job.getCorpus().passesDotTest(enumerant);
           diag.timing().stopTimingAndAdd("timeDotTest");
+          // Increment appropriate counters.
           diag.registry().bumpInt("totalDotTests");
           if (passesTests == false) {
             diag.registry().bumpInt("totalDotTestsRejects");

@@ -557,9 +557,9 @@ public class Formula {
       solutions.put(id, getCharSolution(id));
     }
 
-    if (someSolutions == false) {
+    /*if (someSolutions == false) {
       throw new SynthesisFailure("model produced no solutions for any unknown");
-    }
+    }*/
 
     return solutions;
   }

@@ -28,11 +28,18 @@ public class Enumerants {
     }
 
     Enumerant enumerant = this.queue.remove();
-
+    
+    // we need to check for the initial set of templates, otherwise only the expanded ones are checked
+    // for expanded templates, they are checked twice for EmptySetTest
+    // although there are some redundancy, let's implement this way for now
+    boolean pass = corpus.passesEmptySetTest(enumerant);
+    if (!pass)
+    	return this.poll();
+    
     for (Enumerant expansion : enumerant.expand()) {
       if (false == this.history.contains(expansion.toString())) {
         diag.timing().startTiming("timeEmptySetTest");
-        boolean passesTests = corpus.passesEmptySetTest(enumerant);
+        boolean passesTests = corpus.passesEmptySetTest(expansion);
         diag.timing().stopTimingAndAdd("timeEmptySetTest");
         if(passesTests) {
           this.history.add(expansion.toString());

@@ -116,8 +116,8 @@ public class UnknownChar implements Unknown, RegexNode, Comparable<UnknownChar> 
       case DotStar:
         return ".*";
       case EmptySet:
-        // FIXME
-        return "\0000";
+        // FIXME should be ready
+        return Character.toString((char) 0x2202);
       case Default:
         if (this.isFrozen()) {
           return "▓";
