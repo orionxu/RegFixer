@@ -16,6 +16,12 @@ public class Diagnostic {
     this.reg = reg;
     this.tim = tim;
   }
+  
+  public Diagnostic (ReportStream out) {
+	    this.out = out;
+	    this.reg = new Registry();
+	    this.tim = new Timing();
+	  }
 
   public ReportStream output () {
     return this.out;
