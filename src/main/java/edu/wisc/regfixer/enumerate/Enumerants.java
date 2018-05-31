@@ -86,9 +86,7 @@ public class Enumerants {
     this.history = new HashSet<>();
     this.queue = new PriorityQueue<>();
 
-    System.err.println("original is " + this.original);
     for (Enumerant expansion : Expander.add(this.original)) {
-      System.err.println("current expansion is " + expansion.toString() + "cost " + expansion.getCost());
 
       this.history.add(expansion.toString());
       this.queue.add(expansion);
@@ -101,7 +99,6 @@ public class Enumerants {
 	    }
 	
 	    Enumerant enumerant = this.queue.remove();
-	    System.err.println("enumerant is " + enumerant.toString());
 	    // we need to check for the initial set of templates, otherwise only the expanded ones are checked
 	    // for expanded templates, they are checked twice for EmptySetTest
 	    // although there are some redundancy, let's implement this way for now
@@ -109,7 +106,6 @@ public class Enumerants {
 	   
 	    // adding original holes
 	    for (Enumerant addition : Expander.addOriginal(enumerant)) {
-	      System.err.println("addition is " + addition.toString());
 	      if (false == this.history.contains(addition.toString())) {
 	          this.history.add(addition.toString());
 	          this.queue.add(addition);
@@ -119,7 +115,6 @@ public class Enumerants {
 	    
 	    // reduce
 	    for (Enumerant reduction : Expander.reduce(enumerant)) {
-	      System.err.println("reduction is " + reduction.toString());
 	      if (false == this.history.contains(reduction.toString())) {
 	          this.history.add(reduction.toString());
 	          this.queue.add(reduction);
@@ -128,8 +123,7 @@ public class Enumerants {
 	    }
 	    
 	    // expand
-	    for (Enumerant expansion : enumerant.expand()) {
-	      System.err.println("expand is " + expansion.toString());
+	    for (Enumerant expansion : Expander.expand(enumerant)) {
 	      if (false == this.history.contains(expansion.toString())) {
 	          this.history.add(expansion.toString());
 	          this.queue.add(expansion);

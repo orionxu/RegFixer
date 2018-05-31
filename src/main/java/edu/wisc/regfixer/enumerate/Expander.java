@@ -241,11 +241,9 @@ public class Expander {
 		Map<RegexNode, UnknownId> partials = new HashMap<>();
 	    
 	    RegexNode child = node.getChild();
-	    //System.err.println("plus child is " + child);
 	    Map<RegexNode, UnknownId> newChild = addOriginal(child);
 	    if (newChild.size() != 0) {
 	    	for (Map.Entry<RegexNode, UnknownId> newC : newChild.entrySet()) {
-	    		//System.err.println("plus newC is " + newC);
 	    		partials.put(new PlusNode(newC.getKey()), newC.getValue());
 	    	}
 	    }
@@ -454,4 +452,161 @@ public class Expander {
 		Map<RegexNode, UnknownId> partials = new HashMap<>();
 	    return partials;
 	}
+	
+	public static Set<Enumerant> expand(Enumerant enumerant) {
+		Set<UnknownId> ids = enumerant.getIds();
+		int cost = enumerant.getCost();
+		Expansion expansion  = enumerant.getLatestExpansion();
+		
+		Map<RegexNode, UnknownId> newNodes = expand(enumerant.getTree());
+		Set<Enumerant> res = new HashSet<>();
+		for (Map.Entry<RegexNode, UnknownId> node: newNodes.entrySet()) {
+			Set<UnknownId> newId = new HashSet<>(ids);
+			newId.add(node.getValue());
+			res.add(new Enumerant(node.getKey(), newId, cost + 1, expansion));
+		}
+		return res;
+	}
+	
+	public static Map<RegexNode, UnknownId> expand(RegexNode node) {
+		
+	    if (node instanceof ConcatNode)          { return expandConcat((ConcatNode) node); }
+	    else if (node instanceof UnionNode)      { return expandUnion((UnionNode) node); }
+	    else if (node instanceof RepetitionNode) { return expandRepetition((RepetitionNode) node); }
+	    else if (node instanceof OptionalNode)   { return expandOptional((OptionalNode) node); }
+	    else if (node instanceof StarNode)       { return expandStar((StarNode) node); }
+	    else if (node instanceof PlusNode)       { return expandPlus((PlusNode) node); }
+	    else if (node instanceof CharClass)      { return expandAtomic((CharClass) node); }
+	    else if (node instanceof UnknownChar)      { return expandUnknownChar((UnknownChar) node); }
+	    else {
+	        System.err.printf("Unknown AST class: %s\n", node.getClass().getName());
+	        System.exit(1);
+	        return null;
+	    }
+    }
+	
+	private static Map<RegexNode, UnknownId> expandConcat (ConcatNode node) {
+		Map<RegexNode, UnknownId> partials = new HashMap<>();
+	    
+	    List<RegexNode> children = node.getChildren();
+	    int totalChildren = children.size();
+	    if (totalChildren == 0)
+	    	return partials;
+	    for (int i = 0; i < totalChildren; i++) {
+	    	List<RegexNode> newChildren = new LinkedList<>();
+	    	for (int j = 0; j < totalChildren; j++) {
+	    		if (j != i)
+	    			newChildren.add(children.get(j));
+	    	}
+	    	Map<RegexNode, UnknownId> newChild = expand(children.get(i));
+	    	for (Map.Entry<RegexNode, UnknownId> child : newChild.entrySet()) {
+	    		List<RegexNode> newChildrenCopy = new LinkedList<>(newChildren);
+	    		newChildrenCopy.add(i, child.getKey());
+	    		partials.put(new ConcatNode(newChildrenCopy), child.getValue());
+	    	}
+	    }
+	    return partials;
+	}
+	
+	private static Map<RegexNode, UnknownId> expandUnion (UnionNode node) {
+		Map<RegexNode, UnknownId> partials = new HashMap<>();
+	    
+	    RegexNode left = node.getLeftChild();
+	    Map<RegexNode, UnknownId> newLeft = expand(left);
+	    RegexNode right = node.getRightChild();
+	    Map<RegexNode, UnknownId> newRight = expand(right);
+	    
+	    if (newLeft.size() != 0) {
+	    	for (Map.Entry<RegexNode, UnknownId> newL : newLeft.entrySet()) {
+	    		partials.put(new UnionNode(newL.getKey(), right), newL.getValue());
+	    	}
+	    }
+	    if (newRight.size() != 0) {
+	    	for (Map.Entry<RegexNode, UnknownId> newR : newRight.entrySet()) {
+	    		partials.put(new UnionNode(left, newR.getKey()), newR.getValue());
+	    	}
+	    }
+	    return partials;
+	}
+	
+	private static Map<RegexNode, UnknownId> expandRepetition (RepetitionNode node) {
+		Map<RegexNode, UnknownId> partials = new HashMap<>();
+	    
+	    RegexNode child = node.getChild();
+	    Map<RegexNode, UnknownId> newChild = expand(child);
+	    Bounds bounds = node.getBounds();
+	    
+	    if (newChild.size() != 0) {
+	    	for (Map.Entry<RegexNode, UnknownId> newC : newChild.entrySet()) {
+	    		partials.put(new RepetitionNode(newC.getKey(), bounds), newC.getValue());
+	    	}
+	    }
+	    if (!(bounds instanceof UnknownBounds)) {
+	    	UnknownBounds newBound = new UnknownBounds();
+	    	partials.put(new RepetitionNode(child, newBound), newBound.getId());
+	    }
+	    
+	    return partials;
+	}
+	
+	private static Map<RegexNode, UnknownId> expandOptional (OptionalNode node) {
+		Map<RegexNode, UnknownId> partials = new HashMap<>();
+	    
+	    RegexNode child = node.getChild();
+	    Map<RegexNode, UnknownId> newChild = expand(child);
+	    if (newChild.size() != 0) {
+	    	for (Map.Entry<RegexNode, UnknownId> newC : newChild.entrySet()) {
+	    		partials.put(new OptionalNode(newC.getKey()), newC.getValue());
+	    	}
+	    }
+	    partials.putAll(mkRepetitionNode(child, Bounds.between(0, 1)));
+	    
+	    return partials;
+	}
+
+	private static Map<RegexNode, UnknownId> expandStar (StarNode node) {
+		Map<RegexNode, UnknownId> partials = new HashMap<>();
+	    
+	    RegexNode child = node.getChild();
+	    Map<RegexNode, UnknownId> newChild = expand(child);
+	    if (newChild.size() != 0) {
+	    	for (Map.Entry<RegexNode, UnknownId> newC : newChild.entrySet()) {
+	    		partials.put(new StarNode(newC.getKey()), newC.getValue());
+	    	}
+	    }
+	    partials.putAll(mkRepetitionNode(child, Bounds.atLeast(0)));
+	    
+	    return partials;
+	}
+	
+	private static Map<RegexNode, UnknownId> expandPlus (PlusNode node) {
+		Map<RegexNode, UnknownId> partials = new HashMap<>();
+	    
+	    RegexNode child = node.getChild();
+	    Map<RegexNode, UnknownId> newChild = expand(child);
+	    if (newChild.size() != 0) {
+	    	for (Map.Entry<RegexNode, UnknownId> newC : newChild.entrySet()) {
+	    		partials.put(new PlusNode(newC.getKey()), newC.getValue());
+	    	}
+	    }
+	    partials.putAll(mkRepetitionNode(child, Bounds.atLeast(1)));
+	    
+	    return partials;
+	}
+
+	private static Map<RegexNode, UnknownId> expandAtomic (CharClass node) {
+		Map<RegexNode, UnknownId> partials = new HashMap<>();
+	    return partials;
+	}
+	
+	private static Map<RegexNode, UnknownId> expandUnknownChar(UnknownChar node) {
+		Map<RegexNode, UnknownId> partials = new HashMap<>();
+		UnknownChar newChar = new UnknownChar();
+	    partials.put(new ConcatNode(node, newChar), newChar.getId());
+	    partials.put(new UnionNode(node, newChar), newChar.getId());
+	    UnknownBounds newBound = new UnknownBounds();
+    	partials.put(new RepetitionNode(node, newBound), newBound.getId());
+	    return partials;
+	}
+	
 }
