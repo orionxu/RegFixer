@@ -20,7 +20,7 @@ import edu.wisc.regfixer.parser.UnionNode;
  * with.
  */
 public class Grafter {
-  private static boolean checkForbiddenExpansions = true;
+  private static boolean checkForbiddenExpansions = false;
   private static boolean replaceAncestorQuantifiers = false;
   public static List<UnknownId> addedBounds = new LinkedList<>();
 

@@ -35,7 +35,7 @@ public class UnknownChar implements Unknown, RegexNode, Comparable<UnknownChar> 
   private List<Expansion> history;
   private boolean frozen = false;
 
-  private UnknownChar () {
+  public UnknownChar () {
     this(new LinkedList<>());
   }
 
@@ -117,7 +117,7 @@ public class UnknownChar implements Unknown, RegexNode, Comparable<UnknownChar> 
         return ".*";
       case EmptySet:
         // FIXME should be ready
-        return Character.toString((char) 0x2202);
+        return "∅";
       case Default:
         if (this.isFrozen()) {
           return "▓";

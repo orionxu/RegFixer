@@ -25,7 +25,7 @@ public class EnumerantsTest {
 	private static Enumerant enuCase2 = null;
 	private static Enumerant enuCase3 = null;
 
-	@BeforeClass
+	/*@BeforeClass
 	public static void preparation() throws FileNotFoundException {
 		testCase = TestFilesIO.constructJobFromFile("test_date_true.txt");
 		enuList = new ArrayList<>();
@@ -64,5 +64,5 @@ public class EnumerantsTest {
 		assertTrue(expandsDemo1.contains("(■|■)(\\d){1,2}\\/(\\d){1,2}\\/(\\d){4}"));
 		assertTrue(expandsDemo1.contains("(■■)(\\d){1,2}\\/(\\d){1,2}\\/(\\d){4}"));
 		assertTrue(expandsDemo1.contains("(■){■}(\\d){1,2}\\/(\\d){1,2}\\/(\\d){4}"));
-	}
+	}*/
 }

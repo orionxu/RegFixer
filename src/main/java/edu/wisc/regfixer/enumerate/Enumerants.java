@@ -19,7 +19,8 @@ public class Enumerants {
     this.original = original;
     this.corpus = corpus;
     this.diag = diag;
-    this.init();
+    //this.init();
+    this.first();
   }
 
   public Enumerant poll () {
@@ -48,8 +49,8 @@ public class Enumerants {
         }
       }
     }
-
-    switch (enumerant.getLatestExpansion()) {
+    return enumerant;
+    /*switch (enumerant.getLatestExpansion()) {
       case SyntheticUnion:
       case Freeze:
         // In these expansion cases, the template is garunteed to not produce a
@@ -58,7 +59,7 @@ public class Enumerants {
         return this.poll();
       default:
         return enumerant;
-    }
+    }*/
   }
 
   private void init () {
@@ -79,5 +80,75 @@ public class Enumerants {
         this.diag.registry().bumpInt("totalDotStarTestsRejects");
       }
     }
+  }
+  
+  private void first () {
+    this.history = new HashSet<>();
+    this.queue = new PriorityQueue<>();
+
+    System.err.println("original is " + this.original);
+    for (Enumerant expansion : Expander.add(this.original)) {
+      System.err.println("current expansion is " + expansion.toString() + "cost " + expansion.getCost());
+
+      this.history.add(expansion.toString());
+      this.queue.add(expansion);
+    }
+  }
+  
+  public Enumerant next () {
+	  if (this.queue.isEmpty()) {
+	      return null;
+	    }
+	
+	    Enumerant enumerant = this.queue.remove();
+	    System.err.println("enumerant is " + enumerant.toString());
+	    // we need to check for the initial set of templates, otherwise only the expanded ones are checked
+	    // for expanded templates, they are checked twice for EmptySetTest
+	    // although there are some redundancy, let's implement this way for now
+	    boolean pass = corpus.passesEmptySetTest(enumerant);
+	   
+	    // adding original holes
+	    for (Enumerant addition : Expander.addOriginal(enumerant)) {
+	      System.err.println("addition is " + addition.toString());
+	      if (false == this.history.contains(addition.toString())) {
+	          this.history.add(addition.toString());
+	          this.queue.add(addition);
+	          addition.setParent(enumerant);
+	      }
+	    }
+	    
+	    // reduce
+	    for (Enumerant reduction : Expander.reduce(enumerant)) {
+	      System.err.println("reduction is " + reduction.toString());
+	      if (false == this.history.contains(reduction.toString())) {
+	          this.history.add(reduction.toString());
+	          this.queue.add(reduction);
+	          reduction.setParent(enumerant);
+	      }
+	    }
+	    
+	    // expand
+	    for (Enumerant expansion : enumerant.expand()) {
+	      System.err.println("expand is " + expansion.toString());
+	      if (false == this.history.contains(expansion.toString())) {
+	          this.history.add(expansion.toString());
+	          this.queue.add(expansion);
+	          expansion.setParent(enumerant);
+	      }
+	    }
+	    
+	    if (!pass)
+	    	return this.next();
+	    return enumerant;
+	    /*switch (enumerant.getLatestExpansion()) {
+	      case SyntheticUnion:
+	      case Freeze:
+	        // In these expansion cases, the template is garunteed to not produce a
+	        // better solution than its parent (but is kept in the queue for
+	        // search completeness reasons) so return the next possible template.
+	        return this.poll();
+	      default:
+	        return enumerant;
+	    }*/
   }
 }

@@ -83,7 +83,7 @@ public class RegFixer {
     int costCutoff = Integer.MAX_VALUE;
 
     int i = 0;
-    while ((enumerant = enumerants.poll()) != null) {
+    while ((enumerant = enumerants.next()) != null) {
       // Stop the loop if the cost of the current template is greater than
       // cutoff or if the number of templates searched is greater than the
       // loop cutoff.
