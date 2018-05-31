@@ -75,7 +75,7 @@ public class BasicFunctionalityTest {
 		assertEquals(result.toString(), "[(58:65)]");
 	}
 	
-	@Test
+	/*@Test
 	public void testEnumerants() throws TimeoutException, IOException {
 		// \d{1,2}\/\d{1,2}\/\d{4} (\d)
 		Enumerants enumerants = new Enumerants(testCase.getTree(), testCase.getCorpus(), new Diagnostic());
@@ -108,7 +108,7 @@ public class BasicFunctionalityTest {
 		assertTrue(expandsDemo1.contains("(■|■)(\\d){1,2}\\/(\\d){1,2}\\/(\\d){4}"));
 		assertTrue(expandsDemo1.contains("(■■)(\\d){1,2}\\/(\\d){1,2}\\/(\\d){4}"));
 		assertTrue(expandsDemo1.contains("(■){■}(\\d){1,2}\\/(\\d){1,2}\\/(\\d){4}"));
-	}
+	}*/
 	
 	@Test
 	public void testGrafter() throws ForbiddenExpansionException {
