@@ -147,7 +147,7 @@ public class Enumerant implements Comparable<Enumerant> {
         this.addExpansion(expansions, oldest, this::expandWithUnknownQuantifier);
       }
       this.addExpansion(expansions, oldest, this::expandWithConcat);
-      this.addExpansion(expansions, oldest, this::expandWithFrozen);
+      //this.addExpansion(expansions, oldest, this::expandWithFrozen);
     }
 
     return expansions;
@@ -285,6 +285,7 @@ public class Enumerant implements Comparable<Enumerant> {
 
     try {
       automaton = new Automaton(this.tree);
+      automaton.IniMoveTo();
     } catch (TimeoutException ex) {
       String fmt = "timed-out building automaton for `%s`";
       throw new SynthesisFailure(String.format(fmt, this.tree));

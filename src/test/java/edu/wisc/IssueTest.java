@@ -81,7 +81,7 @@ public class IssueTest {
 	}
 
 	/**
-	 * Template: (■[0-9]|2[0-3]) Pos example: 19 21 Neg example: 25 26 Expectation:
+	 * Template: (■[0-9]|2[0-3]) Pos example: 19 21 Neg example: 24 25 Expectation:
 	 * [1] filled in hole
 	 * 
 	 * @throws SynthesisFailure,

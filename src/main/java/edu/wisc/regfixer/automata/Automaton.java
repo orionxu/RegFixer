@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import automata.Move;
 import automata.sfa.SFA;
 import automata.sfa.SFAInputMove;
 import automata.sfa.SFAMove;
+import edu.wisc.regfixer.enumerate.Layer;
 import edu.wisc.regfixer.enumerate.UnknownBounds;
 import edu.wisc.regfixer.enumerate.UnknownChar;
 import edu.wisc.regfixer.enumerate.UnknownId;
@@ -37,7 +39,7 @@ import theory.characters.StdCharPred;
 import theory.intervals.UnaryCharIntervalSolver;
 
 public class Automaton extends automata.Automaton {
-  private static UnaryCharIntervalSolver solver = new UnaryCharIntervalSolver();
+  public static UnaryCharIntervalSolver solver = new UnaryCharIntervalSolver();
   public static final CharPred Num = StdCharPred.NUM;
   public static final CharPred NotNum = StdCharPred.SPACES;
   public static final CharPred Spaces = StdCharPred.WORD;
@@ -48,6 +50,9 @@ public class Automaton extends automata.Automaton {
   private final SFA<CharPred, Character> sfa;
   public Map<UnknownId, Set<Integer>> unknownToExitStates = new HashMap<>();
   public Map<UnknownId, Integer> unknownToEntryState = new HashMap<>();
+  public Map<Integer, Set<Integer>> moveTo = new HashMap<>();
+  // states which have at least one non-epsilon transition
+  public Set<Integer> coreStates = new HashSet<>();
 
   public Automaton (RegexNode tree) throws TimeoutException {
     Automaton aut = nodeToAutomaton(tree);
@@ -100,7 +105,27 @@ public class Automaton extends automata.Automaton {
   private List<State> getEpsClosure (List<State> frontier) {
     List<State> res = new LinkedList<>();
     for (State s : frontier) {
-    	res.addAll(getEpsClosureForOneState(s));
+    	//res.addAll(getEpsClosureForOneState(s));
+    	int currId = s.getStateId();
+    	for (int reach : moveTo.get(currId)) {
+    		res.add(new State(reach, s));
+    	}
+    }
+    return res;
+  }
+  
+  private List<State> getEpsClosureWithDest (State frontier, Set<Integer> dest) {
+    return getEpsClosureWithDest(Arrays.asList(frontier), dest);
+  }
+  
+  private List<State> getEpsClosureWithDest (List<State> frontier, Set<Integer> dest) {
+    List<State> res = new LinkedList<>();
+    for (State s : frontier) {
+    	int currId = s.getStateId();
+    	for (int reach : moveTo.get(currId)) {
+    		if (dest.contains(reach))
+    			res.add(new State(reach, s));
+    	}
     }
     return res;
   }
@@ -129,6 +154,62 @@ public class Automaton extends automata.Automaton {
     }
 
     return reached;
+  }
+  
+  public void IniMoveTo() {
+	  for (int curr : this.getStates()) {
+		  moveTo.put(curr, getReachableId(curr));
+	  }
+  }
+  
+  private Set<Integer> getReachableId (int from) {
+    Set<Integer> reached = new HashSet<>();
+    reached.add(from);
+    Set<Integer> seenStateIds = new HashSet<>();
+    seenStateIds.add(from);
+    LinkedList<Integer> toVisit = new LinkedList<>();
+    toVisit.add(from);
+    
+    while (toVisit.size() > 0) {
+      int currId = toVisit.removeFirst();
+      for (Move<CharPred, Character> move : getMovesFrom(currId)) {
+        if (move.isEpsilonTransition()) {
+          int newId = move.to;
+          reached.add(newId);
+
+          if (false == seenStateIds.contains(newId)) {
+            toVisit.add(newId);
+            seenStateIds.add(newId);
+          }
+        }
+      }
+    }
+
+    // remove non-final states that only have epsilon transitions
+    Iterator<Integer> itr = reached.iterator();
+    while(itr.hasNext()) {
+    	int id = itr.next();
+    	if (!isFinalState(id)) {
+    		boolean flag = true;
+    		for (Move<CharPred, Character> move : getMovesFrom(id)) {
+    			if (!move.isEpsilonTransition()) {
+    				flag = false;
+    				break;
+    			}
+    		}
+    		if (flag)
+    			itr.remove();
+    	}
+    }
+    
+    return reached;
+  }
+  
+  public void collectId () {
+	  for (Map.Entry<Integer, Set<Integer>> entry : this.moveTo.entrySet()) {
+		  this.coreStates.addAll(entry.getValue());
+	  }
+	  this.coreStates.remove(getFinalStates());
   }
   
   public List<State> getNextState (List<State> frontier, Character ch) throws TimeoutException {
@@ -172,6 +253,21 @@ public class Automaton extends automata.Automaton {
     }
 
     return nextStates;
+  }
+  
+  private Set<Integer> getNextState (int stateId, Character ch) throws TimeoutException {
+	  Set<Integer> nextStates = new HashSet<>();
+	
+	    for (Move<CharPred, Character> move : getMovesFrom(stateId)) {
+	      if (move.isEpsilonTransition() == false) {
+	        if (move.hasModel(ch, Automaton.solver)) {
+	
+	          nextStates.add(move.to);
+	        }
+	      }
+	    }
+	
+	    return nextStates;
   }
 
   private boolean isFinalConfiguration (List<State> states) {
@@ -356,8 +452,12 @@ public class Automaton extends automata.Automaton {
   }
 
   public Set<Route> trace (String source) throws TimeoutException {
-    //List<Set<Integer>> layers = getStateFilter(source);
-    List<State> frontier = getEpsClosure(new State(getInitialState()));
+	  Layer[] net = this.buildTrans(source);
+	  List<Set<Integer>> valid = new LinkedList<>();
+	  for (int i = 0; i < source.length() + 1; i++) {
+		  valid.add(net[i].reachFinal);
+	  }
+      List<State> frontier = getEpsClosureWithDest(new State(getInitialState()), valid.get(0));
 
     for (int i = 0; i < source.length(); i++) {
       /*if (layers.size() <= i) {
@@ -367,8 +467,7 @@ public class Automaton extends automata.Automaton {
       Set<Integer> filter = layers.get(i);
       frontier = getNextState(filter, frontier, source.charAt(i));*/
       frontier = getNextState(frontier, source.charAt(i));
-      frontier = getEpsClosure(frontier);
-
+      frontier = getEpsClosureWithDest(frontier, valid.get(i + 1));
       if (frontier.isEmpty()) {
         return new HashSet<>();
       }
@@ -727,4 +826,59 @@ public class Automaton extends automata.Automaton {
       default:  return new CharPred(ch);
     }
   }
+  
+  private Layer[] buildTrans(String s) throws TimeoutException {
+	  this.collectId();
+	  Set<Integer> states = this.coreStates;
+	  int stateNum = states.size();
+	  int len = s.length();
+	  Layer[] net = new Layer[len + 1];
+	  for (int i = 0; i < len + 1; i++) {
+		  net[i] = new Layer(i, states);
+	  }
+	  // forward -- get activated states
+	  int initial = this.getInitialState();
+	  Set<Integer> initials = this.moveTo.get(initial);
+	  for (int i : initials) {
+		  net[0].activated.put(i, true);
+	  }
+	  for (int i = 0; i < len; i++) {
+		  char curr = s.charAt(i);
+		  Set<Integer> next = new HashSet<>();
+		  for (Map.Entry<Integer, Boolean> entry : net[i].activated.entrySet()) {
+			  if (entry.getValue()) {
+				  Set<Integer> immediate = this.getNextState(entry.getKey(), curr);
+				  Set<Integer> nextForOneState = new HashSet<>();
+				  for (int j : immediate) {
+					  nextForOneState.addAll(this.moveTo.get(j));
+				  }
+				  net[i].pathToNext.put(entry.getKey(), nextForOneState);
+				  next.addAll(nextForOneState);
+			  }
+		  }
+		  for (int j : next) {
+			  net[i + 1].activated.put(j, true);
+		  }
+	  }
+	  // backward -- get states that could reach Final
+	  Set<Integer> finals = new HashSet<>(this.getFinalStates());
+	  Set<Integer> reachFinal = new HashSet<>();
+	  for (int i : this.coreStates) {
+		  if (!Collections.disjoint(moveTo.get(i), finals)) {
+			  reachFinal.add(i);
+		  }
+	  }
+	  
+	  net[len].reachFinal.addAll(reachFinal);
+	  for (int i = len - 1; i >= 0; i--) {
+		  for (int j : this.coreStates) {
+			  if (!Collections.disjoint(net[i].pathToNext.get(j), net[i + 1].reachFinal)) {
+				  net[i].reachFinal.add(j);
+			  }
+		  }
+	  }
+	  
+	  return net;
+  }
+  
 }
