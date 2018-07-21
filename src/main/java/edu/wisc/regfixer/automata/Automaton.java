@@ -37,6 +37,7 @@ import org.sat4j.specs.TimeoutException;
 import theory.characters.CharPred;
 import theory.characters.StdCharPred;
 import theory.intervals.UnaryCharIntervalSolver;
+import utilities.Pair;
 
 public class Automaton extends automata.Automaton {
   public static UnaryCharIntervalSolver solver = new UnaryCharIntervalSolver();
@@ -879,6 +880,37 @@ public class Automaton extends automata.Automaton {
 	  }
 	  
 	  return net;
+  }
+  
+  public Set<EpsPath> getEpsPaths(Integer initState, Set<Integer> desiredStates){
+	  Set<EpsPath> result = new HashSet<>();
+	  EpsPath initPath = new EpsPath(initState);
+	  Stack<EpsPath> pathStack = new Stack<EpsPath>();
+	  pathStack.push(initPath);
+	  while(!pathStack.isEmpty()) {
+		  EpsPath currentPath = pathStack.pop();
+		  Integer last = currentPath.getLast();
+		  for (Move<CharPred, Character> move : getMovesFrom(last)) {
+			  if(move.isEpsilonTransition()) {
+				  EpsPath currentCopy = new EpsPath(currentPath);
+				  int dest = move.to;
+				  boolean dup = false;
+				  for(Pair<Integer, Integer> p:currentCopy.getRep()) {
+					  if((int)p.first==last && (int)p.second == dest) {
+						  dup = true;
+					  }
+				  }
+				  if(!dup) {
+					  currentCopy.append(dest);
+					  if(desiredStates.contains(dest)) {
+						  result.add(currentCopy);
+					  }
+					  pathStack.push(currentCopy);
+				  }
+			  }
+		  }
+	  }
+	  return result;
   }
   
 }
