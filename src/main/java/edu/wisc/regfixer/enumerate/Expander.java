@@ -397,8 +397,15 @@ public class Expander {
 	    	for (Map.Entry<RegexNode, UnknownId> newC : newChild.entrySet()) {
 	    		partials.put(new RepetitionNode(newC.getKey(), bounds), newC.getValue());
 	    	}
-	    } else if (child instanceof UnknownChar && bounds instanceof UnknownBounds) {
-	    	partials.put(child, ((UnknownBounds) bounds).getId());
+	    //changed
+	    } else if (child instanceof UnknownChar || bounds instanceof UnknownBounds) {
+	    	if (child instanceof UnknownChar)
+	    		partials.put(child, ((UnknownChar) child).getId());
+	    		//partials.put(child, ((UnknownBounds) bounds).getId());
+	    	else {
+	    		UnknownChar uchar = new UnknownChar();
+	    		partials.put(uchar, ((UnknownBounds) bounds).getId());
+	    	}
 	    }
 	    
 	    return partials;
@@ -541,10 +548,10 @@ public class Expander {
 	    		partials.put(new RepetitionNode(newC.getKey(), bounds), newC.getValue());
 	    	}
 	    }
-	    if (!(bounds instanceof UnknownBounds)) {
+	    /*if (!(bounds instanceof UnknownBounds)) {
 	    	UnknownBounds newBound = new UnknownBounds();
 	    	partials.put(new RepetitionNode(child, newBound), newBound.getId());
-	    }
+	    }*/
 	    
 	    return partials;
 	}

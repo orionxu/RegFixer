@@ -62,7 +62,7 @@ public class Enumerants {
     }*/
   }
 
-  private void init () {
+  /*private void init () {
     this.history = new HashSet<>();
     this.queue = new PriorityQueue<>();
 
@@ -80,7 +80,7 @@ public class Enumerants {
         this.diag.registry().bumpInt("totalDotStarTestsRejects");
       }
     }
-  }
+  }*/
   
   private void first () {
     this.history = new HashSet<>();

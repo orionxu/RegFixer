@@ -12,6 +12,8 @@ public class Layer {
 	public Map<Integer, Boolean> activated;
 	public Set<Integer> reachFinal;
 	public Map<Integer, Set<Integer>> pathToNext;
+	public Map<Integer, Map<UnknownId, Set<Character>>> crossed = new HashMap<>();
+	public Map<Integer, Map<UnknownId, Set<Integer>>> exits = new HashMap<>();
 	
 	public Layer(int index, Set<Integer> states) {
 		this.index = index;

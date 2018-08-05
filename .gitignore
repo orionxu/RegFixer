@@ -13,3 +13,5 @@ classes
 \.project
 
 \.settings/
+
+tests/tutor/*

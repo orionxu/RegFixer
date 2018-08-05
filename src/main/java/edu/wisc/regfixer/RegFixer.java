@@ -155,6 +155,8 @@ public class RegFixer {
 
         diag.output().finishRow(sol);
         costCutoff = enumerant.getCost();
+        // force one solution
+        break;
       } else {
     	  diag.output().finishRow("Failed dot test or empty set test. ");
       }
