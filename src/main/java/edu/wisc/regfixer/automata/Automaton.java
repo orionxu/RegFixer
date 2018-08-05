@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -75,7 +76,11 @@ public class Automaton extends automata.Automaton {
    */
 
   private List<State> getEpsClosure (State frontier) {
-    return getEpsClosure(Arrays.asList(frontier));
+    return getEpsClosureDest(Arrays.asList(frontier), null);
+  }
+  
+  private List<State> getEpsClosure (List<State> frontier) {
+    return getEpsClosureDest(frontier, null);
   }
 
   /*private List<State> getEpsClosure (List<State> frontier) {
@@ -103,19 +108,27 @@ public class Automaton extends automata.Automaton {
     return reached;
   }*/
 
-  private List<State> getEpsClosure (List<State> frontier) {
+  private List<State> getEpsClosureDest (List<State> frontier, Set<Integer> dest) {
     List<State> res = new LinkedList<>();
     for (State s : frontier) {
-    	//res.addAll(getEpsClosureForOneState(s));
-    	int currId = s.getStateId();
+    	List<State> curstates = getEpsClosureForOneState(s);
+    	if (dest != null) {
+	    	for (State curstate : curstates) {
+	    		if (dest.contains(curstate.getStateId()))
+	    			res.add(curstate);
+	    	}
+    	} else {
+    		res.addAll(curstates);
+    	}
+    	/*int currId = s.getStateId();
     	for (int reach : moveTo.get(currId)) {
     		res.add(new State(reach, s));
-    	}
+    	}*/
     }
     return res;
   }
   
-  private List<State> getEpsClosureWithDest (State frontier, Set<Integer> dest) {
+  /*private List<State> getEpsClosureWithDest (State frontier, Set<Integer> dest) {
     return getEpsClosureWithDest(Arrays.asList(frontier), dest);
   }
   
@@ -130,6 +143,16 @@ public class Automaton extends automata.Automaton {
     }
     return res;
   }
+  
+  private List<State> getEpsClosureWithDestForOne (State frontier, Set<Integer> dest) {
+	  List<State> res = new LinkedList<>();
+      int currId = frontier.getStateId();
+      for (int reach : moveTo.get(currId)) {
+    	  if (dest.contains(reach))
+    	      res.add(new State(reach, frontier));
+      }
+	  return res;
+  }*/
   
   private List<State> getEpsClosureForOneState (State frontier) {
     List<State> reached = new LinkedList<>();
@@ -453,13 +476,20 @@ public class Automaton extends automata.Automaton {
   }
 
   public Set<Route> trace (String source) throws TimeoutException {
-	  Layer[] net = this.buildTrans(source);
-	  List<Set<Integer>> valid = new LinkedList<>();
-	  for (int i = 0; i < source.length() + 1; i++) {
-		  valid.add(net[i].reachFinal);
+	  boolean useElimination = true;
+	  List<State> frontier;
+	  List<Set<Integer>> valid = null;
+	  if (useElimination) {
+		  Layer[] net = this.buildTrans(source);
+		  valid = new LinkedList<>();
+		  for (int i = 0; i < source.length() + 1; i++) {
+			  valid.add(net[i].reachFinal);
+		  }
+	      //frontier = getEpsClosureWithDest(new State(getInitialState()), valid.get(0));
+	      frontier = getEpsClosureDest(Arrays.asList(new State(getInitialState())), valid.get(0));
+	  } else {
+		  frontier = getEpsClosureDest(Arrays.asList(new State(getInitialState())), null);
 	  }
-      List<State> frontier = getEpsClosureWithDest(new State(getInitialState()), valid.get(0));
-
     for (int i = 0; i < source.length(); i++) {
       /*if (layers.size() <= i) {
         return new HashSet<>();
@@ -468,7 +498,11 @@ public class Automaton extends automata.Automaton {
       Set<Integer> filter = layers.get(i);
       frontier = getNextState(filter, frontier, source.charAt(i));*/
       frontier = getNextState(frontier, source.charAt(i));
-      frontier = getEpsClosureWithDest(frontier, valid.get(i + 1));
+      if (useElimination) {
+    	  frontier = getEpsClosureDest(frontier, valid.get(i + 1));
+      } else {
+    	  frontier = getEpsClosureDest(frontier, null);
+      }
       if (frontier.isEmpty()) {
         return new HashSet<>();
       }

@@ -298,8 +298,8 @@ public class Enumerant implements Comparable<Enumerant> {
       for (String source : p) {
     	if(emptySetMatching(source))
     		continue;
-    	Set<Route> positiveRun = automaton.trace(source);
-    	if (positiveRun.size() == 0)
+    	Set<Route> positiveRun = new HashSet<>();
+    	positiveRun = automaton.trace(source);
     		return null;
         positiveRuns.add(positiveRun);
       }
