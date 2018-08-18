@@ -300,7 +300,10 @@ public class Enumerant implements Comparable<Enumerant> {
     		continue;
     	Set<Route> positiveRun = new HashSet<>();
     	positiveRun = automaton.trace(source);
+    	if (positiveRun.size() == 0) {
+    		System.out.println("get p size() 0 !!!!!!!!!!!!!!!!!!!!!");
     		return null;
+    	}
         positiveRuns.add(positiveRun);
       }
 
