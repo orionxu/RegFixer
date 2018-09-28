@@ -3,8 +3,8 @@
  */
 package utilities;
 
-public class IntegerPair extends Pair<Integer,Integer> {
-	
+public class IntegerPair extends Pair<Integer, Integer> {
+
 	private static final long serialVersionUID = -4974702686583519556L;
 
 	public IntegerPair(Integer first, Integer second) {
@@ -13,6 +13,7 @@ public class IntegerPair extends Pair<Integer,Integer> {
 
 	/**
 	 * Returns the first part of the pair
+	 * 
 	 * @return Returns the first.
 	 */
 	public Integer getFirst() {
@@ -21,8 +22,8 @@ public class IntegerPair extends Pair<Integer,Integer> {
 
 	/**
 	 * Sets value for the first part of the pair
-	 * @param first
-	 *            The first to set.
+	 * 
+	 * @param first The first to set.
 	 */
 	public void setFirst(Integer first) {
 		this.first = first;
@@ -30,6 +31,7 @@ public class IntegerPair extends Pair<Integer,Integer> {
 
 	/**
 	 * Returns the second part of the pair
+	 * 
 	 * @return Returns the second.
 	 */
 	public Integer getSecond() {
@@ -38,27 +40,27 @@ public class IntegerPair extends Pair<Integer,Integer> {
 
 	/**
 	 * Sets value for the second part of the pair
-	 * @param second
-	 *            The second to set.
+	 * 
+	 * @param second The second to set.
 	 */
 	public void setSecond(Integer second) {
 		this.second = second;
 	}
-	
+
 	public int hashCode() {
-        return (first+second)*(first+second+1)/2+second;
-    }
-	
+		return (first + second) * (first + second + 1) / 2 + second;
+	}
+
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
-		if (!(o instanceof Pair<?,?>))
-			return false;		
+		if (!(o instanceof Pair<?, ?>))
+			return false;
 		IntegerPair s = (IntegerPair) o;
-		return s.first==first && s.second==second;
+		return s.first == (int) first && s.second == (int) second;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return "P(" + first + "," + second + ")\n";
 	}
 }

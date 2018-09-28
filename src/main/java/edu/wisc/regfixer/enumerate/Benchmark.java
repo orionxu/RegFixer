@@ -38,7 +38,6 @@ public class Benchmark {
 
 	public static Job readFromStr(String input, RegexNode tree) {
 		Scanner scnr = new Scanner(input);
-		String regExp = "";
 		scnr.nextLine();
 		String example = scnr.nextLine();
 		String corpus = "";

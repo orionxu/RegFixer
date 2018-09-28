@@ -203,7 +203,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>edu.wisc.regfixer.CLI</mainClass>
+          <mainClass>edu.wisc.regexgen.MainGenerator</mainClass>
         </configuration>
       </plugin>
 
@@ -231,7 +231,7 @@
           <attach>false</attach>
           <archive>
             <manifest>
-              <mainClass>edu.wisc.regfixer.CLI</mainClass>
+              <mainClass>edu.wisc.regexgen.MainGenerator</mainClass>
             </manifest>
           </archive>
         </configuration>
