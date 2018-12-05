@@ -1,14 +1,21 @@
 package edu.wisc.regexgen;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import org.sat4j.specs.TimeoutException;
 
+import automata.seqt.SymbolicEditTransducer;
 import automata.sfa.SFA;
+import automata.sfa.SFAInputMove;
+import automata.sfa.SFAMove;
 import edu.wisc.regfixer.automata.Automaton;
 import edu.wisc.regfixer.parser.RegexNode;
+import theory.BooleanAlgebra;
 import theory.characters.CharPred;
 import theory.intervals.UnaryCharIntervalSolver;
+import utilities.Pair;
 
 public class RegexEntry implements Comparable<RegexEntry>{
 
@@ -61,7 +68,8 @@ public class RegexEntry implements Comparable<RegexEntry>{
 		this.negMatch.add(n);
 	}
 
-	public void calculateEditDistance() {
+	public void calculateEditDistance() throws TimeoutException {
+		BooleanAlgebra<CharPred, Character> ba = new UnaryCharIntervalSolver();
 		this.posED = new ArrayList<Integer>();
 		this.negED = new ArrayList<Integer>();
 		Automaton aut = null;
@@ -78,7 +86,10 @@ public class RegexEntry implements Comparable<RegexEntry>{
 			e1.printStackTrace();
 		}
 		for (String p : this.posNotMatch) {
-			posED.add(EditDistance.computeShortestEditDistance(sfaPos, p));
+			SFA<CharPred, Character> strSFA = makeStrSFA(p);
+			SymbolicEditTransducer<CharPred, Character> st = SymbolicEditTransducer.<CharPred, Character>editComposition(strSFA, sfaPos, ba);
+			Pair<Integer, List<Character>> result = st.shortestPath(ba);
+			posED.add(result.first);
 
 		}
 
@@ -90,7 +101,10 @@ public class RegexEntry implements Comparable<RegexEntry>{
 		}
 
 		for (String n : this.negMatch) {
-			negED.add(EditDistance.computeShortestEditDistance(sfaNeg, n));
+			SFA<CharPred, Character> strSFA = makeStrSFA(n);
+			SymbolicEditTransducer<CharPred, Character> st = SymbolicEditTransducer.<CharPred, Character>editComposition(strSFA, sfaNeg, ba);
+			Pair<Integer, List<Character>> result = st.shortestPath(ba);
+			negED.add(result.first);
 		}
 	}
 	
@@ -123,6 +137,19 @@ public class RegexEntry implements Comparable<RegexEntry>{
 		} else {
 			return 1;
 		}
+	}
+	
+	private static SFA<CharPred, Character> makeStrSFA(String s) throws TimeoutException {
+		UnaryCharIntervalSolver ba = new UnaryCharIntervalSolver();
+		int l = s.length();
+		int initialState = 0;
+		Collection<SFAMove<CharPred, Character>> transitions = new ArrayList<SFAMove<CharPred, Character>>();
+		for (int i = 0; i < l; i++) {
+			transitions.add(new SFAInputMove<CharPred, Character>(i, i + 1, ba.MkAtom(s.charAt(i))));
+		}
+		Collection<Integer> finalStates = new ArrayList<Integer>();
+		finalStates.add(l);
+		return SFA.<CharPred, Character>MkSFA(transitions, initialState, finalStates, ba);
 	}
 
 }

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import org.sat4j.specs.TimeoutException;
+
 import edu.wisc.regfixer.enumerate.Benchmark;
 import edu.wisc.regfixer.enumerate.Job;
 import edu.wisc.regfixer.parser.RegexNode;
@@ -19,7 +21,7 @@ public class MainGenerator {
 
 	private static boolean info = true;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws TimeoutException {
 
 		final long startTime = System.currentTimeMillis();
 		BufferedReader reader = null;
@@ -28,7 +30,7 @@ public class MainGenerator {
 		ArrayList<String> negative = new ArrayList<>();
 
 		try {
-			File file = new File("dataset.re");
+			File file = new File("../dataset.re");
 			reader = new BufferedReader(new FileReader(file));
 
 			String line;
@@ -53,7 +55,7 @@ public class MainGenerator {
 		String fileName = args[0];
 		File fp = null;
 		try {
-			fp = new File("tests/benchmark_explicit/" + fileName);
+			fp = new File("../tests/benchmark_explicit/" + fileName);
 			Scanner scnr = new Scanner(fp);
 			scnr.nextLine();
 			scnr.nextLine();
@@ -106,7 +108,7 @@ public class MainGenerator {
 		Thread[] threads = new Thread[6];
 		for (int i = 0; i < 6; i++) {
 			Job tempJ = Benchmark.readFromStr(part2, regexSet.get(i).getTree());
-			threads[i] = new Thread(new FixerThread(tempJ));
+			threads[i] = new Thread(new FixerThread(tempJ, "thread"));
 			threads[i].start();
 		}
 

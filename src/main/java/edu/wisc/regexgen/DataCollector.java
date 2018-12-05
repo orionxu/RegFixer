@@ -4,6 +4,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import org.sat4j.specs.TimeoutException;
+
 public class DataCollector {
 
 	private ArrayList<RegexEntry> regexSet;
@@ -17,7 +19,7 @@ public class DataCollector {
 		this.negative = negative;
 	}
 
-	public void run() {
+	public void run() throws TimeoutException {
 
 
 		int posNum = positive.size();
