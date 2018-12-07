@@ -1,0 +1,5447 @@
++++
+&amp;lt;td background=&amp;quot;../img/img.jpg&amp;quot; &amp;gt;
+&amp;lt;img src=img.jpg &amp;gt;
+&amp;lt;img src=&#39;img.jpg&#39;
+---
+= img.jpg
+img.jpg
++++
+&lt;html&gt;
+---
+abc
++++
+&amp;lt;!-- anything --    &amp;gt;
+&amp;lt;!-- anything -&amp;gt; -&amp;gt; --&amp;gt;
+---
+&amp;lt;!-- something -- and more &amp;gt;
++++
+href=&quot;www.yahoo.com&quot;
+href=&quot;http://localhost/blah/&quot;
+href=&quot;eek&quot;
+---
+href=&quot;&quot;
+href=eek
+href=&quot;bad example&quot;
++++
+href=&amp;quot;index.php&amp;quot;
+href =  &#39;http://www.dailymedication.com&#39;
+href =  &amp;quot;irc://irc.junk
+---
+href=http://www.dailymedication.com
++++
+&amp;lt;span&amp;gt;
+---
+&amp;lt;table&amp;gt;
++++
+&amp;lt;!-- &amp;lt;h1&amp;gt;this text has been removed&amp;lt;/h1&amp;gt; --&amp;gt;
+&amp;lt;!-- yada --&amp;gt;
+---
+&amp;lt;h1&amp;gt;this text has not been removed&amp;lt;/h1&amp;gt;
++++
+&#169;
+---
+anything
++++
+&lt;HTML&gt;
+&lt;a href=&quot;link.html&quot;&gt;Link&lt;/a&gt;
+---
+&lt;xml&gt;
+&lt;phonytag&gt;
+&lt;image&gt;
++++
+# 8/23/1970 3:45:39AM #
+# 8/23/1970 #
+---
+##
+# 23/8/1970 #
++++
+&amp;quot;This is a \&amp;quot;string\&amp;quot;.&amp;quot;
+---
+&amp;quot;This is a \&amp;quot;string\&amp;quot;.
++++
+SELECT * FROM TABLE
+UPDATE TABLE SET FIELD=VALUE WHERE ID_FIELD=VALUE_ID
+DELETE FROM TABLE WHERE
+---
+SELECT TABLE
+UPDATE SET TABLE
+INSERT INTO FIELD=VALUE TABLE
++++
+src=&amp;quot;../images/image.jpg&amp;quot;
+src=&amp;quot;http://domain.com/images/image.jpg&amp;quot;
+src=&#39;d:\w
+---
+src=&amp;quot;../images/image.tif&amp;quot;
+src=&amp;quot;cid:value&amp;quot;
++++
+&amp;lt;body&amp;gt; text&amp;lt;br/&amp;gt;More Text &amp;lt;/body&amp;gt;
+&amp;lt;a href=&amp;quot;link.html&amp;quot;&amp;gt;Link&amp;lt;/a
+---
+&amp;lt;p&amp;gt; Some Text &amp;lt;p&amp;gt;
+&amp;lt;hr&amp;gt;
+&amp;lt;html&amp;gt;
++++
+onclick
+onsubmit
+onmouseover
+---
+click
+onandon
+mickeymouse
++++
+&amp;lt;input type=button onclick=&#39;n&amp;gt;5&#39; value=test onmouseover=&amp;quot;n&amp;lt;5&amp;amp;&amp;amp;n&amp;gt;8&amp;quot; onm
+---
+haven&#39;t found any exceptions yet
++++
+&lt;body&gt;Content here&lt;/body&gt;
+---
+&lt;body&gt;Content here&lt;body&gt;
++++
+&amp;lt;img src=&amp;quot;immy.jpg&amp;quot; alt=&amp;quot;Image&amp;quot;&amp;gt;
+&amp;lt;img src=&amp;quot;immy.jpg&amp;quot; alt=&amp;q
+---
+&amp;lt; img &amp;gt;
++++
+&quot;my string&quot;
+&quot;a string with &#39; in it&quot;
+&#39; comment
+---
+asd &quot;
++++
+&amp;lt;!-- comments --&amp;gt;
+&amp;lt;!-- x = a &amp;gt; b - 3 --&amp;gt;
+---
+&amp;lt;COMMENTS&amp;gt;this is a comment&amp;lt;/COMMENTS&amp;gt;
++++
+&quot;To quote Yoda (&quot;&quot;Do, or do not. There is no &#39;try&#39;&quot;&quot; )&quot;
+---
+&#39;This won&#39;t validate&#39;
+&quot;He said &quot;Ok.&quot;&quot;
++++
+-14
+-14.26
+-.26
+---
+-14.
+-14.263
+-
++++
+&amp;quote;
+&amp;#169;
+&amp;#x00027;
+---
+&amp;
+&amp;#Hello;
+&amp;#Xray;
++++
+/* This is a T-SQL comment! */
+---
+SELECT * FROM Customers
++++
+10:12:34
+932323.9:00:32.3420
+---
+10:20:80
++++
+&amp;lt;a href=&#39;http://www.regexlib.com&#39;&amp;gt;Text&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;...&#39;&amp;gt;Text&amp;lt;/a&amp;gt;
+&amp;
+---
+all other html tags
++++
+blah.is.en.resx
+something.zh-CHS.resx
+something.uz-UZ-Cyrl.resx
+---
+blah.is.eee.resx
+something.zh-X.resx
+something.uz-UZ-Uz.resx
++++
+D007DEVL =  (DESCRIPTION =    (ADDRESS_LIST =      (ADDRESS = (PROTOCOL = TCP)(HOST = ddt210)(PORT =
+---
+Anything that is not a tnsnames.ora entry
++++
+{\*\bkmkstart TagAmountDigits}
+({\*\bkmkstart TagAmountText}
+---
+{\*\bkmkend TagAmountText}
++++
+href=&amp;quot;http://www.google.com/tsunami_relief.html&amp;quot;
+href=/preferences?hl=en
+href=&amp;quot;ht
+---
+src=blah blah
++++
+&lt;XmlAttribute(&quot;xml-att&quot;)&gt; _
+Sub WillGetThis() _
+&quot;will &#39; get this&quot; _
+---
+&#39; Won&#39;t get this _
+Sub wontGetThis()_
+&quot;won&#39;t get this &quot; _ &quot;bad code&quot;
++++
+&amp;lt;Assembly: AssemblyVersion(&amp;quot;1.0.*&amp;quot;)&amp;gt; (all version formats, i.e.: * to 1.0.0.0)
+---
+&#39;&amp;lt;Assembly: AssemblyVersion(&amp;quot;1.0.*&amp;quot;)&amp;gt; (commented lines)
++++
+/* Some text (may be any number of lines) */
+---
+// Some text (only a single line)
+Some code // comment here (even if next line has comment)
+/* S
++++
+&amp;lt;a href=&#39;http://www.regexlib.com&#39;&amp;gt;Text&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;...&amp;quot;&amp;gt;Text&amp;lt;/a&amp;gt
+---
+all other html tags
++++
+var
+_withunder_score99
+TeSt
+---
+_
+123abc
+9
++++
+BETWEEN &#39;11/1/2004&#39; AND &#39;12/1/2004 11:59:59 PM&#39;
+---
+flabberguasted
++++
+&#39; This is a comment
+Rem This is a comment
+&amp;quot; This is a string with &amp;quot;&amp;quot; and &#39; &amp;quot;
+---
+&amp;quot; This is not a string
+RemThis is not a comment
+This is not a comment or a string
++++
+&amp;lt;font color=&amp;quot;blue&amp;quot;&amp;gt;
+&amp;lt;/font&amp;gt;
+&amp;lt;br /&amp;gt;
+---
+this is a test...
++++
+&lt;blockquote&gt;string1&lt;br&gt;string2&lt;br&gt;string3&lt;br&gt;&lt;/blockquote&gt;
+---
+..
++++
+#FFFFFF
+#FF3421
+#00FF00
+---
+232323
+f#fddee
+#fd2
++++
+a = b &#39; Comment
+a = &quot;xy&#39;z&quot; &#39; Comment
+---
+a = b
+rem not supported
++++
+&amp;lt;a href=&#39;http://www.regexlib.com&#39;&amp;gt;Text&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;...&#39;&amp;gt;Text&amp;lt;/a&amp;gt;
+&amp;
+---
+all other html tags
++++
+10:12:34
+932323.9:00:32.3420
+---
+10:20:80
++++
+blah.is.en.resx
+something.zh-CHS.resx
+something.uz-UZ-Cyrl.resx
+---
+blah.is.eee.resx
+something.zh-X.resx
+something.uz-UZ-Uz.resx
++++
+{\*\bkmkstart TagAmountDigits}
+({\*\bkmkstart TagAmountText}
+---
+{\*\bkmkend TagAmountText}
++++
+D007DEVL =  (DESCRIPTION =    (ADDRESS_LIST =      (ADDRESS = (PROTOCOL = TCP)(HOST = ddt210)(PORT =
+---
+Anything that is not a tnsnames.ora entry
++++
+/* This is a T-SQL comment! */
+---
+SELECT * FROM Customers
++++
+&amp;lt;font size=5 color=black face=Arial&amp;gt;
+&amp;lt;font style=&amp;quot;font-family:arial;color:red&amp;quot;&amp;
+---
+&amp;lt;DIV style=&amp;quot;font-family:arial;color:red&amp;quot;&amp;gt;
+&amp;lt;SPAN style=&amp;quot;color:red&amp;quot;&amp;gt;
++++
+&lt;meta name=&quot;DC.subject&quot; content=&quot;metadata&quot;/&gt;
+---
+the other html constructs
++++
+&quot;To quote Yoda (&quot;&quot;Do, or do not. There is no &#39;try&#39;&quot;&quot; )&quot;
+---
+&#39;This won&#39;t validate&#39;
+&quot;He said &quot;Ok.&quot;&quot;
++++
+&amp;quote;
+&amp;#169;
+&amp;#x00027;
+---
+&amp;
+&amp;#Hello;
+&amp;#Xray;
++++
+-14
+-14.26
+-.26
+---
+-14.
+-14.263
+-
++++
+&#39; This is a comment
+Rem This is a comment
+&amp;quot; This is a string with &amp;quot;&amp;quot; and &#39; &amp;quot;
+---
+&amp;quot; This is not a string
+RemThis is not a comment
+This is not a comment or a string
++++
+BETWEEN &#39;11/1/2004&#39; AND &#39;12/1/2004 11:59:59 PM&#39;
+---
+flabberguasted
++++
+&amp;lt;font color=&amp;quot;blue&amp;quot;&amp;gt;
+&amp;lt;/font&amp;gt;
+&amp;lt;br /&amp;gt;
+---
+this is a test...
++++
+#FFFFFF
+#FF3421
+#00FF00
+---
+232323
+f#fddee
+#fd2
++++
+&lt;blockquote&gt;string1&lt;br&gt;string2&lt;br&gt;string3&lt;br&gt;&lt;/blockquote&gt;
+---
+..
++++
+var
+_withunder_score99
+TeSt
+---
+_
+123abc
+9
++++
+&lt;XmlAttribute(&quot;xml-att&quot;)&gt; _
+Sub WillGetThis() _
+&quot;will &#39; get this&quot; _
+---
+&#39; Won&#39;t get this _
+Sub wontGetThis()_
+&quot;won&#39;t get this &quot; _ &quot;bad code&quot;
++++
+href=&amp;quot;http://www.google.com/tsunami_relief.html&amp;quot;
+href=/preferences?hl=en
+href=&amp;quot;ht
+---
+src=blah blah
++++
+14467
+144679554
+14467-9554
+---
+14467 955
+14467-
+1446-9554
++++
++919847444225
++91-98-44111112
+98 44111116
+---
++919800444225
++947444225
+44111116
++++
+AL
+CA
+AA
+---
+New York
+California
+ny
++++
+12556
+01550
+80796
+---
+05234
+8973
+62980
++++
+h2j-3c4
+H2J 3C4
+H2J-3c4
+---
+H2J_3C4
+H213C4
+123456
++++
+1-(123)-123-1234
+123 123 1234
+1-800-ALPHNUM
+---
+1.123.123.1234
+(123)-1234-123
+123-1234
++++
+NY
+PA
+NJ
+---
+Pennsylvania
+Pa
+pa
++++
+00501
+84118-3423
+n3a 3B7
+---
+501-342
+123324
+Q4B 5C5
++++
+1234AB
+1234 AB
+1001 AB
+---
+0123AB
+1234A B
+0123 AB
++++
+(658)154-1122
+6581541122
+658-154-1122
+---
+(658 154 1122
+759-1245
+875 (489 1568)
++++
+W1A 1AA
+EC2V 1JN
+GIR 0AA
+---
+TB12 1AB
+EC2V 1JM
+W2A 1AA
++++
++97150 3827741
+0503827741
+050-3827741
+---
+040 3827741
+05 3827741
+050_______spaces_______3827741
++++
+0833-1234567-8888
+(0833)1234567-8888
+12345678
+---
+ceocio
+!@$@#$
++++
+04 3452488
+04 -3452488
+04 - 3452499
+---
+01 -3452488
+04 34524888
+08 3452488
++++
+07222 555555
+(07222) 555555
++44 7222 555 555
+---
+7222 555555
++44 07222 555555
+(+447222) 555555
++++
+2405525009
+1(240) 652-5009
+240/752-5009 ext.55
+---
+(2405525009
+2 (240) 652-5009
++++
+150016
+---
+qqww
++++
+1-800-DISCOVER
+(610) 310-5555 x5555
+533-1123
+---
+1 533-1123
+553334
+66/12343
++++
+A11AA
+AA1A 1AA
+AA11 1AA
+---
+AAA 1AA
+AA11A 1AA
+AAA1AA
++++
+44240
+44240-5555
+T2P 3C7
+---
+44240ddd
+t44240-55
+t2p3c7
++++
+07222 555555
+(07222) 555555
++44 7222 555 555
+---
+7222 555555
++44 07222 555555
+(+447222) 555555
++++
+04 3452488
+04 -3452488
+04 - 3452499
+---
+01 -3452488
+04 34524888
+08 3452488
++++
+0833-1234567-8888
+(0833)1234567-8888
+12345678
+---
+ceocio
+!@$@#$
++++
+2405525009
+1(240) 652-5009
+240/752-5009 ext.55
+---
+(2405525009
+2 (240) 652-5009
++++
+A11AA
+AA1A 1AA
+AA11 1AA
+---
+AAA 1AA
+AA11A 1AA
+AAA1AA
++++
+1-800-DISCOVER
+(610) 310-5555 x5555
+533-1123
+---
+1 533-1123
+553334
+66/12343
++++
+150016
+---
+qqww
++++
+800-555-5555
+333-444-5555
+212-666-1234
+---
+000-000-0000
+123-456-7890
+2126661234
++++
++447222555555
++44 7222 555 555
+(0722) 5555555 #2222
+---
+(+447222)555555
++44(7222)555555
+(0722) 5555555 #22
++++
+44240
+44240-5555
+G3H 6A3
+---
+Ohio
+abc
+g3h6a3
++++
+0732105432
+1300333444
+131313
+---
+32105432
+13000456
++++
+02071111111
+01000100000
+---
+00000000000
++++
++27832762842
+27832762842
+0832762842
+---
+083 276 2842
++++
+333-4444
+222 333 4444
+(222) 333-4444
+---
+222333 4444
+222-333 4444
+(222)-333 4444
++++
+01222 555 555
+(010) 55555555 #2222
+0122 555 5555#222
+---
+01222 555 5555
+(010) 55555555 #22
+0122 5555 5555#222
++++
+333-4444
+(222) 333-4444
+222-333-4444 X55
+---
+222333 4444
+(222)-333 4444
+333-4444-5555
++++
+020 1234 5678
+0123 4567890
+01234 456789
+---
+02476 123456
+0845 123456
+07712 345678
++++
+0208 993 5689
+0208-993-5689
+89935689
+---
+1608 123 456
++++
+S-123 45
+s 123 45
+S123-45
+---
+Se12345
++++
+393 12th St. City, State  Zip code
+---
+12 street @@@
++++
+1(555)444-3333
+202.555.3333
+555-4444
+---
+555-222-33334
+1(303)5a4-5555
+1 202) 111-3333
++++
+12345
+12345-6789
+123456789
+---
+12345-0000
+00000-0000
+00000
++++
+(213) 343-1234
+213-343-1234
+213 343 1234
+---
+343-1234
++++
+12345
+123456789
+12345-6789
+---
+12345-
+00000
+00000-6789
++++
+92078
+92078-4705
+92078 4705
+---
+920781
+920a87
+920
++++
+0664-1234567
+06641234567
+0699-11234567
+---
+06991-1234567
++43650-1234567
+07661234567
++++
+00-00
+54-68
+---
+1235
+0
+5-789
++++
+PO Box
+p.o. box
+box 123
+---
+123 Some Street
++++
+1234AB
+1234 AB
+---
+123BBB
+023AB
++++
+555-555-1212
+123-456-7890
+---
+555.555.1212
+(555) 555-1212
+5555551212
++++
+GIR 0AA
+SW1Y 1AA
+AB1  4BL
+---
+XVJ  P09
+GB7Z 1HQ
+Q1 1AA
++++
+1234AB
+1234 AB
+1234 ab
+---
+0123AB
+123AA
++++
+1000AB
+3035KA
+9999ZZ
+---
+AA1000
+Z1000
+1000-CC
++++
+552123236699
+212323-6699
+2323-6699
+---
+[3434-3432]
+[4(23)232-3232]
+[55(2)232-232]
++++
+P.O. Box 42        Huslia, AK 99746
+C/O John Paul, POBox 456, Motown, CA 96090
+---
+4321 East 40th Apt #3  Anchorage AK 99504
+Stockton, CA 95215
++++
+1054 WD
+1054WD
+1054 wd
+---
+10543
++++
+78754
+78754-1234
+G3H 6A3
+---
+78754-12aA
+7875A
+g3h6a3
++++
+07713 345678
+078 12345678
+079 12345678
+---
+02344 123456
+0121 292929
+012345 6789
++++
+(02) 9323 1234
+0293231234
+02-9323-1234
+---
+01 9323 1234
+02 932 123
+02/9323/1234
++++
+222-2222
+295-5000
+---
+555-1234
+411-5555
+099-9999
++++
+972367087
+97-3770866
+972-377086
+---
+9988-989898
+989898988989
+9 9898989898
++++
+po box 4353
+---
+pollo St.
+P. O. Box d3f12s
+BOX 23
++++
+12345-1234
+12345
+12345 1234
+---
+123451234
+12345 a345
+a2345-1234
++++
+02-343536
+02/343536
+02 343536
+---
+02a343536
+02+343536
++++
+(234) 555-1212
+(234)555-1212
+234-555-1212
+---
+(234)5551212
+234 555 1212
+234) 555-1212
++++
+2\34 Wodonga Ave
+54a Beechworth Rd
+47/675 WODONGA DRIVE
+---
+aaa Beechworth Rd
+65       Beechworth Rd
+65 Beechworth/ Rd
++++
+4078
+539999
+---
+dfasdf
+afasdfsad
++++
+5551212
+614555-1212
+(614)555-1212
+---
+A12-5555
+(614-555-1212
+555*1212
++++
+0493 - 3227341
+0493  3227341
+493  3227341
+---
+93  0227341
+493  322734111
+493 -- 3227341
++++
+03242
+36260
+12394
+---
+3520
+102
+100202
++++
+0208 993 5689
+0208-993-5689
+89935689
+---
+1608 123 456
++++
+1234AB
+1234 AB
+---
+123BBB
+023AB
++++
+555-555-1212
+123-456-7890
+---
+555.555.1212
+(555) 555-1212
+5555551212
++++
+00-00
+54-68
+---
+1235
+0
+5-789
++++
+PO Box
+p.o. box
+box 123
+---
+123 Some Street
++++
+1000AB
+3035KA
+9999ZZ
+---
+AA1000
+Z1000
+1000-CC
++++
+552123236699
+212323-6699
+2323-6699
+---
+[3434-3432]
+[4(23)232-3232]
+[55(2)232-232]
++++
+GIR 0AA
+SW1Y 1AA
+AB1  4BL
+---
+XVJ  P09
+GB7Z 1HQ
+Q1 1AA
++++
+1234AB
+1234 AB
+1234 ab
+---
+0123AB
+123AA
++++
+1(555)444-3333
+202.555.3333
+555-4444
+---
+555-222-33334
+1(303)5a4-5555
+1 202) 111-3333
++++
++800.4453377x4444
++80.4453377
++8.123456789123x1111
+---
+181823884499
++800.4453377x
+2486994x11
++++
+S-123 45
+s 123 45
+S123-45
+---
+Se12345
++++
+393 12th St. City, State  Zip code
+---
+12 street @@@
++++
+CF1 2AA
+cf564fg
+---
+a1234d
+A12 77Y
++++
++974-584-5656
++000-000-0000
++323-343-3453
+---
+974-584-5656
++974 000 0000
++++
+DK-1234
+dk 1234
+Dk-1234
+---
+DK 12345
++++
+Dk-1234
+dk-1234
+DK-1234
+---
+DK 1234
+DK 12345
++++
+(123) 456-7890
+(123) 456-7890 x123
+---
+(123) 456-7890 x123x
+(123) 456-7890 x123 x123
+(123) 456-7890 x
++++
+2\34 Wodonga Ave
+54a Beechworth Rd
+47/675 WODONGA DRIVE
+---
+aaa Beechworth Rd
+65       Beechworth Rd
+65 Beechworth/ Rd
++++
+4078
+539999
+---
+dfasdf
+afasdfsad
++++
+02-343536
+02/343536
+02 343536
+---
+02a343536
+02+343536
++++
+(234) 555-1212
+(234)555-1212
+234-555-1212
+---
+(234)5551212
+234 555 1212
+234) 555-1212
++++
+03242
+36260
+12394
+---
+3520
+102
+100202
++++
+0208 993 5689
+0208-993-5689
+89935689
+---
+1608 123 456
++++
+5551212
+614555-1212
+(614)555-1212
+---
+A12-5555
+(614-555-1212
+555*1212
++++
+0493 - 3227341
+0493  3227341
+493  3227341
+---
+93  0227341
+493  322734111
+493 -- 3227341
++++
+(787)755-0114
+939-315-0112
+7879093849
+---
+(098)737-3942
+(89)893-2392
+939782721
++++
+(604) 789-0136
++123-45678-908
+---
+01.12.23
++++
+02245-999
+---
+ABCDE-FGH
++++
+785/3215564x51337
+(785)321-5564 Ext. 51337
+321.5564  x5
+---
+785321556
+(785)321-5564 x
+7853 215567
++++
+1.2123644567
+0-234.567/8912
+1-(212)-123 4567
+---
+0-212364345
+1212-364,4321
+0212\345/6789
++++
+9,5143393044
+9,514-339-3044
+339-3044
+---
+9,339 3044
+514 440 2009
+(514) 440-2009
++++
+222-2222
+295-5000
+---
+555-1234
+411-5555
+099-9999
++++
+(021)1234567
+(021)123456
+(000)000000
+---
+(123)1234567
+025123456
+0252345678
++++
+(123) 456-7890
+123-456-7890
+---
+1234567890
++++
+(111) 222-3333
+1112223333
+111-222-3333
+---
+11122223333
+11112223333
+11122233333
++++
+4D28C5AD-6482-41CD-B84E-4573F384BB5C
+B1E1282C-A35C-4D5A-BF8B-7A3A51D9E388
+91036A4A-A0F4-43F0-8CD
+---
+{B1E1282C-A35C-4D3A-BF8B-7A3A51D9E388}
+AAAAAAAAAAAAAAAAA
+B;E1282C-A35C-4D3A-BF8B-7A3A51D9E38
++++
+2222 Mock St.
+1 A St.
+555-1212
+---
+[A Street]
+(3 A St.)
+{34 C Ave.}
++++
+400 099
+400099
+400050
+---
+2345678
+12345
+asdf
++++
+(573)8841878
+573-884-1234
+573 234 1256
+---
+(573)(673)2345
+573-12-2345
++++
+00.000.000/0000-00
+00000000000000
+---
+00-000-000-000-00
+AA.AAA.AAA/AAAA-AA
++++
+0.0.0.0
+255.255.255.02
+192.168.0.136
+---
+256.1.3.4
+023.44.33.22
+10.57.98.23.
++++
+a1a-1a1
+A1A1A1
+---
+1a1-a1a
+aaa-aaa
+111-111
++++
+10101000
+01010000
+100000001
+---
+01000200
+00021000
+e10000000
++++
+1234
+asdf1234
+asp123
+---
+asdf
+asdf12345
+password
++++
+999-99999995
+123-47859683
+156-78965422
+---
+123-47859689
+9999999999
+9588-58964
++++
+SP939393H
+PX123456D
+SW355667G
+---
+12SP9393H
+S3P93930D
+11223344SP00ddSS
++++
+BTTNDR78R06A79QU
+---
+BTTNDR78R06A79AU
++++
+1,,3&quot;&quot;but, wait&quot;,5
+1,2,3
+---
+&quot;Test&quot;&quot;a,b,c,d&quot;&quot;ing&quot;
+no comma
+semi; colon
++++
+&#174;
+---
+anything else
++++
+T.F. Johnson
+John O&#39;Neil
+Mary-Kate Johnson
+---
+sam_johnson
+Joe--Bob Jones
+dfjsd0rd
++++
+914D226A-2F5B-4944-934D-96BBE6571977
+{914D226A-2F5B-4944-934D-96BBE6571977}
+---
+914D226A-2F5B-4944-XXXX-96BBE6571977
+{914D226A-2F5B-4944-XXXX-96BBE6571977}
++++
+&#163;
+---
+anything else
++++
+™
+---
+anything else
++++
+175123112345
+279020412345
+---
+479020412345
+275043112345
++++
+mh 12 bj 1780
+mmx 1234
+---
+mmm 123 1234
+mm   12 bj   345
+mm 12345
++++
+Fred Flintstone
+Barney Rubble
+Betty Rubble
+---
+The Great Gazoo
+Mr. Slate
+Dino
++++
+[IMG]http://bleh.jpg[/IMG]
+[ImG]bleh[/imG]
+[img]ftp://login:pass@bleh.gif[/img]
+---
+&amp;lt;img src=&amp;quot;bleh.jpg&amp;quot;&amp;gt;
++++
+1357
+445005
+101
+---
+900508
+7FFF
+599D
++++
+abcd
+aBc45DSD_sdf
+password
+---
+afv
+1234
+reallylongpassword
++++
+{CHBLOCK:sdgs}
+{CHBLOCK:sdgs}sdg{CHBLOCK:sdgs}
+---
+{CHBLOCK}
+{CHBLOCK:sdgs
++++
+:)))))
+:+&amp;gt;
+:o)
+---
+;o)
+:-(
++++
+48222
+48222-1746
+---
+4632
+Blake
+37333-32
++++
+eth0
+eth0:4
+eth4:9
+---
+eth0:
+eth0:0
+eth0:1d
++++
+&amp;lt;SCRIPT language=&amp;quot;JavaScript&amp;quot;&amp;gt;  &amp;lt;!--    //--&amp;gt;  &amp;lt;/SCRIPT&amp;gt; 
+&amp;lt;SCRIPT l
+---
+&amp;lt;!-- //--&amp;gt;
++++
+790d2cf6ada1937726c17f1ef41ab125
+---
+790D2CF6ADA1937726C17F1EF41AB125 
+790d2cf6ada1937726c17f1ef41ab125f6k
++++
+&#165;
+---
+anything else
++++
+914D226A-2F5B-4944-934D-96BBE6571977
+{914D226A-2F5B-4944-934D-96BBE6571977}
+---
+914D226A-2F5B-4944-XXXX-96BBE6571977
+{914D226A-2F5B-4944-XXXX-96BBE6571977}
++++
+&#163;
+---
+anything else
++++
+™
+---
+anything else
++++
+1234 AB
+1234AB
+---
+123AB
+1234AAA
++++
+€
+---
+anything else
++++
+asD1
+asDF1234
+ASPgo123
+---
+asdf
+1234
+ASDF12345
++++
+File.txt
+c:\Blah\..\.\Blah Blah.Blah\File.txt
+\\server\share\file.txt
+---
+ File.txt
+c:\.File.txt
+c:\.\.Blah\File.txt
++++
+1357
+445005
+101
+---
+900508
+7FFF
+599D
++++
+abcd
+aBc45DSD_sdf
+password
+---
+afv
+1234
+reallylongpassword
++++
+1.2345
+0.00001
+7
+---
+12.2
+1.10.1
+15.98
++++
+07976444333
+07956-514333
+07988-321-213
+---
++44 07976444333
+08956-444-444
++++
+&amp;lt;a href=&#39;javascript:functionA();&#39;&amp;gt;&amp;lt;i&amp;gt;this text is italicized&amp;lt;/i&amp;gt;&amp;lt;/a&amp;gt;
+---
+&amp;lt;A href=&#39;#&#39;&amp;gt;&amp;lt;P&amp;lt;/A&amp;gt;&amp;lt;/P&amp;gt;
++++
+&lt;script language=javascript&gt;document.write(&quot;one&quot;);&lt;/script&gt;
+---
+--
++++
+(111) 223-2332
+(222)233-2332
+232-323-3233
+---
+(ddd) 223-2332
+222-232/2333
+322-3223-222
++++
+1234
+V-1234
+---
+12345
++++
+&amp;lt;TD&amp;gt;
+&amp;lt;TD bgColor=&amp;quot;FFFFFF&amp;quot;&amp;gt;
+&amp;lt;/TD&amp;gt;
+---
+No Tag Here ...
++++
++46 8 123 456 78
+08-123 456 78
+0123-456 78
+---
++46 08-123 456 78
+08 123 456 78
+0123 456 78
++++
+SPGGRG73A02E625S
+czzdll74h18f205w
+---
+SP6FFFF3A02E625S
+czzdll74h18f205
++++
+22222-3333
+34545-2367
+56334-2343
+---
+123456789
+A3B 4C5
+55335
++++
+55(21)123-4567
+(11)1234-5678
+55(71)4562-2234
+---
+3434-3432
+4(23)232-3232
+55(2)232-232
++++
+33333
+55555
+23445
+---
+abcd
+1324
+as;lkjdf
++++
+4006 AB
+4006ab
+4006  AB
+---
+4006.ab
+4006_ab
+4006/ab
++++
+Steven  Wang33
+Jing  Xu
+---
+Steven Wang
+Jing Xu
++++
+ilove
+$%*!_
+it
+---
+123456
+This is great
++++
+19740609-7845
+19811116-7845
+20010913-7598
+---
+21003612-9999
+18790505-4545
+19740641-5559
++++
+Jon M. Doe
+Tim L. O&#39;Doul
+...&#39;&#39;&#39;&#39;&#39;
+---
+Doe, Jon
+&amp;lt;&amp;gt;,;:&amp;quot;?/
+%\$#@!
++++
+&amp;lt;img src=&amp;quot;abc.jpg&amp;quot;&amp;gt;
+&amp;lt;img src=&amp;quot;abc.jpg&amp;quot;/&amp;gt;
+&amp;lt;ImG src=&amp;quot;abc.j
+---
+none
++++
++31235256677
++31(0)235256677
+023-5256677
+---
++3123525667788999
+3123525667788
+232-2566778
++++
+G1 1AA 
+GIR 0AA
+SW1 1ZZ
+---
+BT01 3RT
+G111 1AA
++++
+Genesis 3:3-4,6
+II Sam 2:11,2
+2 Tim 3:16
+---
+Genesis chap 3, verse 3
+2nd Samuel 2
++++
+(0 34 56) 34 56 67
+(03 45) 5 67 67
+(0 45) 2 33 45-45
+---
+(2345) 34 34
+(0 56) 456 456
+(3 45) 2 34-45678
++++
+(111)-111-1111
+---
+11111111111
++++
+&amp;lt;a href=&amp;quot;http://www.mysite.com&amp;quot;&amp;gt;my external link&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;http:/
+---
+&amp;lt;a href=&amp;quot;myinternalpage.html&amp;quot;&amp;gt;my internal link&amp;lt;/a&amp;gt;
++++
+BEGIN:
+TEL;WORK;VOICE:
+TEL:
+---
+begin:
+TEL;PREF;
++++
+def
+---
+abc
++++
+2034AK
+2034 AK
+2034 ak
+---
+2034     AK
+321321 AKSSAA
++++
+COM1
+AUX
+LPT1
+---
+image.jpg
+index.html
+readme.txt
++++
+G1 1AA
+EH10 2QQ
+SW1 1ZZ
+---
+G111 1AA
+X10 WW
+DDD 5WW
++++
+asdf
+1234
+asdf1234
+---
+asd
+123
+asdfe12345
++++
+T2p 3c7
+T3P3c7
+T2P 3C7
+---
+123456
+3C7T2P
+11T21RWW
++++
+C1406HHA
+A4126AAB
+c1406hha
+---
+c1406HHA
+4126
+C1406hha
++++
+01:23:45:67:89:ab
+01:23:45:67:89:AB
+fE:dC:bA:98:76:54
+---
+01:23:45:67:89:ab:cd
+01:23:45:67:89:Az
+01:23:45:56:
++++
+user name
+user#name
+.....
+---
+User_Name1
+username@foo.com
+user.name@mail.foo.com
++++
+1234-1234-1234-1234
+1234123412341234
+---
+1234123412345
++++
+10a
+ABC
+A3fg
+---
+45.3
+this or that
+$23
++++
+Tell the the preacher
+some some
+hubba hubba
+---
+once an annual report
+mandate dated submissions
+Hubba hubba
++++
+55555-5555
+34564-3342
+90210
+---
+434454444
+645-32-2345
+abc
++++
+Aeroplane LIKE 767
+Movie LIKE &#39;Star&#39; AND NOT Movie LIKE &#39;Trek&#39;
+Number IN (1,2,3,4,5)
+---
+Hello there
+A=EXCELLENT OR
+B!=POOR
++++
+1111 2222 33 44444 55 6 7777
+---
+#IIS Logfile header
++++
+aaa111bbb
+---
+111aaa
++++
+1px
+100 PT
+20Px
+---
+1abc
+px
+1 sdfs
++++
+1.1 x 4.35 x 5.0
+1 x 2 x 3
+4.75 x 300.25 x 0
+---
+z.56 x 6 x 7
+1 xx 2 x 3
+1 by 2 by 3
++++
+kd6dun
+W9OXZ
+kb8ae
+---
+kdd90bz
+de7bgw
+WV7BXQ5
++++
+???
+????
+---
+ABC
+;&amp;amp;#F;
++++
+ABCxyz
+123
++-=
+---
+?
+?
+?
++++
+at System.IO.__Error.WinIOError(Int32 errorCode, String str)
+at ExceptionManagementQuickStartSampl
+---
+ExceptionManagementQuickStartSamples.Form1.DoLogon(String userName, String password) in c:\program f
++++
+ABCDE
+??G??
+&#198;
+---
+abc
+a&#223;?d
+&#230;
++++
+VariableName
+i
+Some_Value_3
+---
+3ID
+Hello World
++++
++447974405524
++447932205578
+---
+447974407726
++4407974407724
++++
+com.test.Test
+com.Test
+---
+com.test.test
+com.test.TEst
+Com.test.Test
++++
+3711-078176-01234
+4123 5123 6123 7123
+5123412361237123
+---
+3711-4123-5123-6112
++++
+thisfile.mp3
+tH@tfile.wma
+---
+whatever.exe
+somethingelse.mpa
+thisagain.wm3
++++
+123890
+?
+&amp;#189;
+---
+AAABB
+IV
+Ten
++++
++=
+-
+&amp;#177;  v  =
+---
+1
+-
+1x2
++++
+test
+hol&amp;#227;
+p
+---
+Test
+123
+?S
++++
+N9B.1Y8
+90210-1234
+NE21 6EQ
+---
+NN8 Y83
++++
+0834128458
+0749526308
+---
+0861212308
+0892549851
++++
+good.gif
+go d.GIf
+goo_d.jPg
+---
+junk
+bad.bad.gif
+slash\gif.
++++
+1.222.333.1234
+1-223-123-1232
+1-888-425-DELL
+---
+1.1.123123.123
+12-1322-112-31
+1-800-CALL-DEL
++++
+{User}, thank you for submitting a new project request!
+---
+Thank you for submitting a new project request!
++++
+01 46 70 89 12
+01-46-70-89-12
+0146708912
+---
+01-46708912
+01 46708912
++33235256677
++++
+&lt;world www=&quot;hello&quot;   /&gt;
+---
+&lt;&gt;&gt;&gt;world www=&quot;hello&quot;   /&gt;
++++
+DN3 6GB
+SW42 4RG
+GIR 0AA
+---
+SEW4 5TY
+AA2C 4FG
+AA2 4CV
++++
+1234
+---
+123
+123A
++++
+AA11 1AA
+AA1A 1AA
+A11-1AA
+---
+111 AAA
+1AAA 1AA
+A1AA 1AA
++++
+12345
+F-12345
+F-2B100
+---
+F12345
+F-123456
+123456
++++
+href=&amp;quot;produktsida.asp?kategori2=218&amp;quot;
+href=&amp;quot;NuclearTesting.htm&amp;quot;
+---
+U Suck
++++
+1.222.333.1234
+1-223-123-1232
+12223334444
+---
+1.1.123123.123
+12-1322-112-31
+11231321131
++++
+12345
+12345-6789
+---
+00000
+00000-0000
+a4650-465s
++++
+Jon Doe
+J&#248;rn
+Mc&#39;Neelan
+---
+Henry); hacking attempt
++++
+66.129.71.120
+207.46.230.218
+64.58.76.225
+---
+127.0.0.1
+192.168.0.1
+my ip address
++++
+{CLaN}nick
+[Clan]Nick
+(Clan)Nick
+---
+Nick
++++
+Carlos Rodrigues
+C&#225; de Laaa
+Crras R. L. Rodrig&#252;es
+---
+aa&#228;A
++++
+0067340
+B01HL06
+4155586
+---
+12345
+34A56B7
+456VGHY
++++
+AXDA3200DKV4E
+A1000AMT3B
+D800AUT1B
+---
+N/A
++++
+12345-12345-12345-12345-12345
+ABCDE-ABCDE-ABCDE-ABCDE-ABCDE
+AB5DE-AB5DE-AB5DE-AB5DE-AB5DE
+---
+12345-123-123456-12345
+ABC-ABCDEF-ABCDE-ABCDE
+12AB5-ABC-12AB567-12AB5
++++
+
+comp|eted
+fu|l-sized
+annua|ly
+---
+www.fireflyfx.net
+www.trustmusic.nl
++++
+asdf
+1234
+asdf1234
+---
+asd
+123
+asdfe12345
++++
+user=foo,bar,quux;group=manager,admin;level=100;
+group=nobody;level=24;
+---
+user=foo
+blahh
++++
+(12) 123 1234
+(01512) 123 1234
+(0xx12) 1234 1234
+---
+12 123 1234
+(012) 123/1234
+(012) 123 12345
++++
+abc
+ABC
+aBcDeF
+---
+abc123
+mr.
+a word
++++
+55555-5555
+34564-3342
+90210
+---
+434454444
+645-32-2345
+abc
++++
+1234-1234-1234-1234
+1234123412341234
+---
+1234123412345
++++
+10a
+ABC
+A3fg
+---
+45.3
+this or that
+$23
++++
+Tell the the preacher
+some some
+hubba hubba
+---
+once an annual report
+mandate dated submissions
+Hubba hubba
++++
+2034AK
+2034 AK
+2034 ak
+---
+2034     AK
+321321 AKSSAA
++++
+test.txt
+test.jpg.txt
+a&amp;b c.bmp
+---
+CON
+.pdf
+test:2.pdf
++++
+12345
+932 68
+S-621 46
+---
+5367
+425611
+31 545
++++
++31235256677
++31(0)235256677
+023-5256677
+---
++3123525667788999
+3123525667788
+232-2566778
++++
+4111-1234-1234-1234
+6011123412341234
+3711-123456-12345
+---
+1234567890123456
+4111-123-1234-1234
+412-1234-1234-1234
++++
+&amp;lt;TR&amp;gt;&amp;lt;TD ALIGN=RIGHT&amp;gt;&amp;amp;nbsp;&amp;lt;/TD&amp;gt;&amp;lt;TD&amp;gt;Last&amp;lt;/TD&amp;gt;&amp;lt;TD ALIGN=RIGHT NOW
+---
+[AADDSS]
++++
+(+44)(0)20-12341234
+02012341234
++44 (0) 1234-1234
+---
+(44+)020-12341234
+12341234(+020)
++++
+000000 000000000000
+000000-000000000000
+000000000000000000
+---
+000000_000000000000
++++
+&amp;lt;a href=&amp;quot;http://www.mysite.com&amp;quot;&amp;gt;my external link&amp;lt;/a&amp;gt;
+&amp;lt;a href=&amp;quot;http:/
+---
+&amp;lt;a href=&amp;quot;myinternalpage.html&amp;quot;&amp;gt;my internal link&amp;lt;/a&amp;gt;
++++
+BEGIN:
+TEL;WORK;VOICE:
+TEL:
+---
+begin:
+TEL;PREF;
++++
+def
+---
+abc
++++
+(111)-111-1111
+---
+11111111111
++++
+09-01-29
+05-06-25
+---
+090125
++++
+A?A?A?A?
+2?3?4?5?
+10?J?Q?K?
+---
+1?
+11?
+R?
++++
+082-131-5555
+083-145-654
+072 555 1212
+---
+131-253-4564
+5551212
+800 555 1212
++++
+1px
+100 PT
+20Px
+---
+1abc
+px
+1 sdfs
++++
+12.345-678
+23.345-123
+99.999
+---
+41222-222
+3.444-233
+43.324444
++++
+13165-000
+38175-000
+81470-276
+---
+13165-00
+38175-abc
+81470-2763
++++
+autbfc
+---
+attc
++++
+((24,((1,2,3),(3,4,5))))
+((1,((2,3,4),(4,5,6),(96,34,26))),(12,((1,3,4),(4,5,6),(7,8,9))))
+()
+---
+(24,((1,2,3),(3,4,5)))
+(  )
+((23,(12,3,4),(4,5,6)))
++++
+0834128458
+0749526308
+---
+0861212308
+0892549851
++++
+c:\file.txt
+c:\folder\sub folder\file.txt
+\\network\folder\file.txt
+---
+C:
+C:\file.xls
+folder.txt
++++
+dony d&#39;gsa
+---
+^[a-zA-Z0-9\s.\-_&#39;]+$
++++
+00:00
+13:59
+23:59
+---
+24:00
+23:60
++++
+@@test@@
+@@name@@
+@@2342@@
+---
+@test@
+@@na me@@
+@@ name@@
++++
+freshmeat.net
+123.com
+TempLate-toolkKt.orG
+---
+-dog.com
+?boy.net
+this.domain
++++
+asljas
+%/&amp;amp;89uhuhadjkh
+&amp;quot;hi there!&amp;quot;
+---
+&#39;hi there!&#39;
+It&#39;s 9 o&#39;clock
+&#39;&#39;&#39;&#39;&#39;
++++
+BFDB4D31-3E35-4DAB-AFCA-5E6E5C8F61EA
+BFDB4d31-3e35-4dab-afca-5e6e5c8f61ea
+---
+qqqBFDB4D31-3E35-4DAB-AFCA-5E6E5C8F61EA
+BFDB4D31-3E-4DAB-AFCA-5E6E5C8F61EA
+BFDB4D31-3E35-4DAB-AF
++++
+III
+xiv
+MCMXCIX
+---
+iiV
+MCCM
+XXXX
++++
+1
+108
+255
+---
+01
+256
++++
+N9B.1Y8
+90210-1234
+NE21 6EQ
+---
+NN8 Y83
++++
+at System.IO.__Error.WinIOError(Int32 errorCode, String str)
+at ExceptionManagementQuickStartSampl
+---
+ExceptionManagementQuickStartSamples.Form1.DoLogon(String userName, String password) in c:\program f
++++
+01/31/1905
+1/9/1900
+2/29/1904
+---
+31/01/2005
+02/29/2005
+2/29/2005
++++
+1/31/2002 10 AM
+2/29/2004
+4:15:04 PM
+---
+2/29/2003
+12/32/2003
+4:00
++++
+01/01/2001
+1/01/2001
+2002
+---
+2/30/2002
+13/23/2002
+12345
++++
+29/02/1972
+5-9-98
+10-11-2002
+---
+29/02/2003
+12/13/2002
+1-1-1500
++++
+Thu, 6 Jan 2005 18:44:56 -0500
+Thu, 21 Dec 2000 16:01:07 +0200 (\(proper\) &amp; (nested) comment)
+---
+Thu, 0 Jan 1856 18: 44:56 -0500
+Thu, 21 Dec 2000 16:01:07 +0200 (\(improper) comment)
+blah
++++
+02:04
+16:56
+23:59
+---
+02:00 PM
+PM2:00
+24:00
++++
+31/12/2003 11:59:59 PM
+29-2-2004
+01:45:02
+---
+12/31/2003
+29.02.2005
+13:30 PM
++++
+12:30 PM
+2004-02-29
+2004/3/31 02:31:35 AM
+---
+2:00
+2200.2.29
+0000/00/00 00:00:00 AM
++++
+2099-12-31T23:59:59
+2002/02/09 16:30:00
+2000-01-01T00:00:00
+---
+2000-13-31T00:00:00
+2002/02/33 24:00:00
+2000-01-01 60:00:00
++++
+751231
+000229
+040229
+---
+750431
+010229
+050229
++++
+02/29/2000
+02/29/2004
+12/31/2001
+---
+02/29/2100
+02/29/2001
+1/1/2001
++++
+31.12.6008
+5:30 AM
+30-04-1066
+---
+00/00/0000
+99:99:99
+29/02/2005
++++
+12:15
+10:26:59
+22:01:15
+---
+24:10:25
+13:2:60
++++
+001231
+000229
+040229
+---
+003112
+000431
+010229
++++
+08:00AM
+10:00am
+7:00pm
+---
+13:00pm
+12:65am
++++
+01
+02
+12
+---
+1
+2
+13
++++
+01/01/1990
+12/12/9999
+3/28/2001
+---
+3-8-01
+13/32/1001
+03/32/1989
++++
+9-MAY-1981
+29-FEB-2004
+25-DEC-1999
+---
+09 MAY 1981
+06 Jul 2003
++++
+01/1900
+10/1990
+12/2999
+---
+1/1900
+12/1899
+01/3000
++++
+12/25/2003
+08:03:31
+02/29/2004 12 AM
+---
+02/29/2003 1:34 PM
+13:23 PM
+24:00:00
++++
+10.03.1979
+12/30/2004
+01/01/2004
+---
+09--02--2004
+15-15-2004
+13/12/2004
++++
+0008-02-29
+2:34:59 PM
+9999/12/31 11:59 PM
+---
+04/04/04
+1:00
+1999/1/32
++++
+10/03/1979
+1-1-02
+01.1.2003
+---
+10/03/197
+09--02--2004
+01 02 03
++++
+29.2.04
+29/02-2004
+3.4.05
+---
+29.2.03
+2902.2004
+12.31.1975
++++
+January
+May
+October
+---
+Jan
+Septem
+Octo
++++
+31 January 2003
+29 March 2004
+29 Feb 2008
+---
+Jan 1 2003
+31 Sept 2003
+29 February 2003
++++
+2004-2-29
+2004-02-29 10:29:39 pm
+2004/12/31
+---
+2003-2-29
+2003-13-02
+2003-2-2 10:72:30 am
++++
+01012003
+02292000
+---
+01/01/2003
++++
+12:00am
+01:30pm
+4:59
+---
+15:30
+4:78am
+00:00
++++
+1/3/98
+01/03/04
+---
+15/20/04
+1/13/04
+12/02/
++++
+25/11/1979
+5-12-2004
+5 2 1901
+---
+25/11/1899
+9-12-1700
+25111979
++++
+12/25/2003
+08:03:31
+02/29/2004 12 AM
+---
+02/29/2003 1:34 PM
+13:23 PM
+24:00:00
++++
+01/1900
+10/1990
+12/2999
+---
+1/1900
+12/1899
+01/3000
++++
+15/05/2004
+15/5/04
+---
+15/45/04
++++
+1/1/2005
+29/02/12
+29/02/2400
+---
+29/2/2005
+29/02/13
+29/02/2200
++++
+9-MAY-1981
+29-FEB-2004
+25-DEC-1999
+---
+09 MAY 1981
+06 Jul 2003
++++
+08:00AM
+10:00am
+7:00pm
+---
+13:00pm
+12:65am
++++
+001231
+000229
+040229
+---
+003112
+000431
+010229
++++
+01/01/1990
+12/12/9999
+3/28/2001
+---
+3-8-01
+13/32/1001
+03/32/1989
++++
+01
+02
+12
+---
+1
+2
+13
++++
+12:00am
+01:30pm
+4:59
+---
+15:30
+4:78am
+00:00
++++
+01012003
+02292000
+---
+01/01/2003
++++
+25/11/1979
+5-12-2004
+5 2 1901
+---
+25/11/1899
+9-12-1700
+25111979
++++
+1/3/98
+01/03/04
+---
+15/20/04
+1/13/04
+12/02/
++++
+2004-2-29
+2004-02-29 10:29:39 pm
+2004/12/31
+---
+2003-2-29
+2003-13-02
+2003-2-2 10:72:30 am
++++
+29.2.04
+29/02-2004
+3.4.05
+---
+29.2.03
+2902.2004
+12.31.1975
++++
+10/03/1979
+1-1-02
+01.1.2003
+---
+10/03/197
+09--02--2004
+01 02 03
++++
+31 January 2003
+29 March 2004
+29 Feb 2008
+---
+Jan 1 2003
+31 Sept 2003
+29 February 2003
++++
+January
+May
+October
+---
+Jan
+Septem
+Octo
++++
+04/2/29
+2002-4-30
+02.10.31
+---
+2003/2/29
+02.4.31
+00/00/00
++++
+11/03
+01/04
+---
+13/03
+10/2003
++++
+20041212
+20040229
+88888888
+---
+20040230
+20041330
++++
+12/01/2002
+12/01/2002 12:32:10
+---
+32/12/2002
+12/13/2001
+12/02/06
++++
+05-01-2002
+29-02-2004
+31-12-2002
+---
+1-1-02
+29-02-2002
+31-11-2002
++++
+01/01/2001
+1/1/2001
+01/1/01
+---
+13/01/2001
+1/2/100
+09/32/2001
++++
+29/02/2000
+31/01/2000
+30-01-2000
+---
+29/02/2002
+32/01/2002
+10/2/2002
++++
+09:30:00
+17:45:20
+23:59:59
+---
+24:00:00
++++
+11/30/2003 10:12:24 am
+2/29/2003 08:14:56 pm
+5/22/2003
+---
+11/31/2003 10:12:24 am
+2/30/2003 08:14:56 pm
+5/22/2003 14:15
++++
+0001-12-31
+9999 09 30
+2002/03/03
+---
+0001\02\30
+9999.15.01
+2002/3/3
++++
+10:35
+9:20
+23
+---
+24:00
+20 PM
+20:15 PM
++++
+12/01/2002
+12/01/2002 12:32:10
+---
+32/12/2002
+12/13/2001
+12/02/06
++++
+05-01-2002
+29-02-2004
+31-12-2002
+---
+1-1-02
+29-02-2002
+31-11-2002
++++
+20041212
+20040229
+88888888
+---
+20040230
+20041330
++++
+04/2/29
+2002-4-30
+02.10.31
+---
+2003/2/29
+02.4.31
+00/00/00
++++
+11/03
+01/04
+---
+13/03
+10/2003
++++
+11/30/2003 10:12:24 am
+2/29/2003 08:14:56 pm
+5/22/2003
+---
+11/31/2003 10:12:24 am
+2/30/2003 08:14:56 pm
+5/22/2003 14:15
++++
+0001-12-31
+9999 09 30
+2002/03/03
+---
+0001\02\30
+9999.15.01
+2002/3/3
++++
+09:30:00
+17:45:20
+23:59:59
+---
+24:00:00
++++
+01/01/2001
+1/1/2001
+01/1/01
+---
+13/01/2001
+1/2/100
+09/32/2001
++++
+29/02/2000
+31/01/2000
+30-01-2000
+---
+29/02/2002
+32/01/2002
+10/2/2002
++++
+12/25/0004
+12/31/0001 BC 2:15 AM
+2-29-2004 09:00
+---
+00/00/0000
+2-29-2100
+10/8/1582
++++
+00-00-00 00:00:00
+0000-00-00 00:00:00
+09-05-22 08:16:00
+1970-00-00 00:00:00
+20090522081600
+---
+2009-13:01 00:00:00
+2009-12-32 00:00:00
+2002-12-31 24:00:00
+2002-12-31 23:60:00
+02-12-31 23:00:60
++++
+12/12/2003
+---
+31/02/203
++++
+1.1.2004
+03.07.04
+1-03-03
+---
+0.13.2004
+1.1.200
+32.0.03
++++
+12:30PM
+---
+1300
++++
+29-Feb-2000
+1-jan-2007
+31-dEC-1770
+---
+32-Jan-2001
+30-Feb-2004
+0-nov-2004
++++
+21 feb 2004
+---
+30 feb2004
++++
+1:00Am
+12:59pM
+05:05pm
+---
+00:00am
+05:60pm
+1:00
++++
+02/27/2005
+---
+02/29/2005
++++
++00:00
+-05:00
++13:45
+---
++14:30
++01:14
+-09:55
++++
+1145
+933
+ 801
+---
+0000
+1330
+8:30
++++
+1/31/2002
+04-30-02
+12-01/2002
+---
+2/31/2002
+13/0/02
+Jan 1, 2001
++++
+01/00
+12/99
+---
+13/00
+12/AS
++++
+3/3/2003
+3/3/2002 3:33 pm
+3/3/2003 3:33:33 am
+---
+13/1/2002
+3/3/2002 3:33
+31/3/2002
++++
+1:01 AM
+23:52:01
+03.24.36 AM
+---
+19:31 AM
+9:9 PM
+25:60:61
++++
+8am
+8 am
+8:00 am
+---
+8a
+8 a
+8:00 a
++++
+umtsfr@free.fr
+123@dz.com
+regexlib@regexlib.fr
+---
+umtsfr@free
+umtsfrfree.fr
+@free.fr
++++
+12/30/2002
+12/30/2002 9:35 pm
+12/30/2002 19:35:02
+---
+18/22/2003
+8/12/99
+8/22/2003 25:00
++++
+29/02/2004
+15/3/1824
+31/01/2001
+---
+29/02/2000
+21/10/92
+31/02/2001
++++
+01 Jan 2003
+---
+01 01 2003
++++
+28/12/2003
+28/02/2003
+29/02/2000
+---
+28-02-2003
+30/02/2003
+28.02.2003
++++
+2/29/2004
+04/01/2003 10:01:23 am
+03-20-1999
+---
+2/29/2003
+13/30/2001 10:05:00 pm
+12/32/2003
++++
+01 JAN 2003
+31/Dec/2002
+20-Apr-2003
+---
+32 Jan 2003
+00 Dec 2003
+10 dec 2003
++++
+Sunday
+Mon
+Tu
+---
+day
+Wedday
+Payday
++++
+09 MAY 1981
+28 JAN 2004
+8 JUL 2006
+---
+29 FEB 2003
+28 Oct 2000
+9 APR 03
++++
+1h
+1:45
+45
+---
+1a
+145
+1:99
++++
+09 MAY
+30 FEB
+31 JAN
+---
+31 SEP
+09 May
++++
+1-31-02
+2-29-04
+08/1/2004
+---
+2-30-04
+6/31/04
+13-11-2004
++++
+0959
+959
+9:59
+---
+90
+960
+24:00
++++
+1:59
+01:59
+23:59
+---
+12:63
+25:60
+13.10
++++
+9/02
+09/2002
+09/02
+---
+Fall 2002
+Sept 2002
++++
+01/01/2001
+02/30/2001
+12/31/2002
+---
+1/1/02
+1/1/2002
+1/25/2002
++++
+1145
+933
+ 801
+---
+0000
+1330
+8:30
++++
+1/31/2002
+04-30-02
+12-01/2002
+---
+2/31/2002
+13/0/02
+Jan 1, 2001
++++
+1200
+1645
+2359
+---
+2400
+asbc
+12:45
++++
+12/31/2003
+01/01/1900
+11/31/2002
+---
+1/1/2002
+01/01/02
+01/01/2004
++++
+1:01 AM
+23:52:01
+03.24.36 AM
+---
+19:31 AM
+9:9 PM
+25:60:61
++++
+8am
+8 am
+8:00 am
+---
+8a
+8 a
+8:00 a
++++
+01/00
+12/99
+---
+13/00
+12/AS
++++
+3/3/2003
+3/3/2002 3:33 pm
+3/3/2003 3:33:33 am
+---
+13/1/2002
+3/3/2002 3:33
+31/3/2002
++++
+02/29/2084
+01/31/2000
+11/30/2000
+---
+02/29/2083
+11/31/2000
+01/32/2000
++++
+31/12/2003
+29/2/2004 4:50 PM
+23:59:59
+---
+12/31/2003
+29/2/2003
+4:00
++++
+January 2004
+Jan, 2004
+january 2003
+---
+Janu 2004
+jAn, 2004
+January,2003
++++
+31/12/75
+29/02/00
+29/02/04
+---
+01/13/01
+29/02/01
+29/02/2004
++++
+0.25
+7.75
+8
+---
+8.25
+7.15
+0.15
++++
+JANUARY 2000
+19-01-2000
+12/11/2000
+---
+&quot;Hello it is ordinary text&quot;
+&quot;non -date text&quot;
++++
+99366
+00001
+---
+74000
+04367
++++
+20041231
+20040229
+---
+20043112
+2003/04/02
++++
+09 MAY
+30 FEB
+31 JAN
+---
+31 SEP
+09 May
++++
+1-31-02
+2-29-04
+08/1/2004
+---
+2-30-04
+6/31/04
+13-11-2004
++++
+2/2/2000
+02/02/2000
+02/2/2000
+---
+2.2.2000
+2-2-2000
++++
+31/12/2099
+1/1/1900
+10/12/2003
+---
+05/11/3000
+11/13/2003
+32/04/2030
++++
+9/02
+09/2002
+09/02
+---
+Fall 2002
+Sept 2002
++++
+01/01/2001
+02/30/2001
+12/31/2002
+---
+1/1/02
+1/1/2002
+1/25/2002
++++
+2002/02/03
+2002/02/03 12:12:18
+---
+2002/02/36
+02/03/2002
++++
+2002-11-03
+2007-17-08
+9999-99-99
+---
+2002/17/18
+2002.18.45
+18.45.2002
++++
+12:00am
+1:00 PM
+  12:59   pm
+---
+0:00
+0:01 am
+13:00 pm
++++
+01/01/2002 04:42
+5-12-02 04:42 AM
+01.01/02    04-42aM
+---
+01-12-1999 4:50PM
+01-12-2002 15:10PM
+01-12-002 8:20PM
++++
+09 March 2005
+29 February 2004
+31 December 9999
+---
+32 March 2005
+29 February 2005
+2005-03-09
++++
+29/02/1992
+29/02/2000
+29/02/2004
+---
+29/02/1892
+29/02/2100
+29/02/3004
++++
+1/2/03
+02/30/1999
+3/04/00
+---
+3/4/2020
+3/4/1919
+4/31/2000
++++
+11-02-02
+1-25-2002
+01/25/2002
+---
+13-02-02
+11.02.02
+11/32/2002
++++
+09:00
+9:00
+11:35
+---
+13:00
+9.00
+6:60
++++
+12/31/2002
+12/31/2002 08:00
+12/31/2002 08:00 AM
+---
+12/31/02
+12/31/2002 14:00
++++
+JG103759A
+AP019283D
+ZX047829C
+---
+DC135798A
+FQ987654C
+KL192845T
++++
+penis
+---
+na
++++
+C2dfeed
+sporttrak1
+11223a
+---
+pookie
+d34_fff
+123456
++++
+Sameul
+O&#39;Conner
+Mary-Kate
+---
+David Bugel
+Robert1
+Robert M. Larry
++++
+6011-1111-1111-1111
+5423-1111-1111-1111
+341111111111111
+---
+4111-111-111-111
+3411-1111-1111-111
+Visa
++++
+password1
+pa$$word2
+pa!@#$%3
+---
+password
+1stpassword
+$password#
++++
+http://www.domain.com/page.asp?param=&amp;lt;/script&amp;gt;
+https://www.domain.com/page.asp?param=;SELECT
+---
+https://www.domain.com/page.asp?param=RealParam
++++
+123-45-6789
+123 45 6789
+123456789
+---
+12345-67-890123
+1234-56-7890
+123-45-78901
++++
+adad1213
+1231dfadfa
+dfad123dfasdfs
+---
+dfa@#12313
+*(*sdfasdfadfd
+$fffsdg121ddd#$f1q
++++
+123,123,123,123
+100,120,000,010,011
+1,123,123,123
+---
+012,123,123,123
+12343,1244,4,12
+,123,123,123
++++
+078-05-1120
+078 05 1120
+078051120
+---
+987-65-4320
+000-00-0000
+(555) 555-5555
++++
+aa123_ter12
+aa4587
+784566
+---
+123*-/  mksj
++++
+afdaas-ddas----asddas____...@asd.asd.asd.asd.asd.com
+a@a.aa
+.@microsoft.sun.apple.com
+---
+aaaaaaa@.-com
+aaaaaaa@adf.-com
+aaaaaaa@
++++
+David F Walker
+J. S. Smith, Jr.
+Catherine Zeta-Jones
+---
+oscar peterson
++++
+8ECCA04F
+82E5AAA4
+82e5aaa4
+---
+8ECCAOF
+82E5AA4
+82e5aaa45
++++
+Viagra
+v1@G R /\
+\/iagr@
+---
+viaagra
+vi  agra
+v1  gra
++++
+123, 4567, 8901
+abc, defghi, jklmn
+abc123
+---
+ abc123
+abc123,
+,abc123
++++
+ABCD790419
+ABC790419aa1
+ABCD790419AB1
+---
+AB790419
+A12790419
+ABC791332
++++
+914D226A-2F5B-4944-934D-96BBE6571977
+{914D226A-2F5B-4944-934D-96BBE6571977}
+---
+914D226A-2F5B-4944-XXXX-96BBE6571977
+{914D226A-2F5B-4944-XXXX-96BBE6571977}
++++
+O&#39;Brien, Miles
+McDonald,Mary Ann Alison
+Windsor-Smith,Barry
+---
+jones, john
++++
+&quot;test&quot;
+&quot;escape\&quot;quote&quot;
+&quot;\&quot;&quot;
+---
+test
+&quot;test
+&quot;test\&quot;
++++
+333-22-4444
+123-45-6789
+---
+123456789
+SSN
++++
+O&#39;Brien, Miles
+McDonald,Mary Ann Alison
+Windsor-Smith,Barry
+---
+jones, john
++++
+5125632154125412
+5225632154125412
+5525632154125412
+---
+5625632154125412
+4825632154125412
+6011632154125412
++++
+Sacramento
+San Francisco
+San Luis Obispo
+---
+SanFrancisco
+SanLuisObispo
+San francisco
++++
+1234123412
+123412341X
+---
+not an isbn
++++
+Smith, Ed
+Ed Smith
+aBcDeFgH
+---
+a123
+AB5
+Mr. Ed
++++
+email@email.com
+My Name
+asdf12df
+---
+‘,\*&amp;amp;$&amp;lt;&amp;gt;
+1001&#39; string
++++
+OEM
+0em
+---
+na
++++
+$ave
+---
+save
++++
+6011567812345678
+6011 5678 1234 5678
+6011-5678-1234-5678
+---
+1234567890123456
++++
+David Walker
+Bob MacDonald
+Yvonne DeCarlo
+---
+oscar peterson
++++
+,
+whitespace
+carrage returns
+---
+cat
++++
+1111
+47,26,2,1,1111,12
+25,1245,2122,23232
+---
+111,
+1a1,111,1212,23
+11aa,aaa,asas,asa
++++
+053-27-0293
+770-29-2012
+063-71-9123
+---
+780-20-1230
+000-24-1290
+123-00-1239
++++
+This is is a match
+---
+This isn&#39;t!
++++
+a
+B
+c
+---
+0
+&amp;amp;
+AbC
++++
+foo
+---
+bar
++++
+hubba hubba
+mandate dated
+an annual
+---
+may day
+gogo
+1212
++++
+1234-1234-1234-1234
+1234 1234 1234 1234
+1234123412341234
+---
+Visa
+1234
+123-1234-12345
++++
+$pecia1 0ffer
+---
+na
++++
+Walker, David F
+Smith, Jr., J. S.
+DeCarlo, Yvonne
+---
+peterson, oscar
++++
+ISBN 0 93028 923 4
+ISBN 1-56389-668-0
+ISBN 1-56389-016-X
+---
+123456789X
+ISBN 9-87654321-2
+ISBN 123 456-789X
++++
+aaaeee
+????????
+gooogle
+---
+google
+booboo
++++
+David F. Walker
+Norm MacDonald
+Jill St. John
+---
+oscar peterson
++++
+Bob Jones
+John Smith
+Mary Jane Smith
+---
+Bob White
+Mary Doe White
+Gina Smith
++++
+Any text of any length
+...but will only &#39;match&#39; the first 20 characters at a period or space.
+---
+N/A
++++
+Test
+TesT
+tesT9 _test9
+---
+\\\
++++
+regex
+---
+a
++++
+1111-2323-2312-3434
+1234343425262837
+1111 2323 2312 3434
+---
+1111 2323 2312-3434
+34323423
+1111-2323-23122-3434
++++
+Fred,Barnie,Wilma
+Bob,1/1/2003,222-3333
+100,200,300
+---
+Fred,Barnie,Wilma,Betty
+Bob;1/1/2003;222-3333
+Tom Dick Harry
++++
+V1agra
+---
+na
++++
+Pre$criptions
+---
+na
++++
+ISBN 90-70002-34-5
+ISBN 90-70002-34-x
+---
+ISBN 90-70002-34-5x
+ISBN 90-700-02-34-5
++++
+5111 1111 1111 11118
+1234123412341324
+123456 123456789012
+---
+511a 1111 1111 11118
++++
+123 456 789
+123456789
+123 456789
+---
+1234 5678 9
+123 456 7890
+123
++++
+abcDEFghp3t123456
+A1C3E5G6Y98123456
+A1C3E5G6FFF123456
+---
+AIC3E5G6FFF123456
+A8C3E5G6FQF123456
+A8C3E5G6F9F12345H
++++
+1999,2001,1988
+1999
+---
+0199,1997
+0199
+1999,
++++
+three blind mice
+see how they run
+---
+three blind
+they run
++++
+phaaarmacy
+pphhaarrmmaaccyy
+ppharmacy
+---
+armacy
++++
+,
+whitespace
+carrage returns
+---
+cat
++++
+1111
+47,26,2,1,1111,12
+25,1245,2122,23232
+---
+111,
+1a1,111,1212,23
+11aa,aaa,asas,asa
++++
+hubba hubba
+mandate dated
+an annual
+---
+may day
+gogo
+1212
++++
+1234-1234-1234-1234
+1234 1234 1234 1234
+1234123412341234
+---
+Visa
+1234
+123-1234-12345
++++
+a
+B
+c
+---
+0
+&amp;amp;
+AbC
++++
+foo
+---
+bar
++++
+Smith, Ed
+Ed Smith
+aBcDeFgH
+---
+a123
+AB5
+Mr. Ed
++++
+email@email.com
+My Name
+asdf12df
+---
+‘,\*&amp;amp;$&amp;lt;&amp;gt;
+1001&#39; string
++++
+Sacramento
+San Francisco
+San Luis Obispo
+---
+SanFrancisco
+SanLuisObispo
+San francisco
++++
+1234123412
+123412341X
+---
+not an isbn
++++
+6011567812345678
+6011 5678 1234 5678
+6011-5678-1234-5678
+---
+1234567890123456
++++
+David Walker
+Bob MacDonald
+Yvonne DeCarlo
+---
+oscar peterson
++++
+OEM
+0em
+---
+na
++++
+$ave
+---
+save
++++
+$pecia1 0ffer
+---
+na
++++
+V1agra
+---
+na
++++
+Pre$criptions
+---
+na
++++
+1111-2323-2312-3434
+1234343425262837
+1111 2323 2312 3434
+---
+1111 2323 2312-3434
+34323423
+1111-2323-23122-3434
++++
+Fred,Barnie,Wilma
+Bob,1/1/2003,222-3333
+100,200,300
+---
+Fred,Barnie,Wilma,Betty
+Bob;1/1/2003;222-3333
+Tom Dick Harry
++++
+123 456 789
+123456789
+123 456789
+---
+1234 5678 9
+123 456 7890
+123
++++
+[32mHello
+[1;35mTest
+[2J
+---
+abc
++++
+Aeroplane LIKE 767
+Movie LIKE &#39;Star&#39; AND NOT Movie LIKE &#39;Trek&#39;
+Number IN (1,2,3,4,5)
+---
+Hello there
+A=EXCELLENT OR
+B!=POOR
++++
+abc
+---
+PRN
++++
+this is a sentence with tokens alpha|bravo|charlie
+---
+only pipes not alpha,bravo
++++
+4125632152365
+418563256985214
+4125632569856321
+---
+3125652365214
+41256321256
+42563985632156322
++++
+ Return Parent.DB.GetDataReader(&quot;CauseImmediateGet&quot;, MyIncidentEventTypeID)
+---
+ Return Parent.DB.GetDataReader(CauseImmediateGet&quot;, MyIncidentEventTypeID)
++++
+Too          Many            spaces.
+---
+No extra spaces
+No Extra spaces Inside
++++
+30125212365212
+36125212365212
+38125212365212
+---
+301252123652121
+40256631125452
+361251254125212
++++
+This is a series of sentences. They end predictably! Where would we be without punctuation?
+---
+This sentence just trails off
++++
+aaaa1234AAAA
+12aaAA12
+aaaaa12345AAAAA
+---
+aaaaa123456AAAAA
+12aaAA1
+12aaaa12
++++
+ABC 123 A
+A 123 ABC
+AB 12 ABC
+---
+AB 123 C
+A 123 AB
+AB 12 AB
++++
+1
+12
+124
+---
+-1
+a
+1.0
++++
+$1.50
+$49
+$0.50
+---
+1.5
+$1.333
+this $5.12 fails
++++
+1&#39;235.140
+1&#39;222&#39;333.120
+456
+---
+1234.500
+78&#39;45.123
+123,0012
++++
+12,654
+1,987
+---
+128,2
+12,
++++
+99.99
+99
+.99
+---
+999.999
+999
+.999
++++
+0
+1000
+4294967295
+---
+-100
+-0
++0
+4294967296
++++
+-34
+34
++5
+---
+abc
+3.1415
+-5.3
++++
+9999999
+99999.99999
+99,999,999.9999
+---
+9999.
+9,99,99999.999
+999.9999.9999
++++
+$1,234,567.89
+1234567.89
+$9.99
+---
+$1,2345,67.89
+$1234,345,678.0
+0
++++
+8.0
+8.0,-.38,+8.9
+8.0, +8.8, 0.09
+---
++
+.
+a,b, c
++++
+0.01
+010001.011010
+.234
+---
+0.00 OR .
+010001.011010E
+1.234.5
++++
+12345.67
+0
+0.1
+---
+123456.78
+123456.789
+.1
++++
+1
+2
+3
+---
+a
+324
+num
++++
+0
+65535
+59999
+---
+123456
+69999
+65599
++++
+123.456
+.123
+123
+---
+.
+apple
+pear
++++
+1
+1.1
+0.1
+---
+01
+01.1
+0.10
++++
+4.4
+.4
+-.4
+---
+.
+...
+zero
++++
+# 8/23/1970 3:45:39AM #
+# 8/23/1970 #
+---
+##
+# 23/8/1970 #
++++
+0.00
+1.23
+4.56
+---
+-1.03
+-0.01
+-0.00
++++
+2
+50
+0
+---
+-15
+1.2
++++
+$1,501.13
+&amp;#163;215
+€4.93
+---
+01.00
+$.00
+&amp;#162;50
++++
+($4,000.00)
+-$4000.00
+-$400.00
+---
+4,00.000
+abc
+$
++++
+100,00
+100
+99999,99
+---
+99,99
+999999
+1,00
++++
+$0.84
+$123458
+$1,234,567.89
+---
+$12,3456.01
+12345
+$1.234
++++
+1234
+1,234
+1,234,567
+---
+1234.0
+-1234
+$1234
++++
+1
+123
+132.132
+---
+1.2.2
+-123
++++
+10
+-10
++10.00
+---
+0
+-10.50
+10.50
++++
+1234
+0
+12,345
+---
+12,3245
+-1
+1234.23
++++
+$3,023,123.34
+9,876,453
+123456.78
+---
+4,33,234.34
+$1.234
+abc
++++
+100%
+100
+52.65%
+---
+-1
+-1%
+100.1%
++++
+123
+123.54
+-.54
+---
+123.543
+0012
+1,000.12
++++
++0335456 545 545 
+-5465 545 
+5456465 5454,545
+---
+fsd54df 54
++++
++46 8 123 456 78
+08-123 456 78
+0123-456 78
+---
++46 08-123 456 78
+08 123 456 78
+0123 456 78
++++
+1234567890
+1234567890
+1234567890
+---
+http://none
+http://none
+http://none
++++
+.568
+8578
+1234567.1234567
+---
+568.
+56.89.36
+5.3.6.9.6
++++
+23
+-17.e23
++.23e+2
+---
++.e2
+23.17.5
+10e2.0
++++
+123
+10
+54
+---
+-54
+54.234
+abc
++++
+$3,023,123.34
+9,876,453
+123456.78
+---
+4,33,234.34
+$1.234
+abc
++++
+123
+-123.45
++123.56
+---
+123x
+.123
+-123.
++++
+1
+50
+100
+---
+0
+.5
+101
++++
+123
+-123
++123
+---
+abc
+3.14159
+-3.14159
++++
+0
+123
+-123
+---
+001
+-012
+-002
++++
+6&#39;3&amp;quot;
+5&#39;11&amp;quot;
+10&#39;0&amp;quot;
+---
+9 Feet 2 inches
+5&#39;12&amp;quot;
+5&#39;2 1/2&amp;quot;
++++
+123.456
+-0.125
+-1000.000
+---
+123.4567
+-0.1b5
+-1000.001
++++
+-14
+-14.26
+-.26
+---
+-14.
+-14.263
+-
++++
+0.25
+.75
+123.50
+---
+.77
+1.435
++++
+$-1
+$-1.0
+$1,234.42
+---
+anything that doesn&#39;t start with $
+$.13
+$2.
++++
+123
++3.14159
+-3.14159
+---
+abc
+3.4.5
+$99.95
++++
+123
+3.14159
+.234
+---
+abc
+-3.14159
+3.4.2
++++
+0%
+100%
+.17%
+---
+101%
+-17
+99.006%
++++
+99.99%
+9%
+.09%
+---
+99
+9.%
++++
+$100.00
+$100
+$10.25
+---
+100.
+$10.233
+$10.
++++
+$ 123.4
+$00.5
+200,000
+---
+$012,234.44
+-39.05
+$45,23,330.00
++++
+10,000,000.123
+3.14159265
+---
+2.7,1828183
++++
+1
+0123456.123456789
+.123456789
+---
+.0123456789
+0.0
+-1
++++
+-128
+127
+0
+1
+-10
+---
+-129
+128
+-0
++0
++++
+0
+100
+65535
+---
+-0
++0
+-10
+65536
++++
+-2147483648
+-100
+0
+100
+2147483647
+---
+-2147483649
+-0
++0
+2147483648
++++
+0
+10
+127
+255
+---
+-10
+-1
++0
+-0
+256
++++
+-32768
+-10
+0
+10
+32767
+---
++0
+-0
+-32769
+32768
++++
+$2.43
+2.02
+$2112
+---
+2.1
+$.14
+$2,222.12
++++
+1234567
+9999999
+1
+---
+12345678
+9999.99
+-1234
++++
+1
+1.23
+1234.45
+---
+a1.34
+1.23a
+a
++++
+$3,023,123.34
+9,876
+123456.78
+---
+0.002
+$01.00
+###1.00
++++
+123
+-123.35
+-123.35e-2
+---
+abc
+123.32e
+123.32.3
++++
+1234,50
+0,70
+,03
+---
+1.234,50
+-234,50
++++
+405.234
+50
+213123.456
+-1
+N/A
+---
+bathreader
+this is N/A
+3.14159
++10
++++
+$1000.00
+100%
+50%
+---
+%100
+.5%
+100
++++
+100.00
++100.00
+-100.00
+---
+abc
++++
+1,2,3455,12345678
+23045,34678,2892
+1,2,99999999
+---
+01,234,567
+123,0445,3434,
+121,,1212,,12,
++++
+$3,333,333,333
+$333333
+$3,333.33
+---
+3,33
+3333,333,333
+333.3
++++
+1.1
+12.12
+0
+---
+.
+.123
+123.
++++
+.123
+0.126
+1000.000
+---
+.1234
+0.1b6
+1000.001
++++
+99.99%
+9%
+.09%
+---
+99
+9.%
++++
+$100.00
+$100
+$10.25
+---
+100.
+$10.233
+$10.
++++
+123
+3.14159
+.234
+---
+abc
+-3.14159
+3.4.2
++++
+0%
+100%
+.17%
+---
+101%
+-17
+99.006%
++++
+1
+0123456.123456789
+.123456789
+---
+.0123456789
+0.0
+-1
++++
+-128
+127
+0
+1
+-10
+---
+-129
+128
+-0
++0
++++
+$ 123.4
+$00.5
+200,000
+---
+$012,234.44
+-39.05
+$45,23,330.00
++++
+$1,234.50
+$0.70
+.7
+---
+$0,123.50
+$00.5
++++
+$28,009,987.88
+$23,099.05
+$.88
+---
+$234,5.99
++++
+1
+12345.123
+0.5
+---
+0
+0.0
+123456.1234
++++
+123456.123456
+123456,123456
+123456
+---
+123a.123
+123a,123
+a
++++
+-0.050
+-5.000
+-5
+---
+0
+0.0
+.0
++++
+1,000
+3,000.05
+5,000,000
+---
+abc
+$100,000
+Forty
++++
+1
+23
+50
+---
+0
+111
+xyz
++++
+0.050
+5.0000
+5000
+---
+0
+0.0
+.0
++++
+1
+11
+20
+---
+0
+21
++++
+1000
+12,345
+12,345,678
+---
+1.1
+1,10
+123,888,888
++++
+$1000.00
+100%
+50%
+---
+%100
+.5%
+100
++++
+100.00
++100.00
+-100.00
+---
+abc
++++
+1234,50
+0,70
+,03
+---
+1.234,50
+-234,50
++++
+405.234
+50
+213123.456
+-1
+N/A
+---
+bathreader
+this is N/A
+3.14159
++10
++++
+1.1
+12.12
+0
+---
+.
+.123
+123.
++++
+.123
+0.126
+1000.000
+---
+.1234
+0.1b6
+1000.001
++++
+1,2,3455,12345678
+23045,34678,2892
+1,2,99999999
+---
+01,234,567
+123,0445,3434,
+121,,1212,,12,
++++
+$3,333,333,333
+$333333
+$3,333.33
+---
+3,33
+3333,333,333
+333.3
++++
+123
+-123.35
+-123.35e-2
+---
+abc
+123.32e
+123.32.3
++++
+12345.12
+0.5
+---
+123456.12
+1.234
+.1
++++
+-32768
+-10
+0
+10
+32767
+---
++0
+-0
+-32769
+32768
++++
+0
+100
+65535
+---
+-0
++0
+-10
+65536
++++
+-2147483648
+-100
+0
+100
+2147483647
+---
+-2147483649
+-0
++0
+2147483648
++++
+12.3
+123
+-123.45
+---
+-
+10.1234
+-1234
++++
+1 200
+1 241 588.14567
+123
+---
+az
+1254.456
+1234
++++
+1
+3
+4
+---
+6
+23
+a
++++
+0.123
+(1234.123)
+-01,200
+---
+2.3.123
+1,23.45
++++
+127.0.0.1:80
+255.255.255.0:21
+1.0.0.0:1
+---
+0.0.0.0:1
+256.1.1.1:20
+127.0.0.1:65536
++++
+FEDC:BA98:7654:3210:FEDC:BA98:7654:3210
+1080::8:800:200C:417A
+::FFFF:129.144.52.38
+---
+FEDC::7654:3210::BA98:7654:3210
+FEDC:BA98:7654:3210
+::
++++
+regexlib.com
+this.is.a.museum
+3com.com
+---
+notadomain-.com
+helloworld.c
+.oops.org
++++
+https://192.168.0.2:80/users/~fname.lname/file.ext
+ftp://user1:pwd@www.domain.com
+http://www.dom
+---
+www.domain.com
+user1:pwd@domain.com
+192.168.0.2/folder/file.ext
++++
+321321321 dasds
+---
+/\3fsdfsd
++++
+127.0.0.1
+255.255.255.0
+192.168.0.1
+---
+1200.5.4.3
+abc.def.ghi.jkl
+255.foo.bar.1
++++
+http://www.website.com/index.html
+www.website.com
+website.com
+---
+Works in all my tests. Does not capture protocol.
++++
+http://210.50.2.215/sd_new/WebBuilder.cgi?RegID=7449046&amp;amp;First=Ok&amp;amp;Upt=Ok&amp;amp;EditPage=3&amp;amp;S
+---
+Hmmmm
++++
+http://www.thedaddy.org
+http://forum.thedaddy.org/index.html
+ftp://hows.it.going_buddy/checkit/o
+---
+www.thedaddy.org
+http://hello
+ftp://check.it
++++
+www.blah.com:8103
+www.blah.com/blah.asp?sort=ASC
+www.blah.com/blah.htm#blah
+---
+www.state.ga
+http://www.blah.ru
++++
+Test.txt
+T est.txt
+Rosco&#39;s.Test.txt
+---
+\Folder\Test.txt
+T*est.txt
+Test.
++++
+http://www.acme.com
+ftp://ftp.acme.com/hede
+gopher://asdfasd.asdfasdf
+---
+&amp;lt;a href=&amp;quot;http://acme.com&amp;quot;&amp;gt;http://www.acme.com&amp;lt;/a&amp;gt;
+&amp;lt;br&amp;gt;http://www.acme.
++++
+this.com
+https://this.com:8080/this/this.htm
+ftp://255.255.255.255/
+---
+.this.com
+https://this.com:/
+ftps://255.256.255.255/
++++
+C:\Documents and Settings\roman.lukyanenko\Desktop\stuff\b_card2.jpg
+C:\b_card.jpg
+\\network\fol
+---
+C:\file.xls
++++
+c:\34\445\546\3.htm
+C:\
+---
+\\qaz
+c:\Ram&amp;lt;\
+C: or c:\\ or \\ 
++++
+http://regxlib.com/Default.aspx
+http://electronics.cnet.com/electronics/0-6342366-8-8994967-1.html
+---
+www.yahoo.com
++++
+all ccTLDs (Country-Code Top-Level Domains)
+all gTLDs (Generic Top-Level Domains)
+.arpa
+---
+n.o.n - e.x.i.s.t.i.n.g   T.L.D.s
++++
+C:\Documents and Settings\roman.lukyanenko\Desktop\stuff\b_card2.txt
+---
+C:\file.doc
++++
+$1,234,567.89
+1234567.89
+$0.00
+---
+$1,2345,67.89
+$1234,345,678.0
++++
+file.jpg
+file.c
+file.gif
+---
+file.34
++++
+123.123.123-12
+---
+123.123.103.32
+123 123 123 12
+sa3.332.322-12
++++
+http://diskusneforum.sk
+www.diskusneforum.sk
+ftp://123.123.123.123/
+---
+diskusneforum.sk
++++
+217.6.9.89
+0.0.0.0
+255.255.255.255
+---
+256.0.0.0
+0127.3
+217.6.9.89.
++++
+113.173.40.255
+171.132.248.57
+79.93.28.178
+---
+189.57.135
+14.190.193999
+A.N.D.233
++++
+192.168.1.1
+10.2.234.1
+66.129.71.122
+---
+192.168.1
+10.2.1234.1
+66 129 71 122
++++
+http://www.abc.com
+www.mpgrewal.tk
+---
+noida-India
+crazy123
++++
+my.domain.com
+regexlib.com
+big-reg.com
+---
+.mydomain.com
+regexlib.comm
+-bigreg.com
++++
+192.168.101.1
+192.168.101.1-192.168.101.255
+192.168.101.1-192.168.101.255,192.168.102.12
+---
+999.168.101.1
+192.168.101.1-
+-192.168.101.255
++++
+http://regexlib.com/REDetails.aspx?regexp_id=x#Details
+---
+&amp;
++++
+C:\temp\this allows spaces\web.config
+\\Andromeda\share\file name.123
+---
+tz:\temp\ fi*le?na:m&lt;e&gt;.doc
+\\Andromeda\share\filename.a
++++
+mydomain.com
+my-domain.info
+mydomain.aero
+---
+-mydomain.com
+mydomain.aaa
+.mydomain.com
++++
+DOMAIN\ssmith
+DOMAIN\a
+DOMAIN\username
+---
+ssmith
+username
+DOMAIN\
++++
+\\server\service
+\\server\my service
+\\serv_001\service$
+---
+\\my server\service
+\\server\ service
+\\server$\service
++++
+http://www.blah.com/~joe
+ftp://ftp.blah.co.uk:2828/blah%20blah.gif
+https://blah.gov/blah-blah.as
+---
+www.blah.com
+http://www.blah&amp;quot;blah.com/I have spaces!
+ftp://blah_underscore/[nope]
++++
+http://psychopop.org
+http://www.edsroom.com/newUser.asp
+http://unpleasant.jarrin.net/markov/inde
+---
+ftp://psychopop.org
+http://www.edsroom/
+http://un/pleasant.jarrin.net/markov/index.asp
++++
+href=&#39;http://www.deepart.org&#39;
+demogorgon@deepart.org
+ftp://123.123.123.123
+---
+www.deepart.org
+deepart.org
+123.123.123.123
++++
+[link=&quot;http://www.yahoo.com&quot;]Yahoo[/link]
+---
+[link]http://www.yahoo.com[/link]
+[link=http://www.yahoo.com]Yahoo[/link]
++++
+E:\DyAGT\SD01A_specV2.xls
+---
+E:\DyAGT\SD01A_specV2.txt
++++
+http://www.aspemporium.com
+mailto:dominionx@hotmail.com
+ftp://ftp.test.com
+---
+www.aspemporium.com
+dominionx@hotmail.com
+bloggs
++++
+http://site.com/dir/file.php?var=moo
+https://localhost
+ftp://user:pass@site.com:21/file/dir
+---
+site.com
+http://site.com/dir//
++++
+abcd.jpg
+a b239.abcd ef12983 298
+a....23498
+---
+.abcde.jpg
+abcde?.jpg
+c:\abcde.jpg
++++
+http://www.google.com
+www.123google.com
+www.google.com/help/me
+---
+-123google.com
+http://-123.123google.com
++++
+www.domain.com
+w123.d42omain.c43om
+ww-w.d-omain.com
+---
+1www.domain.com
+www.1domain.com
+www.domain.com-
++++
+www.domain.com
+http://www.blah.ru
+https://192.168.0.2:80/users/~fname.lname/file.ext
+---
+imap://.com
++++
+$1,234,567.00
+$1234567.00
+1234567.00
+---
+$1,2345,67.00
+$0
+$0.00
++++
+x:\test\testing.htm
+x:\test\test#$ ing.html
+\\test\testing.html
+---
+x:\test\test/ing.htm
+x:\test\test*.htm
+\\test?&amp;lt;.htm
++++
+http://207.68.172.254/home.ashx
+ftp://ftp.netscape.com/
+https://www.brinkster.com/login.asp
+---
+htp://mistake.com/
+http://www_address.com/
+ftp://www.files.com/file with spaces.txt
++++
+https://www.restrictd.com/~myhome/
+---
+http://www.krumedia.com.
+(http://www.krumedia.com)
+http://www.krumedia.com,
++++
+http://www.allkins.com
+http://255.255.255.255
+http://allkins.com/page.asp?action=1
+---
+http://test.testing
++++
+c0.a8.01.64
+0A0275C4
+aC.10.1F.b1
+---
+192.168.1.1
+10.2.177.4
+ah.10.1f.20
++++
+C:\di___r\fi_sysle.txt
+c:\dir\filename.txt
+---
+c:\dir\file?name.txt
++++
+href=&#39;http://www.deepart.org&#39;
+demogorgon@deepart.org
+ftp://123.123.123.123
+---
+www.deepart.org
+deepart.org
+123.123.123.123
++++
+http://psychopop.org
+http://www.edsroom.com/newUser.asp
+http://unpleasant.jarrin.net/markov/inde
+---
+ftp://psychopop.org
+http://www.edsroom/
+http://un/pleasant.jarrin.net/markov/index.asp
++++
+[link=&quot;http://www.yahoo.com&quot;]Yahoo[/link]
+---
+[link]http://www.yahoo.com[/link]
+[link=http://www.yahoo.com]Yahoo[/link]
++++
+http://www.aspemporium.com
+mailto:dominionx@hotmail.com
+ftp://ftp.test.com
+---
+www.aspemporium.com
+dominionx@hotmail.com
+bloggs
++++
+E:\DyAGT\SD01A_specV2.xls
+---
+E:\DyAGT\SD01A_specV2.txt
++++
+http://www.blah.com/~joe
+ftp://ftp.blah.co.uk:2828/blah%20blah.gif
+https://blah.gov/blah-blah.as
+---
+www.blah.com
+http://www.blah&amp;quot;blah.com/I have spaces!
+ftp://blah_underscore/[nope]
++++
+C:\temp\this allows spaces\web.config
+\\Andromeda\share\file name.123
+---
+tz:\temp\ fi*le?na:m&lt;e&gt;.doc
+\\Andromeda\share\filename.a
++++
+http://regexlib.com/REDetails.aspx?regexp_id=x#Details
+---
+&amp;
++++
+mydomain.com
+my-domain.info
+mydomain.aero
+---
+-mydomain.com
+mydomain.aaa
+.mydomain.com
++++
+param1=2&amp;param2=2&amp;param3=5&amp;param4=9
+---
+none
++++
+http://www.zeropanic.co.uk
+ftp://ftp.sunsite.ac.uk
+https://www.z2.co.uk
+---
+gopher://www.z2.co.uk
+http://ftp.z2.co.uk
+ftp://www.z2.co.uk
++++
+\temp\
+\temp\content\
+\Program Files\
+---
+a:\Temp\
+\Temp\Content
+c:\Program Files\
++++
+https://www.restrictd.com/~myhome/
+---
+http://www.krumedia.com.
+(http://www.krumedia.com)
+http://www.krumedia.com,
++++
+http://207.68.172.254/home.ashx
+ftp://ftp.netscape.com/
+https://www.brinkster.com/login.asp
+---
+htp://mistake.com/
+http://www_address.com/
+ftp://www.files.com/file with spaces.txt
++++
+http://www.allkins.com
+http://255.255.255.255
+http://allkins.com/page.asp?action=1
+---
+http://test.testing
++++
+C:\di___r\fi_sysle.txt
+c:\dir\filename.txt
+---
+c:\dir\file?name.txt
++++
+c0.a8.01.64
+0A0275C4
+aC.10.1F.b1
+---
+192.168.1.1
+10.2.177.4
+ah.10.1f.20
++++
+x:\test\testing.htm
+x:\test\test#$ ing.html
+\\test\testing.html
+---
+x:\test\test/ing.htm
+x:\test\test*.htm
+\\test?&amp;lt;.htm
++++
+http://www.google.com
+www.123google.com
+www.google.com/help/me
+---
+-123google.com
+http://-123.123google.com
++++
+abcd.jpg
+a b239.abcd ef12983 298
+a....23498
+---
+.abcde.jpg
+abcde?.jpg
+c:\abcde.jpg
++++
+www.domain.com
+w123.d42omain.c43om
+ww-w.d-omain.com
+---
+1www.domain.com
+www.1domain.com
+www.domain.com-
++++
+$1,234,567.00
+$1234567.00
+1234567.00
+---
+$1,2345,67.00
+$0
+$0.00
++++
+www.domain.com
+http://www.blah.ru
+https://192.168.0.2:80/users/~fname.lname/file.ext
+---
+imap://.com
++++
+name.surname@blah.com
+Name Surname &lt;name.surname@blah.com&gt;
+&quot;b. blah&quot;@blah.co.nz
+---
+name surname@blah.com
+name.&quot;surname&quot;@blah.com
+name@bla-.com
++++
+asmith@mactec.com
+foo12@foo.edu
+bob.smith@foo.tv
+---
+joe
+@foo.com
+a@a
++++
+foo@foo.com
+foo@foo-foo.com.au
+foo@foo.foo.info
+---
+foo@.com
+foo@foo..com
+foo@me@.com
++++
+he_llo@worl.d.com
+hel.l-o@wor-ld.museum
+h1ello@123.com
+---
+hello@worl_d.com
+he&amp;amp;llo@world.co1
+.hello@wor#.co.uk
++++
+joe@aol.com
+ssmith@aspalliance.com
+a@b.cc
+---
+joe@123aspx.com
+joe@web.info
+joe@company.co.uk
++++
+e@eee.com
+eee@e-e.com
+eee@ee.eee.museum
+---
+.@eee.com
+eee@e-.com
+eee@ee.eee.eeeeeeeeee
++++
+abc@def.gh
+a+b_c@d-e_f.gh
+abc@def.ghijkl
+---
+__@__.__
+-a-@-b-.cd
+a--b@c__d.ef
++++
+te_s-t@ts.co.in;te_s-t@ts.co.in;te_s-t@ts.co.in
+---
+nospace@between.mailids.in ; only@semi.colons.com 
++++
+foo@bar.com
+foobar@foobar.com.au
+---
+foo@bar
+$$$@bar.com
++++
+test@test.com
+nerdy.one@science.museum
+ready&amp;amp;set@go.com.au
+---
+.test.@test.com
+spammer@[203.12.145.68]
+bla@bla
++++
+Mohit &amp;lt;myadav@yahoo.com&amp;gt;
+Xon &amp;lt;JON@jon.com&amp;gt;
+Xon@something.com
+---
+mohit&amp;lt;myadav@yahoo.com&amp;gt;
+Xon &amp;lt;JON@jon.com&amp;gt;, tom &amp;lt;jon@jon.com&amp;gt;
+Xon@somthing.com,
++++
+Trais.Gray@domain.biz
+&quot;Funny email&quot;.notfunny@glxs.biz
+ok@[funny domain].co.za
+---
+&quot;TravisGray&quot;extra@ domain.biz
++++
+lewis@moten.com
+lewis@moten.com, me@lewismoten.com
+lewis@moten.com;me@lewismoten.com
+---
+lewis@@moten.com
++++
+whatever@somewhere.museum
+foreignchars@myforeigncharsdomain.nu
+me+mysomething@mydomain.com
+---
+a@b.c
+me@.my.com
+a@b.comFOREIGNCHAR
++++
+bob-smith@foo.com
+bob.smith@foo.com
+bob_smith@foo.com
+---
+-smith@foo.com
+.smith@foo.com
+smith@foo_com
++++
+joe@aol.com
+joe@wrox.co.uk
+joe@domain.info
+---
+a@b
+notanemail
+joe@@.
++++
+&amp;lt;ab@cd.ef&amp;gt;
+bob A. jones &amp;lt;ab@cd.ef&amp;gt;
+bob A. jones &amp;lt;ab@[1.1.1.111]&amp;gt;
+---
+ab@cd.ef
+&amp;quot;bob A. jones &amp;lt;ab@cd.ef&amp;gt;
+bob A. jones &amp;lt;ab@1.1.1.111&amp;gt;
++++
+example@example.com
+foo@bar.info
+blah@127.0.0.1
+---
+broken@@example.com
+foo@bar.infp
+blah@.nospam.biz
++++
+bob@smith.com
+bob@j.smith.museum
+bob.smith@a-1.smith.com
+---
+bob@.com
+bob@-a.smith.com
++++
+blah.v.blah@blah-blah.net
+blah-blah.blah@blah.com
+.@.
+---
+blah@
++++
+example@example.com
+foo@bar.info
+blah@127.0.0.1
+---
+broken@@example.com
+foo@bar.infp
+blah@.nospam.biz
++++
+&amp;lt;ab@cd.ef&amp;gt;
+bob A. jones &amp;lt;ab@cd.ef&amp;gt;
+bob A. jones &amp;lt;ab@[1.1.1.111]&amp;gt;
+---
+ab@cd.ef
+&amp;quot;bob A. jones &amp;lt;ab@cd.ef&amp;gt;
+bob A. jones &amp;lt;ab@1.1.1.111&amp;gt;
++++
+blah.v.blah@blah-blah.net
+blah-blah.blah@blah.com
+.@.
+---
+blah@
++++
+bob@smith.com
+bob@j.smith.museum
+bob.smith@a-1.smith.com
+---
+bob@.com
+bob@-a.smith.com
++++
+re: ASDFG, hours among lifestyle
+Re: ASD34SSDF, i can&#39;t believe
+Re: VZWENKS, the coffin brogade
+---
+re: ASDFGASFDASDF, Hours among lifestyle
+Re: ASD34SSDF, I can&#39;t believe it&#39;s true
++++
+rohrbach
+rohrbach, wi
+rohrbach, wi;roemer;emiles@carlson.com;lagrander, ni
+---
+rohrbach;miles;
+rohrbach, wa;
+wrohrbach@carlson.com;miles;;
++++
+mpgrewal@rediffmail.com
+---
+arnoldschwarz
++++
+bob@somewhere.com
+bob.jones@[1.1.1.1]
+bob@a.b.c.d.info
+---
+bob@com
+bob.jones@some.where
+bob@1.1.1.123
++++
+az@er.tr
+a_zer-ty@az.er.ty
+123-456_789.0@1.2.3iuyt.azer
+---
+a@a.a
+a.@_1.com
+azerty_@domain-com
++++
+a-b-c@d-e-f.com
+a@b.ce
+Me@my.museum
+---
+abc@def.g
+a--b@c--d.fe
+-abc@-def-.def
++++
+somthing@someserver.com
+firstname.lastname@mailserver.domain.com
+username-something@some-server.
+---
+username@someserver.domain.c
+somename@server.domain-com
+someone@something.se_eo
++++
+you.me.hello@somewhere.else.cc
+joe_smith@here.com.
+me@[24.111.232.1]
+---
+.me.you@here.com
+.murat@62.59.114.103.nl
+test_case@here*555%there.com
++++
+/A/Wacky/User@weirdos.com
+bob.builder@[1.1.1.1]
+&quot;blah b. blahburger&quot;@blah.com
+---
+./A/Wacky/User@weirdos.com
+bob.builder@[256.1.1.1]
+-&quot;blah b. blahburger&quot;@blah.com
++++
+a@a.com
+a@a.com.au
+a@a.au
+---
+word
+word@
+@word
++++
+his is a very &#39;long&#39; folder\that is.part of 2 folders.
+b\c\..\x.
+\\Dads\Mp3\FileName1\.\TestDir2
+---
+\\1.dads\C
+\. folder\
+.ext
++++
+jdh*
+jss.js*
+juan.sk@micro.com
+---
+j*
+js*
++++
+username@domain.com
+u-s_e.r1@s-ub2.domain-name.museum:8080
+user_name@123.123.123.12
+---
+user@domain
+user@domain.c
+user.@domain.com
++++
+joe@aol.com
+a@b.c
+---
+asdf
+1234
