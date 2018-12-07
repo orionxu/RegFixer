@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.sat4j.specs.TimeoutException;
 
@@ -20,6 +21,7 @@ import edu.wisc.regfixer.parser.RegexNode;
 public class MainGenerator {
 
 	private static boolean info = true;
+	public static ReentrantLock flagLock = new ReentrantLock();
 
 	public static void main(String[] args) throws TimeoutException {
 
@@ -108,7 +110,7 @@ public class MainGenerator {
 		Thread[] threads = new Thread[6];
 		for (int i = 0; i < 6; i++) {
 			Job tempJ = Benchmark.readFromStr(part2, regexSet.get(i).getTree());
-			threads[i] = new Thread(new FixerThread(tempJ, "thread"));
+			threads[i] = new Thread(new FixerThread(tempJ, "thread"+i));
 			threads[i].start();
 		}
 

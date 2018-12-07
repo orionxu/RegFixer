@@ -117,7 +117,7 @@ public class UnknownChar implements Unknown, RegexNode, Comparable<UnknownChar> 
         return ".*";
       case EmptySet:
         // FIXME should be ready
-        return "∅";
+        return "^$";
       case Default:
         if (this.isFrozen()) {
           return "▓";
