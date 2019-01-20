@@ -90,7 +90,7 @@ public class MainGenerator {
 		Collections.sort(regexSet);
 		final long es = System.currentTimeMillis();
 		System.out.println("Time for sorting: " + (es - edc));
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			System.out.println(regexSet.get(i));
 		}
 
@@ -107,14 +107,14 @@ public class MainGenerator {
 		}
 
 		System.out.println("========Start fixing========");
-		Thread[] threads = new Thread[6];
-		for (int i = 0; i < 6; i++) {
+		Thread[] threads = new Thread[5];
+		for (int i = 0; i < 5; i++) {
 			Job tempJ = Benchmark.readFromStr(part2, regexSet.get(i).getTree());
 			threads[i] = new Thread(new FixerThread(tempJ, "thread"+i));
 			threads[i].start();
 		}
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			try {
 				threads[i].join();
 			} catch (InterruptedException e) {

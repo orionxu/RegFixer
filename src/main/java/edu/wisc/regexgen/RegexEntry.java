@@ -17,7 +17,7 @@ import theory.characters.CharPred;
 import theory.intervals.UnaryCharIntervalSolver;
 import utilities.Pair;
 
-public class RegexEntry implements Comparable<RegexEntry>{
+public class RegexEntry implements Comparable<RegexEntry> {
 
 	private String exp;
 	private RegexNode tree;
@@ -50,6 +50,7 @@ public class RegexEntry implements Comparable<RegexEntry>{
 	public void calculatePerformance(double totalPos, double totalNeg) {
 		acceptRate = 100 - posNotMatch.size() * 100 / totalPos;
 		rejectRate = 100 - negMatch.size() * 100 / totalNeg;
+		cost = (posNotMatch.size() + negMatch.size()) / (totalPos + totalNeg);
 	}
 
 	public double getAcceptRate() {
@@ -87,7 +88,8 @@ public class RegexEntry implements Comparable<RegexEntry>{
 		}
 		for (String p : this.posNotMatch) {
 			SFA<CharPred, Character> strSFA = makeStrSFA(p);
-			SymbolicEditTransducer<CharPred, Character> st = SymbolicEditTransducer.<CharPred, Character>editComposition(strSFA, sfaPos, ba);
+			SymbolicEditTransducer<CharPred, Character> st = SymbolicEditTransducer
+					.<CharPred, Character>editComposition(strSFA, sfaPos, ba);
 			Pair<Integer, List<Character>> result = st.shortestPath(ba);
 			posED.add(result.first);
 
@@ -95,28 +97,19 @@ public class RegexEntry implements Comparable<RegexEntry>{
 
 		SFA<CharPred, Character> sfaNeg = null;
 		try {
-			sfaNeg = aut.getSFA().complement(new UnaryCharIntervalSolver()).removeEpsilonMoves(new UnaryCharIntervalSolver());
+			sfaNeg = aut.getSFA().complement(new UnaryCharIntervalSolver())
+					.removeEpsilonMoves(new UnaryCharIntervalSolver());
 		} catch (TimeoutException e) {
 			System.err.println("Error: Failed taking complement of SFA. ");
 		}
 
 		for (String n : this.negMatch) {
 			SFA<CharPred, Character> strSFA = makeStrSFA(n);
-			SymbolicEditTransducer<CharPred, Character> st = SymbolicEditTransducer.<CharPred, Character>editComposition(strSFA, sfaNeg, ba);
+			SymbolicEditTransducer<CharPred, Character> st = SymbolicEditTransducer
+					.<CharPred, Character>editComposition(strSFA, sfaNeg, ba);
 			Pair<Integer, List<Character>> result = st.shortestPath(ba);
 			negED.add(result.first);
 		}
-	}
-	
-	public void cost() {
-		double avgPos = 0.0;
-		if (posED.size() > 0) {
-			for (Integer i: posED) {
-				avgPos += i;
-			}
-			avgPos /= posED.size();
-		}
-		this.cost = avgPos - (100 - rejectRate);
 	}
 
 	@Override
@@ -134,11 +127,13 @@ public class RegexEntry implements Comparable<RegexEntry>{
 	public int compareTo(RegexEntry o) {
 		if (this.cost < o.cost) {
 			return -1;
-		} else {
+		} else if (this.cost > o.cost) {
 			return 1;
+		} else {
+			return 0;
 		}
 	}
-	
+
 	private static SFA<CharPred, Character> makeStrSFA(String s) throws TimeoutException {
 		UnaryCharIntervalSolver ba = new UnaryCharIntervalSolver();
 		int l = s.length();

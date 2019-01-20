@@ -261,7 +261,7 @@ public abstract class Automaton<P, S> {
 	// Auxiliary protected functions
 	// ------------------------------------------------------
 
-	protected Collection<Integer> getEpsClosure(Integer state,
+	public Collection<Integer> getEpsClosure(Integer state,
 			BooleanAlgebra<P, S> ba) {
 
 		HashSet<Integer> st = new HashSet<Integer>();

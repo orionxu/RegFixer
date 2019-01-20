@@ -40,7 +40,6 @@ public class DataCollector {
 			
 			e.calculatePerformance(posNum, negNum);
 			e.calculateEditDistance();
-			e.cost();
 		}
 
 	}

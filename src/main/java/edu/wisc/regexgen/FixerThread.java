@@ -21,7 +21,10 @@ public class FixerThread implements Runnable {
 
 	@Override
 	public void run() {
+		boolean status = true;
 		FileOutputStream fs = null;
+		String sol = "";
+		final long tStart = System.currentTimeMillis();
 		try {
 			fs = new FileOutputStream(tName + ".log");
 		} catch (FileNotFoundException e1) {
@@ -31,17 +34,27 @@ public class FixerThread implements Runnable {
 		Diagnostic diag = new Diagnostic(new ReportStream(fs));
 		int cut = 4000;
 		try {
-			RegFixer.fix(this.tJob, cut, diag);
-		} catch (TimeoutException e) {
+			System.out.println("Start fixing....");
+			sol = RegFixer.fix(this.tJob, cut, diag);
+		} catch (Exception e) {
 			e.printStackTrace();
+			status = false;
 		}
 		if (fs != null) {
 			try {
 				fs.close();
 			} catch (IOException e) {
 				e.printStackTrace();
+				
 			}
 		}
+		final long duration = System.currentTimeMillis() - tStart;
+
+		if (status)
+			System.out.println(
+					"===============\nThread " + tName + " done successfully. \nRunning time: " + duration + "\nSolution is: " + sol);
+		else
+			System.out.println("===============\nThread " + tName + " failed. ");
 	}
 
 }
