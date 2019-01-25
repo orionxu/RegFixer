@@ -9,7 +9,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.sat4j.specs.TimeoutException;
@@ -32,7 +40,7 @@ public class MainGenerator {
 		ArrayList<String> negative = new ArrayList<>();
 
 		try {
-			File file = new File("../dataset.re");
+			File file = new File("../regex_small.re");
 			reader = new BufferedReader(new FileReader(file));
 
 			String line;
@@ -107,17 +115,25 @@ public class MainGenerator {
 		}
 
 		System.out.println("========Start fixing========");
-		Thread[] threads = new Thread[5];
+
+		ExecutorService pool = Executors.newFixedThreadPool(5);
+		Set<Future<String>> tSet = new HashSet<Future<String>>();
+		Set<String> results = new HashSet<String>();
 		for (int i = 0; i < 5; i++) {
 			Job tempJ = Benchmark.readFromStr(part2, regexSet.get(i).getTree());
-			threads[i] = new Thread(new FixerThread(tempJ, "thread"+i));
-			threads[i].start();
+			Callable<String> callable = new FixerThread(tempJ, "thread" + i);
+			Future<String> future = pool.submit(callable);
+			tSet.add(future);
 		}
 
-		for (int i = 0; i < 5; i++) {
+		for (Future<String> future : tSet) {
 			try {
-				threads[i].join();
-			} catch (InterruptedException e) {
+				String res = future.get(30, TimeUnit.SECONDS);
+				if (res.length() > 0) {
+					results.add(res);
+				}
+			} catch (InterruptedException | ExecutionException | java.util.concurrent.TimeoutException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

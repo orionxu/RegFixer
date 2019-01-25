@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.sat4j.specs.TimeoutException;
 
@@ -39,7 +40,7 @@ import edu.wisc.regfixer.parser.RegexNode;
 import edu.wisc.regfixer.parser.RepetitionNode;
 import edu.wisc.regfixer.parser.StarNode;
 import edu.wisc.regfixer.parser.UnionNode;
-
+@Ignore
 public class BasicFunctionalityTest {
 	private static Job testCase = null;
 	private static ArrayList<Enumerant> enuList = null;

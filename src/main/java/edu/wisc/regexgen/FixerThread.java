@@ -3,6 +3,7 @@ package edu.wisc.regexgen;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeoutException;
 
 import edu.wisc.regfixer.RegFixer;
@@ -10,7 +11,7 @@ import edu.wisc.regfixer.diagnostic.Diagnostic;
 import edu.wisc.regfixer.diagnostic.ReportStream;
 import edu.wisc.regfixer.enumerate.Job;
 
-public class FixerThread implements Runnable {
+public class FixerThread implements Callable<String> {
 	private Job tJob;
 	private String tName;
 
@@ -20,7 +21,7 @@ public class FixerThread implements Runnable {
 	}
 
 	@Override
-	public void run() {
+	public String call() {
 		boolean status = true;
 		FileOutputStream fs = null;
 		String sol = "";
@@ -29,7 +30,7 @@ public class FixerThread implements Runnable {
 			fs = new FileOutputStream(tName + ".log");
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
-			return;
+			return "";
 		}
 		Diagnostic diag = new Diagnostic(new ReportStream(fs));
 		int cut = 4000;
@@ -55,6 +56,8 @@ public class FixerThread implements Runnable {
 					"===============\nThread " + tName + " done successfully. \nRunning time: " + duration + "\nSolution is: " + sol);
 		else
 			System.out.println("===============\nThread " + tName + " failed. ");
+		return sol;
 	}
+
 
 }

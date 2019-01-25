@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import edu.wisc.regfixer.diagnostic.Diagnostic;
@@ -24,7 +25,7 @@ import edu.wisc.regfixer.parser.RepetitionNode;
 import edu.wisc.regfixer.parser.UnionNode;
 import edu.wisc.regfixer.synthesize.Synthesis;
 import edu.wisc.regfixer.synthesize.SynthesisFailure;
-
+@Ignore
 public class IssueTest {
 	private static Diagnostic diag;
 	private static Enumerant issue1Template;
