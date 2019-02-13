@@ -1,8 +1,7 @@
 package edu.wisc.regfixer.enumerate;
 
-
-import edu.wisc.regexgen.MainGenerator;
 import edu.wisc.regfixer.parser.Bounds;
+import edu.wisc.regfixer.parser.Storage;
 
 public class UnknownBounds extends Bounds implements Unknown {
   // SEE: UnknownChar
@@ -33,5 +32,15 @@ public class UnknownBounds extends Bounds implements Unknown {
     } else {
       return UnknownBounds.fill.toString();
     }
+  }
+  
+  public String finalString (int lloc, int rloc) {
+	  String l = "";
+	  if (Storage.model.getConstInterp(Storage.boundPreds[lloc]) != null)
+		  l = Storage.model.getConstInterp(Storage.boundPreds[lloc]).toString();
+	  String r = "";
+	  if (Storage.model.getConstInterp(Storage.boundPreds[rloc]) != null)
+	  	r = Storage.model.getConstInterp(Storage.boundPreds[rloc]).toString();
+	  return "{" + l + "," + r + "}";
   }
 }

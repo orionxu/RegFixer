@@ -17,6 +17,8 @@ import edu.wisc.regfixer.enumerate.Expansion;
 import edu.wisc.regfixer.enumerate.Job;
 import edu.wisc.regfixer.enumerate.Range;
 import edu.wisc.regfixer.enumerate.UnknownChar;
+import edu.wisc.regfixer.global.Global;
+import edu.wisc.regfixer.parser.Storage;
 import edu.wisc.regfixer.synthesize.Synthesis;
 import edu.wisc.regfixer.synthesize.SynthesisFailure;
 
@@ -82,11 +84,14 @@ public class RegFixer {
     // solution.
     int costCutoff = Integer.MAX_VALUE;
 
-    int i = 0;
     while ((enumerant = enumerants.next()) != null) {
       // Stop the loop if the cost of the current template is greater than
       // cutoff or if the number of templates searched is greater than the
       // loop cutoff.
+    	if (Global.skipForStack) {
+    		Global.skipForStack = false;
+    		continue;
+    	}
       if (enumerant.getCost() > costCutoff) {
         break;
       } else if (loopCutoff > -1 && diag.registry().bumpInt("templatesTotal") >= loopCutoff) {
@@ -99,49 +104,65 @@ public class RegFixer {
         }
       }
 
-
       Synthesis synthesis = null;
       Expansion expansion = enumerant.getLatestExpansion();
 
       boolean passesTests = true;
       
-      
-      
-	  if(expansion == Expansion.Repeat) {
-    	  if (enumerant.getParent()==null || !enumerant.getParent().passDot) {
-    		  diag.timing().startTiming("timeDotTest");
-              passesTests = job.getCorpus().passesDotTest(enumerant);
-              diag.timing().stopTimingAndAdd("timeDotTest");
-    	  }
-          // Increment appropriate counters.
-          diag.registry().bumpInt("totalDotTests");
-          if (passesTests == false) {
-            diag.registry().bumpInt("totalDotTestsRejects");
-          }
-      } else {
-    	  diag.timing().startTiming("timeDotTest");
-          passesTests = job.getCorpus().passesDotTest(enumerant);
-          diag.timing().stopTimingAndAdd("timeDotTest");
-          // Increment appropriate counters.
-          diag.registry().bumpInt("totalDotTests");
-          if (passesTests == false) {
-            diag.registry().bumpInt("totalDotTestsRejects");
-          }
-      }
-
+      /*if (!Global.baseLine) {
+		  if(expansion == Expansion.Repeat) {
+	    	  if (enumerant.getParent()==null || !enumerant.getParent().passDot) {
+	    		  diag.timing().startTiming("timeDotTest");
+	              passesTests = job.getCorpus().passesDotTest(enumerant);
+	              diag.timing().stopTimingAndAdd("timeDotTest");
+	    	  }
+	          // Increment appropriate counters.
+	          diag.registry().bumpInt("totalDotTests");
+	          if (passesTests == false) {
+	            diag.registry().bumpInt("totalDotTestsRejects");
+	          }
+	      } else {
+	    	  diag.timing().startTiming("timeDotTest");
+	          passesTests = job.getCorpus().passesDotTest(enumerant);
+	          diag.timing().stopTimingAndAdd("timeDotTest");
+	          // Increment appropriate counters.
+	          diag.registry().bumpInt("totalDotTests");
+	          if (passesTests == false) {
+	            diag.registry().bumpInt("totalDotTestsRejects");
+	          }
+	      }
+      }*/
     
-      diag.output().printPartialRow(enumerant.getCost(), enumerant.toString());
+      //diag.output().printPartialRow(enumerant.getCost(), enumerant.toString());
 
-      if (passesTests) {
-    	  enumerant.passDot = true;
-        try {
+      /*if (!Global.baseLine) {
+	      if (passesTests) {
+	    	  enumerant.passDot = true;
+	        try {
+	          synthesis = RegFixer.synthesisLoop(job, enumerant, diag);
+	        } catch (SynthesisFailure ex) {
+	          diag.output().finishRow(ex.getMessage());
+	          continue;
+	        }
+	      } else {
+	    	  diag.output().finishRow("Failed dot test or empty set test. ");
+	      }
+      } else {
+    	  try {
+	          synthesis = RegFixer.synthesisLoop(job, enumerant, diag);
+	        } catch (SynthesisFailure ex) {
+	          diag.output().finishRow(ex.getMessage());
+	          continue;
+	        }
+      }*/
+
+      try {
           synthesis = RegFixer.synthesisLoop(job, enumerant, diag);
         } catch (SynthesisFailure ex) {
           diag.output().finishRow(ex.getMessage());
           continue;
         }
-      }
-
+      
       if (synthesis != null) {
         if (solutions.size() == 0) {
           diag.timing().stopTimingAndAdd("timeToFirstSol");
@@ -149,20 +170,29 @@ public class RegFixer {
           diag.registry().setInt("costOfFirstSol", enumerant.getCost());
         }
 
-        String sol = synthesis.toString();
-        int fit = synthesis.getFitness();
-        solutions.put(sol, fit);
-
-        diag.output().finishRow(sol);
+        if (!Global.pairMode) {
+	        String sol = synthesis.toString();
+	        int fit = synthesis.getFitness();
+	        solutions.put(sol, fit);
+	
+	        diag.output().finishRow(sol);
+        }
         costCutoff = enumerant.getCost();
+        
         // force one solution
         break;
-      } else {
-    	  diag.output().finishRow("Failed dot test or empty set test. ");
-      }
+      } 
     }
 
+    diag.printStat();
     diag.timing().stopTimingAndAdd("timeTotal");
+    diag.output().printSectionHeader("Computed in:");
+    diag.output().printIndent(String.format("#c#%d#c#ms", Math.round(diag.timing().getTiming("timeTotal") / 1e6)));
+    diag.output().printSectionHeader("timeSATSolver time:");
+    diag.output().printIndent(String.format("#s#%d#s#ms", Math.round(diag.timing().getTiming("timeSATSolver") / 1e6)));
+    diag.output().printSectionHeader("cost:");
+    diag.output().printIndent(String.format("#d#%d#d#", costCutoff));
+
 
     if (solutions.size() > 0) {
       diag.output().printSectionHeader("Finds the following solutions (and the corresponding fitness):");
@@ -180,8 +210,8 @@ public class RegFixer {
       // diag.output().printIndent(synthesis.getTree().toString());
       // diag.output().printSectionHeader("With a specificity of:");
       // diag.output().printIndent(Integer.toString(synthesis.getFitness()));
-      diag.output().printSectionHeader("Computed in:");
-      diag.output().printIndent(String.format("%dms", Math.round(diag.timing().getTiming("timeTotal") / 1e6)));
+      //diag.output().printSectionHeader("Computed in:");
+      //diag.output().printIndent(String.format("#c#%d#c#ms", Math.round(diag.timing().getTiming("timeTotal") / 1e6)));
 
       if (diag.getBool("debug-stats")) {
         diag.output().printSectionHeader("Statistics:");
@@ -237,15 +267,38 @@ public class RegFixer {
       System.out.println(solution);
     }
 
+    //if (Global.maxSat && !Global.pairMode) {
+    if (Global.maxSat) {
+	    Global.findMaxSat = true;
+	    try {
+	        Synthesis synthesis = RegFixer.synthesisLoop(job, enumerant, diag);
+	        if (!Global.pairMode) {
+		        if (synthesis != null) {
+		        	System.out.println("max-sat solution: #m#" + synthesis.toString() + "#m#");
+		        }
+	        } 
+	    } catch (SynthesisFailure ex) {
+	        diag.output().finishRow(ex.getMessage());
+	    }
+	    Global.findMaxSat = false;
+    }
+    
     return solution;
   }
 
   private static Synthesis synthesisLoop (Job job, Enumerant enumerant, Diagnostic diag) throws SynthesisFailure {
     if (job.getCorpus().hasAllNegativeExamples()) {
-      return enumerant.synthesize(
-        job.getCorpus().getPositiveExamples(),
-        job.getCorpus().getNegativeExamples(),
-        diag);
+    	if (!Global.pairMode) {
+	      return enumerant.synthesize(
+	        job.getCorpus().getPositiveExamples(),
+	        job.getCorpus().getNegativeExamples(),
+	        diag);
+    	} else {
+    		return enumerant.synthesizePair(
+	        job.getCorpus().getPositiveExamples(),
+	        job.getCorpus().getNegativeExamples(),
+	        diag);
+    	}
     }
 
     Set<Range> P = new TreeSet<>(job.getCorpus().getPositiveRanges());

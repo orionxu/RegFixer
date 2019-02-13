@@ -186,10 +186,6 @@ public class Automaton extends automata.Automaton {
 	  }
   }
   
-  public SFA<CharPred, Character> getSFA() {
-	  return this.sfa;
-  }
-  
   private Set<Integer> getReachableId (int from) {
     Set<Integer> reached = new HashSet<>();
     reached.add(from);
@@ -315,7 +311,7 @@ public class Automaton extends automata.Automaton {
 
     for (UnknownId id : this.unknownToEntryState.keySet()) {
       quantTally.put(id, new Stack<>());
-      quantTally.get(id).push(null);
+      //quantTally.get(id).push(null);
     }
 
     State currState = endState;
@@ -340,7 +336,8 @@ public class Automaton extends automata.Automaton {
         if (entryStateId == currState.getStateId()) {
           Integer old = quantTally.get(id).pop();
 
-          if (old == null) {
+          //if (old == null) {
+          if (old == 0) {
             old = 0;
           }
 
@@ -357,8 +354,11 @@ public class Automaton extends automata.Automaton {
              if (this.unknownToEntryState.get(id) != prevState.getStateId()) {
                // This exit does NOT loop back to the start of this quantifier
                // so push a new counter onto the tally stack.
-               quantTally.get(id).push(null);
+               //quantTally.get(id).push(null);
+               quantTally.get(id).push(0);
              }
+          } else if (prevState == null) {
+        	  quantTally.get(id).push(0);
           }
         }
       }
@@ -698,7 +698,7 @@ public class Automaton extends automata.Automaton {
     else if (node instanceof CharLiteralNode)  return charLiteralToAutomaton((CharLiteralNode) node);
     else {
       System.err.printf("Unknown AST class: %s\n", node.getClass().getName());
-      throw new TimeoutException();
+      throw new TimeoutException(); 
     }
   }
 
@@ -948,6 +948,10 @@ public class Automaton extends automata.Automaton {
 		  }
 	  }
 	  return result;
+  }
+
+  public SFA<CharPred, Character> getSFA() { 
+    return this.sfa; 
   }
   
 }

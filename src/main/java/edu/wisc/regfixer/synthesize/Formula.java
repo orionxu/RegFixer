@@ -21,12 +21,14 @@ import edu.wisc.regfixer.automata.Route;
 import edu.wisc.regfixer.diagnostic.Diagnostic;
 import edu.wisc.regfixer.enumerate.UnknownBounds;
 import edu.wisc.regfixer.enumerate.UnknownId;
+import edu.wisc.regfixer.global.Global;
 import edu.wisc.regfixer.parser.Bounds;
 import edu.wisc.regfixer.parser.CharClass;
 import edu.wisc.regfixer.parser.CharClassSetNode;
 import edu.wisc.regfixer.parser.CharLiteralNode;
 import edu.wisc.regfixer.parser.CharRangeNode;
 import edu.wisc.regfixer.parser.ConcreteCharClass;
+import edu.wisc.regfixer.parser.RegexNode;
 
 public class Formula {
   private List<Set<Route>> positives;
@@ -51,9 +53,9 @@ public class Formula {
   private Map<UnknownId, IntExpr> unknownToMinVar;
   private Map<UnknownId, IntExpr> unknownToMaxVar;
 
-  public Formula (List<Set<Route>> positives, List<Set<Route>> negatives) {
+  /*public Formula (List<Set<Route>> positives, List<Set<Route>> negatives) {
     this(positives, negatives, new Diagnostic());
-  }
+  }*/
 
   public Formula (List<Set<Route>> positives, List<Set<Route>> negatives, Diagnostic diag) {
     this.positives = positives;
@@ -130,9 +132,11 @@ public class Formula {
       quantCosts.add(minCost);
     }
 
-    if (quantCosts.size() > 0) {
-      IntExpr[] costArray = quantCosts.toArray(new IntExpr[quantCosts.size()]);
-      // this.opt.MkMinimize(this.ctx.mkAdd(costArray));
+    if (Global.maxSat && Global.findMaxSat){
+	    if (quantCosts.size() > 0) {
+	      IntExpr[] costArray = quantCosts.toArray(new IntExpr[quantCosts.size()]);
+	      this.opt.MkMinimize(this.ctx.mkAdd(costArray));
+	    }
     }
 
     // Build the formula and encode meta-class formulae
@@ -144,9 +148,11 @@ public class Formula {
       charCosts.add(this.encodeCharClassSummation(id));
     }
 
-    if (charCosts.size() > 0) {
-      ArithExpr[] costArray = charCosts.toArray(new ArithExpr[charCosts.size()]);
-      // this.opt.MkMaximize(this.ctx.mkAdd(costArray));
+    if (Global.maxSat && Global.findMaxSat){
+	    if (charCosts.size() > 0) {
+	      ArithExpr[] costArray = charCosts.toArray(new ArithExpr[charCosts.size()]);
+	      this.opt.MkMaximize(this.ctx.mkAdd(costArray));
+	    }
     }
   }
 
@@ -206,9 +212,9 @@ public class Formula {
     BoolExpr whole = null;
 
     for (Map.Entry<UnknownId, Set<Integer>> entry : route.getExits().entrySet()) {
-      /*if (entry.getValue().size() == 0) {
+      if (entry.getValue().size() == 0) {
         continue;
-      }*/
+      }
 
       IntNum minCountVal;
       IntNum maxCountVal;
@@ -228,7 +234,7 @@ public class Formula {
       if (whole == null) {
         whole = part;
       } else {
-        whole = this.ctx.mkAnd(whole, part);// rp changed
+        whole = this.ctx.mkAnd(whole, part);
       }
     }
 
@@ -281,9 +287,9 @@ public class Formula {
     BoolExpr whole = null;
 
     for (Map.Entry<UnknownId, Set<Integer>> entry : route.getExits().entrySet()) {
-      /*if (entry.getValue().size() == 0) {
+      if (entry.getValue().size() == 0) {
         continue;
-      }*/
+      }
 
       IntNum minCountVal;
       IntNum maxCountVal;
@@ -527,7 +533,12 @@ public class Formula {
     /**
      * First, check that the formula was satisifed
      */
-    if (this.opt.Check() == Status.UNSATISFIABLE) {
+    diag.timing().startTiming("timeSATSolver");
+    Status status = this.opt.Check();
+    long duration = diag.timing().stopTimingAndAdd("timeSATSolver");
+    RegexNode root = Global.root;
+    diag.stat.add(root.toString(), root.descendants(), root.collectUnknown(), duration);
+    if (status == Status.UNSATISFIABLE) {
       throw new SynthesisFailure("unsatisfiable SAT formula");
     } else {
       // Use the SAT solver to attempt to resolve the variables and their constraints.

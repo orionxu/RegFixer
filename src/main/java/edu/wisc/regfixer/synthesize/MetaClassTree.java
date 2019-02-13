@@ -31,7 +31,7 @@ package edu.wisc.regfixer.synthesize;
  * ------------
  *   \w
  *   [a-zA-Z]
- *   [FoBar]
+ *   [FooBar]
  *
  *
  * But which resultant class is preferred? The algorithm will prefer the \w

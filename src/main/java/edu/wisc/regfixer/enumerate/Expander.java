@@ -19,6 +19,8 @@ import edu.wisc.regfixer.parser.StarNode;
 import edu.wisc.regfixer.parser.UnionNode;
 
 public class Expander {
+	
+	private static Map<UnknownId, Expansion> expanTypes = new HashMap<>();
 
 	private static RegexNode simplify(RegexNode node) {
 		
@@ -112,14 +114,14 @@ public class Expander {
 	public static Set<Enumerant> addOriginal(Enumerant enumerant) {
 		Set<UnknownId> ids = enumerant.getIds();
 		int cost = enumerant.getCost();
-		Expansion expansion  = enumerant.getLatestExpansion();
+		//Expansion expansion  = enumerant.getLatestExpansion();
 		
 		Map<RegexNode, UnknownId> newNodes = addOriginal(enumerant.getTree());
 		Set<Enumerant> res = new HashSet<>();
 		for (Map.Entry<RegexNode, UnknownId> node: newNodes.entrySet()) {
 			Set<UnknownId> newId = new HashSet<>(ids);
 			newId.add(node.getValue());
-			res.add(new Enumerant(node.getKey(), newId, cost + 1, expansion));
+			res.add(new Enumerant(node.getKey(), newId, cost + 1, null));
 		}
 		return res;
 	}
@@ -272,7 +274,7 @@ public class Expander {
 	public static Set<Enumerant> reduce(Enumerant enumerant) {
 		Set<UnknownId> ids = enumerant.getIds();
 		int cost = enumerant.getCost();
-		Expansion expansion  = enumerant.getLatestExpansion();
+		//Expansion expansion  = enumerant.getLatestExpansion();
 		
 		Map<RegexNode, UnknownId> newNodes = reduce(enumerant.getTree());
 		Set<Enumerant> res = new HashSet<>();
@@ -280,7 +282,7 @@ public class Expander {
 			Set<UnknownId> newId = new HashSet<>(ids);
 			if (node.getValue() != null)
 				newId.remove(node.getValue());
-			res.add(new Enumerant(node.getKey(), newId, cost + 1, expansion));
+			res.add(new Enumerant(node.getKey(), newId, cost + 1, null));
 		}
 		return res;
 	}
@@ -463,14 +465,17 @@ public class Expander {
 	public static Set<Enumerant> expand(Enumerant enumerant) {
 		Set<UnknownId> ids = enumerant.getIds();
 		int cost = enumerant.getCost();
-		Expansion expansion  = enumerant.getLatestExpansion();
 		
 		Map<RegexNode, UnknownId> newNodes = expand(enumerant.getTree());
 		Set<Enumerant> res = new HashSet<>();
 		for (Map.Entry<RegexNode, UnknownId> node: newNodes.entrySet()) {
 			Set<UnknownId> newId = new HashSet<>(ids);
 			newId.add(node.getValue());
+			Expansion expansion = expanTypes.get(node.getValue());
+			expanTypes.remove(node.getValue());
 			res.add(new Enumerant(node.getKey(), newId, cost + 1, expansion));
+			//System.out.println("added enumerant: " + node.getKey().toString() 
+				//	+ " expansion: " + expansion);
 		}
 		return res;
 	}
@@ -608,11 +613,18 @@ public class Expander {
 	
 	private static Map<RegexNode, UnknownId> expandUnknownChar(UnknownChar node) {
 		Map<RegexNode, UnknownId> partials = new HashMap<>();
-		UnknownChar newChar = new UnknownChar();
-	    partials.put(new ConcatNode(node, newChar), newChar.getId());
-	    partials.put(new UnionNode(node, newChar), newChar.getId());
+		UnknownChar newCharCon = new UnknownChar();
+	    partials.put(new ConcatNode(node, newCharCon), newCharCon.getId());
+	    expanTypes.put(newCharCon.getId(), Expansion.Concat);
+	    
+	    UnknownChar newCharUni = new UnknownChar();
+	    partials.put(new UnionNode(node, newCharUni), newCharUni.getId());
+	    expanTypes.put(newCharUni.getId(), Expansion.Union);
+	    
 	    UnknownBounds newBound = new UnknownBounds();
     	partials.put(new RepetitionNode(node, newBound), newBound.getId());
+    	expanTypes.put(newBound.getId(), Expansion.Repeat);
+    	
 	    return partials;
 	}
 	

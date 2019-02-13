@@ -26,6 +26,7 @@ import edu.wisc.regfixer.diagnostic.ReportStream;
 import edu.wisc.regfixer.diagnostic.Timing;
 import edu.wisc.regfixer.enumerate.Benchmark;
 import edu.wisc.regfixer.enumerate.Job;
+import edu.wisc.regfixer.global.Global;
 import edu.wisc.regfixer.util.Ansi;
 
 public class CLI {
@@ -116,6 +117,19 @@ public class CLI {
     @Parameter(names={"--version", "-v"})
     private boolean version = false;
 
+    // mode = 1 -> automata tracing
+    // mode = 2 -> pair matching
+    @Parameter(names={"--mode", "-m"})
+    private int mode = 1;
+    
+    // max_sat = true -> use max_sat as in optimization
+    @Parameter(names={"--max-sat", "-max"})
+    private boolean max_sat = false;
+    
+    // base = true -> use baseLine implementation
+    @Parameter(names={"--baseLine", "-base"})
+    private boolean baseLine = false;
+    
     @Parameter
     private List<String> catchall = new ArrayList<>();
   }
@@ -179,6 +193,17 @@ public class CLI {
 
     cli.parse(argv);
 
+    if (root.mode == 1)
+    	Global.pairMode = false;
+    else
+    	Global.pairMode = true;
+    
+    if (root.max_sat)
+    	Global.maxSat = true;
+    
+    if (root.baseLine)
+    	Global.baseLine = true;
+    
     if (root.help) {
       System.exit(handleHelp());
     }

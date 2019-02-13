@@ -10,6 +10,7 @@ import edu.wisc.regfixer.RegFixer;
 import edu.wisc.regfixer.diagnostic.Diagnostic;
 import edu.wisc.regfixer.diagnostic.ReportStream;
 import edu.wisc.regfixer.enumerate.Job;
+import edu.wisc.regfixer.global.Global;
 
 public class FixerThread implements Callable<String> {
 	private Job tJob;
@@ -35,7 +36,7 @@ public class FixerThread implements Callable<String> {
 		Diagnostic diag = new Diagnostic(new ReportStream(fs));
 		int cut = 4000;
 		try {
-			System.out.println("Start fixing....");
+			Global.maxSat = true;
 			sol = RegFixer.fix(this.tJob, cut, diag);
 		} catch (Exception e) {
 			e.printStackTrace();

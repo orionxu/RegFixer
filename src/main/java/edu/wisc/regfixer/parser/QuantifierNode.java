@@ -20,4 +20,16 @@ public abstract class QuantifierNode implements RegexNode {
   public String toString () {
     return "(" + this.child + ")" + Character.toString(this.operator);
   }
+  
+  public void toBinary() {
+	  this.child.toBinary();
+  }
+  
+  public int collectUnknown() {
+      return this.child.collectUnknown();
+  }
+  
+  public String finalString () {
+	    return "(" + this.child.finalString() + ")" + Character.toString(this.operator);
+	  }
 }

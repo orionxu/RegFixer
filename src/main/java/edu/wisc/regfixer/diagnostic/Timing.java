@@ -16,13 +16,14 @@ public class Timing {
     this.pending.put(name, System.nanoTime());
   }
 
-  public void stopTimingAndAdd (String name) {
+  public long stopTimingAndAdd (String name) {
     if (this.timings.containsKey(name) == false) {
       this.timings.put(name, (long)0);
     }
 
     long duration = System.nanoTime() - this.pending.get(name);
     this.timings.put(name, this.timings.get(name) + duration);
+    return duration;
   }
 
   public long getTiming (String name) {
@@ -32,7 +33,7 @@ public class Timing {
 
     return 0;
   }
-
+  
   public static enum Format { Sec, MilliSec, NanoSec }
 
   public long getTiming (String name, Format format) {

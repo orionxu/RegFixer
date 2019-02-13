@@ -115,7 +115,7 @@ public class MainGenerator {
 		}
 
 		System.out.println("========Start fixing========");
-
+		final long tsFixing = System.currentTimeMillis();
 		ExecutorService pool = Executors.newFixedThreadPool(5);
 		Set<Future<String>> tSet = new HashSet<Future<String>>();
 		Set<String> results = new HashSet<String>();
@@ -128,7 +128,7 @@ public class MainGenerator {
 
 		for (Future<String> future : tSet) {
 			try {
-				String res = future.get(30, TimeUnit.SECONDS);
+				String res = future.get(15, TimeUnit.SECONDS);
 				if (res.length() > 0) {
 					results.add(res);
 				}
@@ -137,7 +137,9 @@ public class MainGenerator {
 				e.printStackTrace();
 			}
 		}
-
+		pool.shutdown();
+		System.out.println("Time used for fixing: " + (System.currentTimeMillis() - tsFixing));
+		return;
 	}
 
 }

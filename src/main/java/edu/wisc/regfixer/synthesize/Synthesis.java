@@ -25,15 +25,19 @@ public class Synthesis {
   private RegexNode tree;
   private int totalCharLiterals;
 
+  public Synthesis() {
+	  
+  }
+  
   public Synthesis (Enumerant enumerant, List<Set<Route>> positives, List<Set<Route>> negatives) throws SynthesisFailure {
     this(enumerant, positives, negatives, new Diagnostic());
   }
 
   public Synthesis (Enumerant enumerant, List<Set<Route>> positives, List<Set<Route>> negatives, Diagnostic diag) throws SynthesisFailure {
     Formula formula = new Formula(positives, negatives, diag);
-    diag.timing().startTiming("timeSATSolver");
+    //diag.timing().startTiming("timeSATSolver");
     formula.solve();
-    diag.timing().stopTimingAndAdd("timeSATSolver");
+    //diag.timing().stopTimingAndAdd("timeSATSolver");
 
     Map<UnknownId, CharClass> charSolutions = formula.getCharSolutions();
     Map<UnknownId, Bounds> boundsSolutions = formula.getBoundsSolutions();

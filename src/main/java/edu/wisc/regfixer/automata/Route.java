@@ -30,6 +30,14 @@ public class Route {
     return this.exits.isEmpty();
   }
 
+  public boolean hasNoRealExits() {
+	  for (Map.Entry<UnknownId, Set<Integer>> entry : this.exits.entrySet()) {
+	      if (!entry.getValue().isEmpty())
+	    	  return false;
+	    }
+	  return true;
+  }
+  
   @Override
   public boolean equals (Object other) {
     if (other instanceof Route) {
